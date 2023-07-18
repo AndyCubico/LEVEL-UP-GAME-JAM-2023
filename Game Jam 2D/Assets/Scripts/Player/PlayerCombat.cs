@@ -18,8 +18,8 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTime = 0f;
 
     //barras
-    [SerializeField] private float maxHealth = 100;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth;
     [SerializeField] private float maxEnergy = 100;
     [SerializeField] private float currentEnergy;
     public Bar healthBar;

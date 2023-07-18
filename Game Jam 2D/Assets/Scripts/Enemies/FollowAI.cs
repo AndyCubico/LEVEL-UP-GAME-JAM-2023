@@ -43,15 +43,20 @@ public class FollowAI : MonoBehaviour
         // Line of Sight
         _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
         RaycastHit2D hitInfo = Physics2D.Raycast(_LoS_Transform.position, _LoS_Transform.right, _visionDistance);
-    
-        if (hitInfo.collider != null && hitInfo.collider.tag != "Enemy")
-        {
-            Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.red);
+        // Ignore self collider
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), hitInfo.collider);
 
+        if (hitInfo.collider != null)
+        {
             if (hitInfo.collider.tag == "Player")
             {
+                Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.red);
                 _follow = true;
             }
+            else
+            {
+                Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.yellow);
+            }    
         }
         else
         {
