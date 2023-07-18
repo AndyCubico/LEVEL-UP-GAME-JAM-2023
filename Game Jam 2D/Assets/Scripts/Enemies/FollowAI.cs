@@ -19,6 +19,9 @@ public class FollowAI : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 0; // 0 = no rotation
     [SerializeField] private float _visionDistance = 1;
 
+    [SerializeField] private float _rcWidth = 3;
+    [SerializeField] private float _rcHeight = 3;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,10 @@ public class FollowAI : MonoBehaviour
         }
 
         RaycastHit2D hitInfo = Physics2D.Raycast(_LoS_Transform.position, _LoS_Transform.right, _visionDistance);
+        
+        // [Smm] Pruebas para hacer el rayito mas ancho
+        //RaycastHit2D hitInfo = Physics2D.BoxCast(_LoS_Transform.position, new Vector2(_rcWidth, _rcHeight), _LoS_Transform.rotation.z, new Vector2(_visionDistance, _visionDistance));
+        //RaycastHit2D hitInfo = BoxCast(_LoS_Transform.position, new Vector2(_rcWidth, _rcHeight), _LoS_Transform.rotation.z, new Vector2(_visionDistance, _visionDistance));
 
         if (hitInfo.collider != null)
         {
@@ -57,7 +64,7 @@ public class FollowAI : MonoBehaviour
             else
             {
                 Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.yellow);
-            }    
+            }
         }
         else
         {
