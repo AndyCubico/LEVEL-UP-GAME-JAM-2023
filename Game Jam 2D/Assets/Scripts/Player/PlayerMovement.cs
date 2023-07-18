@@ -51,10 +51,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!rechargeStop)
+        if (rechargeStop)
         {
-            playerRb.MovePosition(playerRb.position + movementInput * speed * Time.fixedDeltaTime);
+            return;
         }
+
+        playerRb.MovePosition(playerRb.position + movementInput * speed * Time.fixedDeltaTime);
     }
 
     // [Smm] Dashing: If dash, multiply the speed by the dash power. When finish, divide to return to the original speed.

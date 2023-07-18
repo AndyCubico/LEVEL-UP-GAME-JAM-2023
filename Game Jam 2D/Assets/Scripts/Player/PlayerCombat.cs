@@ -45,7 +45,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (move._stopMove)
         {
-            if (currentEnergy<maxEnergy && !canRecharge)
+            if (currentEnergy<maxEnergy)
             {
                 UseEnergy(-rechargeValue);
             }
