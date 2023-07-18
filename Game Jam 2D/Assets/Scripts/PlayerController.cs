@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
     private bool Up; //Para hacer más tarde el flip del sprite
     private bool Down; //Para hacer más tarde el flip del sprite
 
-    [SerializeField] Rigidbody2D rigidbody;
-
     // Update is called once per frame
     void Update()
     {
@@ -21,6 +19,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody.velocity = new Vector2(horizontal * speed, vertical * speed);
+        GetComponentInParent<Rigidbody2D>().velocity = new Vector2(horizontal * speed, vertical * speed);
     }
 }
