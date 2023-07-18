@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementInput;
     private Animator playerAnimator;
 
-    public bool _canMove = true;
+    public bool _stopMove = false;
     [SerializeField] private float speed;
 
     // [Smm] dashing vars
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _dashPower = 2.0f;
     [SerializeField] private float _dashTime;
     [SerializeField] private float _dashCooldown;
-    [SerializeField] private TrailRenderer _dashTrail;
+    private TrailRenderer _dashTrail;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(_canMove)
+        if(_stopMove)
         {
             return;
         }
@@ -43,16 +43,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && _canDash)
         {
+            Debug.Log("dash");
             StartCoroutine(Dash());
         }
     }
     private void FixedUpdate()
     {
-        if (_canMove)
-        {
-            return;
-        }
+        //if (_stopMove)
+        //{
+        //    return;
+        //}
 
+        Debug.Log("speed" + speed);
         playerRb.MovePosition(playerRb.position + movementInput * speed * Time.fixedDeltaTime);
     }
 
@@ -60,18 +62,19 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Dash()
     {
         _canDash = false;
-        _canMove = true;
+        _stopMove = true;
 
         _dashTrail.emitting = true;
 
         speed *= _dashPower;
-        
+        Debug.Log("new speed" + speed);
+
         // [Smm] Pauses the function in this exact line and the next frame or when the time to wait is over, it continues from here. (creo)
         // SDL Delay pero bien, que no peta todo el juego
         yield return new WaitForSeconds(_dashTime); 
 
         _dashTrail.emitting = false;
-        _canMove = false;
+        _stopMove = false;
         speed /= _dashPower;
 
         yield return new WaitForSeconds(_dashCooldown);
