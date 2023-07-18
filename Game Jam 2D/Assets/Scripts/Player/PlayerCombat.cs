@@ -82,6 +82,9 @@ public class PlayerCombat : MonoBehaviour
     }
     private IEnumerator Recharge()
     {
+        // [Andy] Play animation
+        playerAnimator.SetTrigger("Recharge");
+
         canRecharge = false;
         move._stopMove = true;
         move.rechargeStop = true;
