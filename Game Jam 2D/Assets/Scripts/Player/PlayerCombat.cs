@@ -75,21 +75,23 @@ public class PlayerCombat : MonoBehaviour
             nextAttackTime = attackCD;
         }
 
-        if (Input.GetKey(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.R))
         {
-            canRecharge = false;
-            move._stopMove = true;
-            move.rechargeStop = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.R))
-        {
-            move._stopMove = false;
-            move.rechargeStop = false;
             StartCoroutine(Recharge());
         }
     }
     private IEnumerator Recharge()
     {
+        canRecharge = false;
+        move._stopMove = true;
+        move.rechargeStop = true;
+
+        yield return new WaitForSeconds(rechargeTime);
+
+        canRecharge = false;
+        move._stopMove = false;
+        move.rechargeStop = false;
+
         yield return new WaitForSeconds(rechargeCooldown);
         canRecharge = true;
     }
