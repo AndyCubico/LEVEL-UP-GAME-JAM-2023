@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator playerAnimator;
 
     public bool _stopMove = false;
-    public bool rechargeStop = false;// [Andy] no bonito, hacer pare moverse al recargar
-    [SerializeField] private float speed;
+    public bool potionStop = false;
+    public float speed;
 
     // [Smm] dashing vars
     private bool _canDash = true;
@@ -51,12 +51,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (rechargeStop)
-        {
-            return;
-        }
 
         playerRb.MovePosition(playerRb.position + movementInput * speed * Time.fixedDeltaTime);
+
     }
 
     // [Smm] Dashing: If dash, multiply the speed by the dash power. When finish, divide to return to the original speed.

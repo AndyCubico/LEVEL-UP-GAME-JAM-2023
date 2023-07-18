@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stopMove: 0
-  rechargeStop: 0
+  potionStop: 0
   speed: 5
   _dashPower: 5
   _dashTime: 0.2
@@ -323,9 +323,9 @@ MonoBehaviour:
   currentEnergy: 0
   healthBar: {fileID: 0}
   energyBar: {fileID: 0}
-  rechargeTime: 2
-  rechargeCooldown: 5
-  rechargeValue: 0.04
+  healingTime: 1
+  healingCooldown: 2
+  potionValue: 50
   move: {fileID: 5998092089951155227}
 --- !u!95 &5998092089951155225
 Animator:

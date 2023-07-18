@@ -26,10 +26,10 @@ public class PlayerCombat : MonoBehaviour
     public Bar energyBar;
 
     //Recharge
-    private bool canRecharge = true;
-    [SerializeField] private float rechargeTime;
-    [SerializeField] private float rechargeCooldown;
-    [SerializeField] private float rechargeValue;
+    private bool canHeal = true;
+    [SerializeField] private float healingTime;
+    [SerializeField] private float healingCooldown;
+    [SerializeField] private int potionValue;
     public PlayerMovement move;
 
     private void Start()
@@ -43,16 +43,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-        if (move._stopMove)
-        {
-            if (currentEnergy<maxEnergy)
-            {
-                UseEnergy(-rechargeValue);
-            }
-
-            return;
-        }
-
+    
         if (Input.GetKeyDown(KeyCode.Return))
         {
             TakeDamage(20);
@@ -75,28 +66,29 @@ public class PlayerCombat : MonoBehaviour
             nextAttackTime = attackCD;
         }
 
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.Q))
         {
-            StartCoroutine(Recharge());
+            StartCoroutine(UsePotion());
         }
     }
-    private IEnumerator Recharge()
+    private IEnumerator UsePotion()
     {
         // [Andy] Play animation
         playerAnimator.SetTrigger("Recharge");
+        move.speed = move.speed/2;
 
-        canRecharge = false;
-        move._stopMove = true;
-        move.rechargeStop = true;
+        canHeal = false;
+        move.potionStop = true;
 
-        yield return new WaitForSeconds(rechargeTime);
+        yield return new WaitForSeconds(healingTime);
 
-        canRecharge = false;
-        move._stopMove = false;
-        move.rechargeStop = false;
+        canHeal = false;
+        move.potionStop = false;
+        TakeDamage(-potionValue);
+        move.speed = move.speed * 2;
 
-        yield return new WaitForSeconds(rechargeCooldown);
-        canRecharge = true;
+        yield return new WaitForSeconds(healingCooldown);
+        canHeal = true;
     }
 
     private void Attack()
