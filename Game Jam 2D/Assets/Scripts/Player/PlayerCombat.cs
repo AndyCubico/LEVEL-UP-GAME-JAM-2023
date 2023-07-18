@@ -11,16 +11,17 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private int attackDamage = 40;
     [SerializeField] private int specialDamage = 80;
-    [SerializeField] private int specialEnergy = 50;
+    [SerializeField] private int normalCost = 5;
+    [SerializeField] private int specialCost = 50;
 
     [SerializeField] private float attackCD = 2f;
     float nextAttackTime = 0f;
 
     //barras
-    public int maxHealth = 100;
-    public int currentHealth;
-    public int maxEnergy = 100;
-    public int currentEnergy;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private int maxEnergy = 100;
+    [SerializeField] private int currentEnergy;
     public Bar healthBar;
     public Bar energyBar;
 
@@ -46,13 +47,13 @@ public class PlayerCombat : MonoBehaviour
             nextAttackTime -= Time.deltaTime;
         }
 
-        if (Input.GetMouseButtonDown(0) && nextAttackTime <=0)
+        if (Input.GetMouseButtonDown(0) && nextAttackTime <=0 && currentEnergy-normalCost >= 0)
         {
             Attack();
             nextAttackTime = attackCD;
         }
 
-        else if(Input.GetMouseButtonDown(1) && nextAttackTime <= 0 && currentEnergy-50>=0)
+        else if(Input.GetMouseButtonDown(1) && nextAttackTime <= 0 && currentEnergy-specialCost >= 0)
         {
             SpecialAttack();
             nextAttackTime = attackCD;
@@ -71,8 +72,10 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hiteado el man " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage*(currentEnergy/maxEnergy));
         }
+
+        UseEnergy(normalCost);
     }
 
     private void SpecialAttack()
@@ -91,7 +94,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         //spend energy
-        UseEnergy(specialEnergy);
+        UseEnergy(specialCost);
     }
 
     private void OnDrawGizmosSelected()
