@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 1087168647}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -828,6 +828,10 @@ MonoBehaviour:
   currentEnergy: 0
   healthBar: {fileID: 168800298}
   energyBar: {fileID: 516932585}
+  rechargeTime: 2
+  rechargeCooldown: 5
+  rechargeValue: 0.04
+  move: {fileID: 1087168643}
 --- !u!96 &1087168649
 TrailRenderer:
   serializedVersion: 2

@@ -18,13 +18,19 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTime = 0f;
 
     //barras
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int maxEnergy = 100;
-    [SerializeField] private int currentEnergy;
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float currentHealth;
+    [SerializeField] private float maxEnergy = 100;
+    [SerializeField] private float currentEnergy;
     public Bar healthBar;
     public Bar energyBar;
 
+    //Recharge
+    private bool canRecharge = true;
+    [SerializeField] private float rechargeTime;
+    [SerializeField] private float rechargeCooldown;
+    [SerializeField] private float rechargeValue;
+    public PlayerMovement move;
 
     private void Start()
     {
@@ -37,6 +43,16 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
+        if (move._stopMove)
+        {
+            if (currentEnergy<maxEnergy && !canRecharge)
+            {
+                UseEnergy(-rechargeValue);
+            }
+
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             TakeDamage(20);
@@ -58,42 +74,61 @@ public class PlayerCombat : MonoBehaviour
             SpecialAttack();
             nextAttackTime = attackCD;
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            canRecharge = false;
+            move._stopMove = true;
+            move.rechargeStop = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.R))
+        {
+            move._stopMove = false;
+            move.rechargeStop = false;
+            StartCoroutine(Recharge());
+        }
+    }
+    private IEnumerator Recharge()
+    {
+        yield return new WaitForSeconds(rechargeCooldown);
+        canRecharge = true;
     }
 
     private void Attack()
     {
-        //Play animation
+        // [Andy] Play animation
         playerAnimator.SetTrigger("Attack");
 
-        //Detect enemies
+        // [Andy] Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        //Damage
+        // [Andy] Damage
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hiteado el man " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage*(currentEnergy/maxEnergy));
+            enemy.GetComponent<Enemy>().TakeDamage((int)(attackDamage*(currentEnergy/maxEnergy)));// [Andy] damage reduction whit energy remaining
         }
 
+        // [Andy] spend energy
         UseEnergy(normalCost);
     }
 
     private void SpecialAttack()
     {
-        //Play animation
+        // [Andy] Play animation
         playerAnimator.SetTrigger("Attack");//cambiar a otra animacion
 
-        //Detect enemies
+        // [Andy] Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        //Damage
+        // [Andy] Damage
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Special Hiteado el man " + enemy.name);
             enemy.GetComponent<Enemy>().TakeDamage(specialDamage);
         }
 
-        //spend energy
+        // [Andy] spend energy
         UseEnergy(specialCost);
     }
 
@@ -112,7 +147,7 @@ public class PlayerCombat : MonoBehaviour
         healthBar.SetCurrentValue(currentHealth);
     }
 
-    public void UseEnergy(int energy)
+    public void UseEnergy(float energy)
     {
         currentEnergy -= energy;
         energyBar.SetCurrentValue(currentEnergy);
