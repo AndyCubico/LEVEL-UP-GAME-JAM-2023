@@ -19,8 +19,8 @@ public class FollowAI : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 0; // 0 = no rotation
     [SerializeField] private float _visionDistance = 1;
 
-    [SerializeField] private float _rcWidth = 3;
-    [SerializeField] private float _rcHeight = 3;
+    //[SerializeField] private float _rcWidth = 3;
+    //[SerializeField] private float _rcHeight = 3;
 
 
     // Start is called before the first frame update
