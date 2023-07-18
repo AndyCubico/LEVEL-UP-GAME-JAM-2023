@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
         enemyAnimator.SetBool("IsDed", true);
 
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<FollowAI>().enabled = false;
         this.enabled = false;
     }
 }
