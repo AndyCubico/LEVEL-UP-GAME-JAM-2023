@@ -46,13 +46,13 @@ public class PlayerCombat : MonoBehaviour
             nextAttackTime -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && nextAttackTime <=0)
+        if (Input.GetMouseButtonDown(0) && nextAttackTime <=0)
         {
             Attack();
             nextAttackTime = attackCD;
         }
 
-        else if(Input.GetKeyDown(KeyCode.K) && nextAttackTime <= 0 && currentEnergy-50>=0)
+        else if(Input.GetMouseButtonDown(1) && nextAttackTime <= 0 && currentEnergy-50>=0)
         {
             SpecialAttack();
             nextAttackTime = attackCD;
