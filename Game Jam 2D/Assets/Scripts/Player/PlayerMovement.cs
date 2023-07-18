@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
 
         _dashTrail = GetComponent<TrailRenderer>();
+        _stopMove = false;
     }
 
     private void Update()
@@ -49,12 +50,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //if (_stopMove)
-        //{
-        //    return;
-        //}
-
-        Debug.Log("speed" + speed);
         playerRb.MovePosition(playerRb.position + movementInput * speed * Time.fixedDeltaTime);
     }
 
@@ -67,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
         _dashTrail.emitting = true;
 
         speed *= _dashPower;
-        Debug.Log("new speed" + speed);
 
         // [Smm] Pauses the function in this exact line and the next frame or when the time to wait is over, it continues from here. (creo)
         // SDL Delay pero bien, que no peta todo el juego
