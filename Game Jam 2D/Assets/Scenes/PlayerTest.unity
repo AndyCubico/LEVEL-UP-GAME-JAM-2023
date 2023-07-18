@@ -596,10 +596,11 @@ MonoBehaviour:
   currentEnergy: 0
   healthBar: {fileID: 168800298}
   energyBar: {fileID: 516932585}
-  rechargeTime: 2
-  rechargeCooldown: 5
-  rechargeValue: 0.04
+  healingTime: 1
+  healingCooldown: 2
+  potionValue: 50
   move: {fileID: 1087168643}
+  rechargeValue: 0.1
 --- !u!96 &1087168649
 TrailRenderer:
   serializedVersion: 2

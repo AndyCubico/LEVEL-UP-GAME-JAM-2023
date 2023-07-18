@@ -25,12 +25,16 @@ public class PlayerCombat : MonoBehaviour
     public Bar healthBar;
     public Bar energyBar;
 
-    //Recharge
+    //HealthPotion
     private bool canHeal = true;
     [SerializeField] private float healingTime;
     [SerializeField] private float healingCooldown;
     [SerializeField] private int potionValue;
     public PlayerMovement move;
+
+    //Recharge
+    [SerializeField] private float rechargeValue;
+    private bool isRecharging = false;
 
     private void Start()
     {
@@ -43,7 +47,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-    
+       
         if (Input.GetKeyDown(KeyCode.Return))
         {
             TakeDamage(20);
@@ -66,24 +70,55 @@ public class PlayerCombat : MonoBehaviour
             nextAttackTime = attackCD;
         }
 
-        else if (Input.GetKeyDown(KeyCode.Q))
+        else if (Input.GetKeyDown(KeyCode.Q) && canHeal)
         {
             StartCoroutine(UsePotion());
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            Recharge();
+        }
+
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            Back2normal();
+        }
     }
+
+    // [Andy] go back to state before recharging
+    private void Back2normal()
+    {
+        playerAnimator.SetBool("isCharging", false);
+        move._stopMove = false;
+        move.rechargeStop = false;
+    }
+
+    private void Recharge()
+    {
+        if (!move._stopMove)
+        {
+            playerAnimator.SetTrigger("Recharge");
+        }
+         
+        if (currentEnergy<maxEnergy)
+        {
+            UseEnergy(-rechargeValue);
+        }
+        move._stopMove = true;
+        move.rechargeStop = true;
+    }
+
     private IEnumerator UsePotion()
     {
         // [Andy] Play animation
-        playerAnimator.SetTrigger("Recharge");
+        playerAnimator.SetTrigger("Heal");
         move.speed = move.speed/2;
-
         canHeal = false;
-        move.potionStop = true;
 
         yield return new WaitForSeconds(healingTime);
 
         canHeal = false;
-        move.potionStop = false;
         TakeDamage(-potionValue);
         move.speed = move.speed * 2;
 

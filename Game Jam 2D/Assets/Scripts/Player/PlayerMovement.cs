@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator playerAnimator;
 
     public bool _stopMove = false;
-    public bool potionStop = false;
+    public bool rechargeStop = false;// [Andy] not moving while recharging
     public float speed;
 
     // [Smm] dashing vars
@@ -51,7 +51,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
+        if (rechargeStop)
+        {
+            return;
+        }
         playerRb.MovePosition(playerRb.position + movementInput * speed * Time.fixedDeltaTime);
 
     }
