@@ -32,19 +32,20 @@ public class FollowAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, _targetPos.position) < _doAtkRange)
         {
-            // call atk function
+            // TO DO: call atk function
         }
-
         else if (_follow)
         {
             transform.position = Vector2.MoveTowards(transform.position, _targetPos.position, _speed * Time.deltaTime);
         }
 
         // Line of Sight
-        _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
+        if (!_follow)
+        {
+            _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
+        }
+
         RaycastHit2D hitInfo = Physics2D.Raycast(_LoS_Transform.position, _LoS_Transform.right, _visionDistance);
-        // Ignore self collider
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), hitInfo.collider);
 
         if (hitInfo.collider != null)
         {
@@ -61,6 +62,7 @@ public class FollowAI : MonoBehaviour
         else
         {
             Debug.DrawLine(_LoS_Transform.position, _LoS_Transform.position + _LoS_Transform.right * _visionDistance, Color.green);
+            _follow = false;
         }
     }
 }
