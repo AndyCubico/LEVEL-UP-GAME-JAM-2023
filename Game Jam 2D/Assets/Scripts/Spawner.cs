@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject barr;
     [SerializeField] private int minSecSpawn = 2;
     [SerializeField] private int maxSecSpawn = 5;
+    [SerializeField] private float completeBar = 0.3f;
+    [SerializeField] private float completeBarSpeed = 0.0001f;
     [SerializeField] private float timer;
     [SerializeField] private bool StartSpawn = false;
     [SerializeField] private bool Purif = false;
@@ -32,11 +34,11 @@ public class Spawner : MonoBehaviour
         {
             if (Input.GetKey("e"))
             {
-                x_ += 0.0001f;
+                x_ += completeBarSpeed;
                 barr.transform.localScale = new Vector3(x_, 0.0625f, 0);
                 barr.transform.position = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y - 2, 0);
             }
-            if (x_ >= 0.3f)
+            if (x_ >= completeBar)
             {
                 Saved = true;
             }

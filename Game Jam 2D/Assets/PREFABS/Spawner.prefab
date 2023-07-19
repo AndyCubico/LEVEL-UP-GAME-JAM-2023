@@ -205,6 +205,8 @@ MonoBehaviour:
   barr: {fileID: 7934200205677783503}
   minSecSpawn: 2
   maxSecSpawn: 5
+  completeBar: 0.3
+  completeBarSpeed: 0.0005
   timer: 0
   StartSpawn: 0
   Purif: 0

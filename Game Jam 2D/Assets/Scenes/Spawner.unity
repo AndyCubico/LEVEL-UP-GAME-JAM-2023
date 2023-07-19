@@ -303,6 +303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
+      propertyPath: completeBar
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7934200205994795380, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
       propertyPath: m_RootOrder
       value: 2
