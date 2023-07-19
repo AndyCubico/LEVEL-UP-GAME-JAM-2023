@@ -10,7 +10,7 @@ public class FollowAI : MonoBehaviour
     private GameObject _target;
     [SerializeField] private float _doAtkRange;
 
-    [SerializeField] private bool _follow;
+    public EnemyState state;
     private Transform _targetPos;
 
     // Line of sight
@@ -32,17 +32,31 @@ public class FollowAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        switch (state)
+        {
+            case EnemyState.IDLE:
+                break;
+            case EnemyState.ATTACK:
+                break;
+            case EnemyState.FOLLOW:
+                break;
+            case EnemyState.RETREAT:
+                break;
+            case EnemyState.DEAD:
+                break;
+        }
+
         if (Vector2.Distance(transform.position, _targetPos.position) < _doAtkRange)
         {
             // TO DO: call atk function
         }
-        else if (_follow)
+        else if (state == EnemyState.FOLLOW)
         {
             transform.position = Vector2.MoveTowards(transform.position, _targetPos.position, _speed * Time.deltaTime);
         }
 
         // Line of Sight
-        if (!_follow)
+        if (state == EnemyState.IDLE)
         {
             _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
         }
@@ -58,7 +72,7 @@ public class FollowAI : MonoBehaviour
             if (hitInfo.collider.tag == "Player")
             {
                 Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.red);
-                _follow = true;
+                state = EnemyState.FOLLOW;
             }
             else
             {
@@ -68,7 +82,7 @@ public class FollowAI : MonoBehaviour
         else
         {
             Debug.DrawLine(_LoS_Transform.position, _LoS_Transform.position + _LoS_Transform.right * _visionDistance, Color.green);
-            _follow = false;
+            state = EnemyState.IDLE;
         }
     }
 

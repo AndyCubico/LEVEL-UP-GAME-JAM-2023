@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 313118020276016986}
   - component: {fileID: 313118020276016989}
   - component: {fileID: 6114142435882702352}
+  - component: {fileID: 5941363232084327968}
   m_Layer: 6
   m_Name: EyeOfSight
   m_TagString: Untagged
@@ -113,6 +114,19 @@ PolygonCollider2D:
     - - {x: 0, y: 0}
       - {x: 4, y: 1}
       - {x: 4, y: -1}
+--- !u!114 &5941363232084327968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313118020276016988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61f330a9d54a344bae0c243661abe64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll_state: 0
 --- !u!1 &313118020361636358
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 313118020361636353}
   - component: {fileID: 313118020361636355}
+  - component: {fileID: 8342277871930453538}
   - component: {fileID: 313118020361636354}
   - component: {fileID: 313118020361636357}
   - component: {fileID: 313118020361636476}
@@ -202,6 +217,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &8342277871930453538
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313118020361636358}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &313118020361636354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -241,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  state: 0
 --- !u!114 &313118020361636476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0
   _retreatDist: 0
-  _retreat: 0
+  state: 0
   _LoS: {fileID: 313118020276016988}
   _rotationSpeed: 0
   _visionDistance: 1

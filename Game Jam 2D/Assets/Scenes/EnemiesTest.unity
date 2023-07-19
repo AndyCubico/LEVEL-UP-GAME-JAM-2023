@@ -447,6 +447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: F - Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8238172280892580768, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: _target
       value: 
@@ -524,6 +528,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 313118020276016986, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98109055
+      objectReference: {fileID: 0}
+    - target: {fileID: 313118020276016986, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.1935494
+      objectReference: {fileID: 0}
+    - target: {fileID: 313118020276016986, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -22.32
+      objectReference: {fileID: 0}
     - target: {fileID: 313118020361636352, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_Mass
       value: 73.34
@@ -586,7 +602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636476, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: _rotationSpeed
-      value: 3
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636476, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: _visionDistance
@@ -594,4 +610,5 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 313118020361636352, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+    - {fileID: 3027616228911515067, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
