@@ -299,6 +299,7 @@ MonoBehaviour:
   move: {fileID: 2443423651584500471}
   rechargeValue: 0.1
   rechargeCD: 2
+  stunRecharge: 0.5
 --- !u!95 &2443423651584500467
 Animator:
   serializedVersion: 4

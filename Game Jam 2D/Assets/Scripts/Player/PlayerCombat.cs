@@ -35,8 +35,9 @@ public class PlayerCombat : MonoBehaviour
 
     //Recharge
     [SerializeField] private float rechargeValue;
-    [SerializeField] private float rechargeCD = 5f;
+    [SerializeField] private float rechargeCD = 5.0f;
     float nextRechargeTime = 0f;
+    [SerializeField] private float stunRecharge = 1.0f;
 
     private void Start()
     {
@@ -93,7 +94,7 @@ public class PlayerCombat : MonoBehaviour
             StartCoroutine(Back2normal());
         }
     }
-  private void Attack()
+    private void Attack()
     {
         // [Andy] Play animation
         weaponAnimator.SetTrigger("Attack");
@@ -112,7 +113,7 @@ public class PlayerCombat : MonoBehaviour
         UseEnergy(normalCost);
     }
 
-    private void SpecialAttack()
+   private void SpecialAttack()
     {
         // [Andy] Play animation
         weaponAnimator.SetTrigger("Attack");//cambiar a otra animacion
@@ -163,7 +164,8 @@ public class PlayerCombat : MonoBehaviour
     {
         playerAnimator.SetTrigger("Recharge");
         playerAnimator.SetBool("isCharging", false);
-        yield return new WaitForSeconds(1);
+
+        yield return new WaitForSeconds(stunRecharge);
 
         move._stopMove = false;
         move.rechargeStop = false;
