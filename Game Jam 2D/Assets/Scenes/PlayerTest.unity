@@ -602,6 +602,7 @@ MonoBehaviour:
   potionValue: 50
   move: {fileID: 1087168643}
   rechargeValue: 0.1
+  rechargeCD: 2
 --- !u!96 &1087168649
 TrailRenderer:
   serializedVersion: 2

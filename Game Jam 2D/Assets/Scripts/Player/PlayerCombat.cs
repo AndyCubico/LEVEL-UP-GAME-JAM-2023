@@ -35,7 +35,8 @@ public class PlayerCombat : MonoBehaviour
 
     //Recharge
     [SerializeField] private float rechargeValue;
-    private bool isRecharging = false;
+    [SerializeField] private float rechargeCD = 5f;
+    float nextRechargeTime = 0f;
 
     private void Start()
     {
@@ -76,58 +77,23 @@ public class PlayerCombat : MonoBehaviour
             StartCoroutine(UsePotion());
         }
 
-        if (Input.GetKey(KeyCode.R))
+        // [Andy] Recharge logic
+        if (nextRechargeTime > 0)
+        {
+            nextRechargeTime -= Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.R) && nextRechargeTime <= 0)
         {
             Recharge();
         }
 
-        if (Input.GetKeyUp(KeyCode.R))
+        else if (Input.GetKeyUp(KeyCode.R))
         {
-            Back2normal();
+            StartCoroutine(Back2normal());
         }
     }
-
-    // [Andy] go back to state before recharging
-    private void Back2normal()
-    {
-        playerAnimator.SetBool("isCharging", false);
-        move._stopMove = false;
-        move.rechargeStop = false;
-    }
-
-    private void Recharge()
-    {
-        if (!move._stopMove)
-        {
-            playerAnimator.SetTrigger("Recharge");
-        }
-         
-        if (currentEnergy<maxEnergy)
-        {
-            UseEnergy(-rechargeValue);
-        }
-        move._stopMove = true;
-        move.rechargeStop = true;
-    }
-
-    private IEnumerator UsePotion()
-    {
-        // [Andy] Play animation
-        playerAnimator.SetTrigger("Heal");
-        move.speed = move.speed/2;
-        canHeal = false;
-
-        yield return new WaitForSeconds(healingTime);
-
-        canHeal = false;
-        TakeDamage(-potionValue);
-        move.speed = move.speed * 2;
-
-        yield return new WaitForSeconds(healingCooldown);
-        canHeal = true;
-    }
-
-    private void Attack()
+  private void Attack()
     {
         // [Andy] Play animation
         weaponAnimator.SetTrigger("Attack");
@@ -164,17 +130,7 @@ public class PlayerCombat : MonoBehaviour
         // [Andy] spend energy
         UseEnergy(specialCost);
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-        {
-            return;
-        }
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-    }
-
-    public void TakeDamage(int damage)
+   public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetCurrentValue(currentHealth);
@@ -184,5 +140,59 @@ public class PlayerCombat : MonoBehaviour
     {
         currentEnergy -= energy;
         energyBar.SetCurrentValue(currentEnergy);
+    }
+
+    private void Recharge()
+    {
+        if (!move._stopMove)
+        {
+            playerAnimator.SetTrigger("Recharge");
+            playerAnimator.SetBool("isCharging", true);
+        }
+
+        if (currentEnergy<maxEnergy)
+        {
+            UseEnergy(-rechargeValue);
+        }
+        move._stopMove = true;
+        move.rechargeStop = true;
+    }
+
+    // [Andy] go back to idle state after recharging
+    private IEnumerator Back2normal()
+    {
+        playerAnimator.SetTrigger("Recharge");
+        playerAnimator.SetBool("isCharging", false);
+        yield return new WaitForSeconds(1);
+
+        move._stopMove = false;
+        move.rechargeStop = false;
+        nextRechargeTime = rechargeCD;
+    }
+
+    private IEnumerator UsePotion()
+    {
+        // [Andy] Play animation
+        playerAnimator.SetTrigger("Heal");
+        move.speed = move.speed/2;
+        canHeal = false;
+
+        yield return new WaitForSeconds(healingTime);
+
+        canHeal = false;
+        TakeDamage(-potionValue);
+        move.speed = move.speed * 2;
+
+        yield return new WaitForSeconds(healingCooldown);
+        canHeal = true;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
