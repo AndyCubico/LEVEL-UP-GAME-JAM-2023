@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  state: 0
 --- !u!95 &664341384
 Animator:
   serializedVersion: 4
@@ -412,17 +413,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _target: {fileID: 1087168642}
   _doAtkRange: 0
-  _follow: 0
+  state: 0
   _LoS: {fileID: 613378408}
   _rotationSpeed: 35
   _visionDistance: 10
---- !u!1 &1087168642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2443423651584500470, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
-  m_PrefabInstance: {fileID: 2443423652662182516}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1091939333
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  state: 0
 --- !u!61 &1808880864
 BoxCollider2D:
   m_ObjectHideFlags: 0
