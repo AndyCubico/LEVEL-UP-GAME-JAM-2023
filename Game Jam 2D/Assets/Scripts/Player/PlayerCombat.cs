@@ -8,13 +8,12 @@ public class PlayerCombat : MonoBehaviour
     private Animator playerAnimator;
     [SerializeField] private Animator weaponAnimator;
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int attackDamage = 40;
-    [SerializeField] private int specialDamage = 80;
     [SerializeField] private int normalCost = 5;
+    [SerializeField] private int specialDamage = 80;
     [SerializeField] private int specialCost = 50;
-
     [SerializeField] private float attackCD = 2f;
     float nextAttackTime = 0f;
 
@@ -27,21 +26,35 @@ public class PlayerCombat : MonoBehaviour
     public Bar energyBar;
 
     //HealthPotion
-    private bool canHeal = true;
+    private bool canHeal = true;    
+    [SerializeField] private int potionValue;    
+    [SerializeField] private float healingCD;
     [SerializeField] private float healingTime;
-    [SerializeField] private float healingCooldown;
-    [SerializeField] private int potionValue;
+
     public PlayerMovement move;
 
     //Recharge
     [SerializeField] private float rechargeValue;
-    [SerializeField] private float rechargeCD = 5.0f;
-    float nextRechargeTime = 0f;
+    [SerializeField] private float rechargeCD = 5.0f;  
     [SerializeField] private float stunRecharge = 1.0f;
+    float nextRechargeTime = 0f;
+
+    //Audio
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip attackClip;
+    [SerializeField] private AudioClip specialClip;
+    [SerializeField] private AudioClip healClip;
+    [SerializeField] private AudioClip rechargeClip;//revisar
+    [SerializeField] private AudioClip hurtClip;
+    [SerializeField] private AudioClip dedClip;//TODO
+
+    public AudioManager audioMan;
+
 
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
@@ -50,7 +63,6 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-       
         if (Input.GetKeyDown(KeyCode.Return))
         {
             TakeDamage(20);
@@ -111,10 +123,12 @@ public class PlayerCombat : MonoBehaviour
 
         // [Andy] spend energy
         UseEnergy(normalCost);
+
+        audioMan.PlayAudio(audioSource,attackClip);
     }
 
    private void SpecialAttack()
-    {
+   {
         // [Andy] Play animation
         weaponAnimator.SetTrigger("Attack");//cambiar a otra animacion
 
@@ -130,12 +144,18 @@ public class PlayerCombat : MonoBehaviour
 
         // [Andy] spend energy
         UseEnergy(specialCost);
-    }
+
+        audioMan.PlayAudio(audioSource, specialClip);
+   }
    public void TakeDamage(int damage)
-    {
+   {
         currentHealth -= damage;
         healthBar.SetCurrentValue(currentHealth);
-    }
+        if (damage>0)
+        {
+            audioMan.PlayAudio(audioSource, hurtClip);
+        }
+   }
 
     public void UseEnergy(float energy)
     {
@@ -150,7 +170,10 @@ public class PlayerCombat : MonoBehaviour
             playerAnimator.SetTrigger("Recharge");
             playerAnimator.SetBool("isCharging", true);
         }
-
+        if (!audioSource.isPlaying)
+        {
+            audioMan.PlayAudio(audioSource, rechargeClip);
+        }
         if (currentEnergy<maxEnergy)
         {
             UseEnergy(-rechargeValue);
@@ -164,8 +187,17 @@ public class PlayerCombat : MonoBehaviour
     {
         playerAnimator.SetTrigger("Recharge");
         playerAnimator.SetBool("isCharging", false);
+        if (audioSource.isPlaying)
+        {
+            StartCoroutine(audioMan.StartFade(audioSource, 1.5f, 0));
+        }
 
         yield return new WaitForSeconds(stunRecharge);
+
+        //if (audioSource.isPlaying)
+        //{
+        //    audioSource.Stop();
+        //}
 
         move._stopMove = false;
         move.rechargeStop = false;
@@ -178,6 +210,7 @@ public class PlayerCombat : MonoBehaviour
         playerAnimator.SetTrigger("Heal");
         move.speed = move.speed/2;
         canHeal = false;
+        audioMan.PlayAudio(audioSource, healClip);
 
         yield return new WaitForSeconds(healingTime);
 
@@ -185,10 +218,11 @@ public class PlayerCombat : MonoBehaviour
         TakeDamage(-potionValue);
         move.speed = move.speed * 2;
 
-        yield return new WaitForSeconds(healingCooldown);
+        yield return new WaitForSeconds(healingCD);
         canHeal = true;
     }
-
+    
+   
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
