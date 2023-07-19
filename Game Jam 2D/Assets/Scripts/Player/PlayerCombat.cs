@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     private Animator playerAnimator;
+    [SerializeField] private Animator weaponAnimator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private float attackRange = 0.5f;
@@ -129,7 +130,7 @@ public class PlayerCombat : MonoBehaviour
     private void Attack()
     {
         // [Andy] Play animation
-        playerAnimator.SetTrigger("Attack");
+        weaponAnimator.SetTrigger("Attack");
 
         // [Andy] Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -148,7 +149,7 @@ public class PlayerCombat : MonoBehaviour
     private void SpecialAttack()
     {
         // [Andy] Play animation
-        playerAnimator.SetTrigger("Attack");//cambiar a otra animacion
+        weaponAnimator.SetTrigger("Attack");//cambiar a otra animacion
 
         // [Andy] Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
