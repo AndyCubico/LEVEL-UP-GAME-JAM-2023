@@ -15,22 +15,26 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector3 rotation = mousePos - transform.position;
-
-        float rotz = Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0, 0, rotz);
-
-        // [Andy] Gamepad control weapon
         rightStickInput = new Vector2(Input.GetAxis("R_Horizontal"), Input.GetAxis("R_Vertical"));
-        if (rightStickInput.magnitude>0f)
+        // [Andy] Gamepad control weapon
+        if (rightStickInput.magnitude > 0f)
         {
             float rotG = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, rotG);
         }
 
+        // [Andy] Mouse control weapon
+        else
+        {
+            mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+            Vector3 rotation = mousePos - transform.position;
+
+            float rotz = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler(0, 0, rotz);
+        }
+       
         if (transform.rotation.eulerAngles.z < 270.0f && transform.rotation.eulerAngles.z > 90.0f)
         {
             transform.localScale = new Vector3(1, -1, 1);
