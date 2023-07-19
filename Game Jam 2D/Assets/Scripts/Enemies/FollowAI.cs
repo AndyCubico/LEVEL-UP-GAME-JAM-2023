@@ -7,7 +7,7 @@ using UnityEngine;
 public class FollowAI : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private GameObject _target;
+    private GameObject _target;
     [SerializeField] private float _doAtkRange;
 
     [SerializeField] private bool _follow;
@@ -19,13 +19,12 @@ public class FollowAI : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 0; // 0 = no rotation
     [SerializeField] private float _visionDistance = 1;
 
-    //[SerializeField] private float _rcWidth = 3;
-    //[SerializeField] private float _rcHeight = 3;
-
+    private RaycastHit2D hitInfo;
 
     // Start is called before the first frame update
     void Start()
     {
+        _target = GameObject.Find("Player");
         _targetPos = _target.GetComponent<Transform>();
         _LoS_Transform = _LoS.GetComponent<Transform>();
     }
@@ -48,7 +47,7 @@ public class FollowAI : MonoBehaviour
             _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
         }
 
-        RaycastHit2D hitInfo = Physics2D.Raycast(_LoS_Transform.position, _LoS_Transform.right, _visionDistance);
+        hitInfo = Physics2D.Raycast(_LoS_Transform.position, _LoS_Transform.right, _visionDistance);
         
         // [Smm] Pruebas para hacer el rayito mas ancho
         //RaycastHit2D hitInfo = Physics2D.BoxCast(_LoS_Transform.position, new Vector2(_rcWidth, _rcHeight), _LoS_Transform.rotation.z, new Vector2(_visionDistance, _visionDistance));
@@ -71,5 +70,15 @@ public class FollowAI : MonoBehaviour
             Debug.DrawLine(_LoS_Transform.position, _LoS_Transform.position + _LoS_Transform.right * _visionDistance, Color.green);
             _follow = false;
         }
+    }
+
+
+    public void SetTarget(GameObject newTarget)
+    {
+        _target = newTarget;
+    }
+    public void SetTargetPlayer()
+    {
+        _target = GameObject.Find("Player");
     }
 }
