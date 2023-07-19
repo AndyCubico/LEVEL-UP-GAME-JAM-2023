@@ -6,7 +6,7 @@ using UnityEngine;
 public class ChangeScene : MonoBehaviour
 {
     [SerializeField] private string sceneName;
-    void SceneChange()
+    public void SceneChange()
     {
         Debug.Log("sceneName to load: " + sceneName);
         SceneManager.LoadScene(sceneName);
