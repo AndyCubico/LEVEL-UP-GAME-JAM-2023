@@ -123,5 +123,28 @@ public class RetreatAndAtkAI : MonoBehaviour
     private void RotateEyeOfSight()
     {
         _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
+
+        // WIP
+        //bool goingCW = false;
+
+        //Debug.Log(_LoS_Transform.rotation.eulerAngles.z + " cw " + goingCW);
+
+        //if (_LoS_Transform.rotation.eulerAngles.z >= 285.0f)
+        //{
+        //    goingCW = true;
+        //}
+        //else if (_LoS_Transform.rotation.eulerAngles.z <= 75.0f)
+        //{
+        //    goingCW = false;
+        //}
+
+        //if (goingCW)
+        //{
+        //    _LoS_Transform.Rotate(Vector3.back * _rotationSpeed * Time.deltaTime);
+        //}
+        //else
+        //{
+        //    _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
+        //}
     }
 }

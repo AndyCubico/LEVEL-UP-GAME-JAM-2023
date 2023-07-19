@@ -27,15 +27,24 @@ public class EoS_CollisionsManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        coll_state = EOS_COLLISION.ON_COLLISION_ENTER;       
+        if (collision.tag == "Player")
+        {
+            coll_state = EOS_COLLISION.ON_COLLISION_ENTER;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        coll_state = EOS_COLLISION.ON_COLLISION_STAY;      
+        if (collision.tag == "Player")
+        {
+            coll_state = EOS_COLLISION.ON_COLLISION_STAY;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        coll_state = EOS_COLLISION.ON_COLLISION_EXIT;
+        if (collision.tag == "Player")
+        {
+            coll_state = EOS_COLLISION.ON_COLLISION_EXIT;
+        }
     }
 }
