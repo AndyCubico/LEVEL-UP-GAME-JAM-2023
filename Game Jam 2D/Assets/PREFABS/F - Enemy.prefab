@@ -165,7 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _doAtkRange: 0
-  state: 0
   _LoS: {fileID: 8238172281045319418}
   _rotationSpeed: 35
   _visionDistance: 10
@@ -200,7 +199,8 @@ GameObject:
   - component: {fileID: 8238172281045319420}
   - component: {fileID: 8238172281045319419}
   - component: {fileID: 1082571980380776473}
-  m_Layer: 6
+  - component: {fileID: 6910134002271813684}
+  m_Layer: 7
   m_Name: EyeOfSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -302,3 +302,16 @@ PolygonCollider2D:
     - - {x: 0, y: 0}
       - {x: 4, y: 1}
       - {x: 4, y: -1}
+--- !u!114 &6910134002271813684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238172281045319418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61f330a9d54a344bae0c243661abe64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll_state: 0

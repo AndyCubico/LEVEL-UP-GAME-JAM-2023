@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 313118020276016989}
   - component: {fileID: 6114142435882702352}
   - component: {fileID: 5941363232084327968}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: EyeOfSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -292,7 +292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0
   _retreatDist: 0
-  state: 0
   _LoS: {fileID: 313118020276016988}
   _rotationSpeed: 0
   _visionDistance: 1

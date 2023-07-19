@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class FollowAI : MonoBehaviour
 {
+    private Rigidbody2D rb;
+
     [SerializeField] private float _speed;
     private GameObject _target;
     [SerializeField] private float _doAtkRange;
 
-    public EnemyState state;
     private Transform _targetPos;
 
     // Line of sight
@@ -24,6 +25,8 @@ public class FollowAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         _target = GameObject.Find("Player");
         _targetPos = _target.GetComponent<Transform>();
         _LoS_Transform = _LoS.GetComponent<Transform>();
@@ -31,61 +34,70 @@ public class FollowAI : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {     
+    }
+
+    private void FixedUpdate()
     {
-        switch (state)
+        switch (GetComponentInChildren<EoS_CollisionsManager>().coll_state)
+        {
+            case EOS_COLLISION.ON_COLLISION_ENTER:
+                //GetComponent<Enemy>().state = EnemyState.ATTACK;
+                break;
+            case EOS_COLLISION.ON_COLLISION_STAY:
+                if (Vector2.Distance(transform.position, _targetPos.position) < _doAtkRange)
+                {
+                    GetComponent<Enemy>().state = EnemyState.ATTACK;
+                }
+                else
+                {
+                    GetComponent<Enemy>().state = EnemyState.FOLLOW;
+                }
+                break;
+            case EOS_COLLISION.ON_COLLISION_EXIT:
+                GetComponent<Enemy>().state = EnemyState.IDLE;
+                break;
+        }
+
+
+        ActiveRaycast();
+        switch (GetComponent<Enemy>().state)
         {
             case EnemyState.IDLE:
+                _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
+
                 break;
             case EnemyState.ATTACK:
                 break;
             case EnemyState.FOLLOW:
+                rb.MovePosition(rb.position + _target.GetComponent<Rigidbody2D>().position.normalized * _speed * Time.fixedDeltaTime);
+
                 break;
             case EnemyState.RETREAT:
                 break;
             case EnemyState.DEAD:
                 break;
         }
+    }
 
-        if (Vector2.Distance(transform.position, _targetPos.position) < _doAtkRange)
-        {
-            // TO DO: call atk function
-        }
-        else if (state == EnemyState.FOLLOW)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, _targetPos.position, _speed * Time.deltaTime);
-        }
-
-        // Line of Sight
-        if (state == EnemyState.IDLE)
-        {
-            _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
-        }
-
-        hitInfo = Physics2D.Raycast(_LoS_Transform.position, _LoS_Transform.right, _visionDistance);
+    private void ActiveRaycast()
+    {
+        Vector2 direction = (_target.GetComponent<Rigidbody2D>().position - rb.position).normalized;
+        hitInfo = Physics2D.Raycast(_LoS_Transform.position, direction, _visionDistance);
         
-        // [Smm] Pruebas para hacer el rayito mas ancho
-        //RaycastHit2D hitInfo = Physics2D.BoxCast(_LoS_Transform.position, new Vector2(_rcWidth, _rcHeight), _LoS_Transform.rotation.z, new Vector2(_visionDistance, _visionDistance));
-        //RaycastHit2D hitInfo = BoxCast(_LoS_Transform.position, new Vector2(_rcWidth, _rcHeight), _LoS_Transform.rotation.z, new Vector2(_visionDistance, _visionDistance));
-
         if (hitInfo.collider != null)
         {
             if (hitInfo.collider.tag == "Player")
             {
                 Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.red);
-                state = EnemyState.FOLLOW;
+                // Shoot
             }
             else
             {
                 Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.yellow);
             }
         }
-        else
-        {
-            Debug.DrawLine(_LoS_Transform.position, _LoS_Transform.position + _LoS_Transform.right * _visionDistance, Color.green);
-            state = EnemyState.IDLE;
-        }
     }
-
 
     public void SetTarget(GameObject newTarget)
     {
