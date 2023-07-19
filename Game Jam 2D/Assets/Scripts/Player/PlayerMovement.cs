@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetFloat("Vertical", moveY);
         playerAnimator.SetFloat("Speed", movementInput.sqrMagnitude);
 
-        if (Input.GetKeyDown(KeyCode.Space) && _canDash)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton2)) && _canDash)
         {
             Debug.Log("dash");
             StartCoroutine(Dash());
