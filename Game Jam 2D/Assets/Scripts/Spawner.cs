@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject enemySPrefab;
     [SerializeField] private GameObject enemyLPrefab;
     [SerializeField] private GameObject barr;
+    [SerializeField] private int minSecSpawn = 2;
+    [SerializeField] private int maxSecSpawn = 5;
     [SerializeField] private float timer;
     [SerializeField] private bool StartSpawn = false;
     [SerializeField] private bool Purif = false;
@@ -49,7 +51,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        if (StartSpawn && timer >= Random.RandomRange(2,5) && Saved == false)
+        if (StartSpawn && timer >= Random.RandomRange(minSecSpawn,maxSecSpawn) && Saved == false)
         {
             GetXY();
             switch (Random.RandomRange(0, 4))
