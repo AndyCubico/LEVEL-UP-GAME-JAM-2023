@@ -184,24 +184,22 @@ public class PlayerCombat : MonoBehaviour
 
     // [Andy] go back to idle state after recharging
     private IEnumerator Back2normal()
-    {
+    { 
+        //StartCoroutine(audioMan.StartFade(audioSource, 1.5f, 0)); // [Andy] no va bien, no deja poner volumen a 1 
         playerAnimator.SetTrigger("Recharge");
         playerAnimator.SetBool("isCharging", false);
-        if (audioSource.isPlaying)
-        {
-            StartCoroutine(audioMan.StartFade(audioSource, 1.5f, 0));
-        }
-
+       
         yield return new WaitForSeconds(stunRecharge);
 
-        //if (audioSource.isPlaying)
-        //{
-        //    audioSource.Stop();
-        //}
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
 
         move._stopMove = false;
         move.rechargeStop = false;
         nextRechargeTime = rechargeCD;
+        //audioSource.volume = 1.0f;
     }
 
     private IEnumerator UsePotion()

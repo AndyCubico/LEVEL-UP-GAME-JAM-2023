@@ -414,7 +414,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _doAtkRange: 0
-  state: 0
   _LoS: {fileID: 613378408}
   _rotationSpeed: 35
   _visionDistance: 10

@@ -19,10 +19,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _dashCooldown;
     private TrailRenderer _dashTrail;
 
+    //Audio
+    private AudioSource audioSource;
+    [SerializeField] private AudioSource walkSource;
+    [SerializeField] private AudioClip walkClip;
+    [SerializeField] private AudioClip dashClip;
+    public AudioManager audioMan;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         _dashTrail = GetComponent<TrailRenderer>();
         _stopMove = false;
@@ -37,6 +45,13 @@ public class PlayerMovement : MonoBehaviour
 
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
+        if (moveX != 0 || moveY != 0)
+        {
+            if (!walkSource.isPlaying)
+            {
+                audioMan.PlayAudio(walkSource, walkClip);
+            }
+        }
         movementInput = new Vector2(moveX, moveY).normalized;
 
         playerAnimator.SetFloat("Horizontal", moveX);
@@ -68,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         _dashTrail.emitting = true;
 
         speed *= _dashPower;
+        audioMan.PlayAudio(audioSource, dashClip);
 
         // [Smm] Pauses the function in this exact line and the next frame or when the time to wait is over, it continues from here. (creo)
         // SDL Delay pero bien, que no peta todo el juego
