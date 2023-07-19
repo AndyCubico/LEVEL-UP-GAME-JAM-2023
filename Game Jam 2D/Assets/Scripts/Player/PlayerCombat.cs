@@ -61,19 +61,19 @@ public class PlayerCombat : MonoBehaviour
             nextAttackTime -= Time.deltaTime;
         }
 
-        if (Input.GetMouseButtonDown(0) && nextAttackTime <=0 && currentEnergy-normalCost >= 0)
+        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.JoystickButton5)) && nextAttackTime <=0 && currentEnergy-normalCost >= 0)
         {
             Attack();
             nextAttackTime = attackCD;
         }
 
-        else if(Input.GetMouseButtonDown(1) && nextAttackTime <= 0 && currentEnergy-specialCost >= 0)
+        else if((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.JoystickButton4)) && nextAttackTime <= 0 && currentEnergy-specialCost >= 0)
         {
             SpecialAttack();
             nextAttackTime = attackCD;
         }
 
-        else if (Input.GetKeyDown(KeyCode.Q) && canHeal)
+        else if ((Input.GetKeyDown(KeyCode.Q)|| Input.GetKeyDown(KeyCode.JoystickButton1)) && canHeal)
         {
             StartCoroutine(UsePotion());
         }
@@ -84,12 +84,12 @@ public class PlayerCombat : MonoBehaviour
             nextRechargeTime -= Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.R) && nextRechargeTime <= 0)
+        if ((Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton3)) && nextRechargeTime <= 0)
         {
             Recharge();
         }
 
-        else if (Input.GetKeyUp(KeyCode.R))
+        else if (Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.JoystickButton3))
         {
             StartCoroutine(Back2normal());
         }
