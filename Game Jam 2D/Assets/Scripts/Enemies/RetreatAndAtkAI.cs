@@ -39,7 +39,7 @@ public class RetreatAndAtkAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug();
+        Debuged();
 
         switch (GetComponentInChildren<EoS_CollisionsManager>().coll_state)
         {
@@ -49,17 +49,17 @@ public class RetreatAndAtkAI : MonoBehaviour
             case EOS_COLLISION.ON_COLLISION_STAY:
                 if (Vector2.Distance(transform.position, _targetPos.position) < _retreatDist)
                 {
-                    //Debug.Log("Retreat");
+                    Debug.Log("Retreat");
                     state = EnemyState.RETREAT;
                 }
                 else
                 {
-                    //Debug.Log("Shoot");
+                    Debug.Log("Shoot");
                     state = EnemyState.ATTACK;
                 }
                 break;
             case EOS_COLLISION.ON_COLLISION_EXIT:
-                //Debug.Log("Exit vision range");
+                Debug.Log("Exit vision range");
                 state = EnemyState.IDLE;
                 break;
         }
@@ -86,11 +86,11 @@ public class RetreatAndAtkAI : MonoBehaviour
         }
     }
 
-    private void Debug()
+    private void Debuged()
     {
         if (Input.GetKeyDown(KeyCode.F7))
         {
-            //Debug.Log("Enemy RS State: " + state);
+            Debug.Log("Enemy RS State: " + state);
             //Debug.Log("EoS State: " + collisionsManager.coll_state);
         }
     }
@@ -112,12 +112,12 @@ public class RetreatAndAtkAI : MonoBehaviour
         {
             if (hitInfo.collider.tag == "Player")
             {
-                //Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.red);
-                // Shoot
+                Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.red);
+                //Shoot
             }
             else
             {
-                //Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.yellow);
+                Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.yellow);
             }
         }
     }
