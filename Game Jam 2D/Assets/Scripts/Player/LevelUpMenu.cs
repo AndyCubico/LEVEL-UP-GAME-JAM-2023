@@ -74,7 +74,7 @@ public class LevelUpMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
 
-        //[Andy] random number to chose level up options
+        //[Andy] random number to choose level up options
         randHealth = Random.Range(0f, 10f);
         if (randHealth<=5f)
         {
@@ -127,8 +127,6 @@ public class LevelUpMenu : MonoBehaviour
             attack_upgrade = ATTACK_UPGRADE.SPECIAL_ENERGY;
             textAttack.text = "SPECIAL ENERGY";
         }
-
-
     }
 
     public void ResumeGame()

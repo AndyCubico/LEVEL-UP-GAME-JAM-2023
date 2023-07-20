@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    public GameObject FloatingText;
     private Animator playerAnimator;
     [SerializeField] private Animator weaponAnimator;
     [SerializeField] private Transform attackPoint;
@@ -145,12 +146,19 @@ public class PlayerCombat : MonoBehaviour
         UseEnergy(normalCost);
 
         audioMan.PlayAudio(audioSource,attackClip);
-
+        ShowFloatingText();
         // [Andy] poner a enemigos
         ExperienceManager.Instance.AddExperience(xpAmount);
     }
 
-   private void SpecialAttack()
+    private void ShowFloatingText()
+    {
+        var go = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
+        int daños = (int)(attackDamage * (currentEnergy / maxEnergy));
+        go.GetComponent<TextMesh>().text = daños.ToString();
+    }
+
+    private void SpecialAttack()
    {
         // [Andy] Play animation
         weaponAnimator.SetTrigger("Attack");//cambiar a otra animacion
