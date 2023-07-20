@@ -304,7 +304,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   energyBar: {fileID: 0}
   potionValue: 50
-  healingCD: 0
+  maxPotions: 3
+  currentPotions: 3
+  healingCD: 1
   healingTime: 1
   move: {fileID: 2443423651584500471}
   rechargeValue: 0.1

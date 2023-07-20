@@ -11,9 +11,9 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private LayerMask enemyLayers;
     public int attackDamage = 40;
-    [SerializeField] private int normalCost = 5;
-    [SerializeField] private int specialDamage = 80;
-    [SerializeField] private int specialCost = 50;
+    public float normalCost = 5f;
+    public int specialDamage = 80;
+    public float specialCost = 50f;
     [SerializeField] private float attackCD = 2f;
     float nextAttackTime = 0f;
 
@@ -30,7 +30,9 @@ public class PlayerCombat : MonoBehaviour
 
     //HealthPotion
     private bool canHeal = true;
-    public int potionValue;    
+    public int potionValue;
+    public int maxPotions = 3;
+    public int currentPotions = 3;
     [SerializeField] private float healingCD;
     [SerializeField] private float healingTime;
 
@@ -95,7 +97,7 @@ public class PlayerCombat : MonoBehaviour
             nextAttackTime = attackCD;
         }
 
-        else if ((Input.GetKeyDown(KeyCode.Q)|| Input.GetKeyDown(KeyCode.JoystickButton1)) && canHeal)
+        else if ((Input.GetKeyDown(KeyCode.Q)|| Input.GetKeyDown(KeyCode.JoystickButton1)) && canHeal && currentPotions != 0)
         {
             StartCoroutine(UsePotion());
         }
@@ -114,6 +116,11 @@ public class PlayerCombat : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.JoystickButton3))
         {
             StartCoroutine(Back2normal());
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ExperienceManager.Instance.AddExperience(xpAmount);
         }
     }
     private void Attack()
@@ -227,9 +234,11 @@ public class PlayerCombat : MonoBehaviour
         canHeal = false;
         TakeDamage(-potionValue);
         move.speed *= 2;
+        currentPotions--;
 
         yield return new WaitForSeconds(healingCD);
         canHeal = true;
+       
     }
 
     // [Andy] LevelUp
