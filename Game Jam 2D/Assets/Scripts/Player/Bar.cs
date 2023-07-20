@@ -17,4 +17,10 @@ public class Bar : MonoBehaviour
     {
         slider.value = value;
     }
+
+    public void SetTo0()
+    {
+        slider.value = 0f;
+    }
+
 }
