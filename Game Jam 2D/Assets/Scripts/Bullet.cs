@@ -29,7 +29,6 @@ public class Bullet : MonoBehaviour
 
         if (_bulletLifetime < timer)
         {
-            Debug.Log("delete");
             DeleteBullet();
             timer = 0.0f;
         }

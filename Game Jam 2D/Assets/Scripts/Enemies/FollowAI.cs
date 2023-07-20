@@ -67,6 +67,7 @@ public class FollowAI : MonoBehaviour
 
                 break;
             case EnemyState.ATTACK:
+                ActiveRaycast();
                 break;
             case EnemyState.FOLLOW:
                 ActiveRaycast();
@@ -93,7 +94,6 @@ public class FollowAI : MonoBehaviour
             if (hitInfo.collider.tag == "Player")
             {
                 Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.red);
-                // Shoot
             }
             else
             {
