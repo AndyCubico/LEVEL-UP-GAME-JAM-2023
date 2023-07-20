@@ -15,6 +15,11 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        if (LevelUpMenu.isPaused)
+        {
+            return;
+        }
+
         rightStickInput = new Vector2(Input.GetAxis("R_Horizontal"), Input.GetAxis("R_Vertical"));
         // [Andy] Gamepad control weapon
         if (rightStickInput.magnitude > 0f)
