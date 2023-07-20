@@ -27,6 +27,7 @@ public class PlayerCombat : MonoBehaviour
     public float currentEnergy;
     public Bar healthBar;
     public Bar energyBar;
+    public Bar xpBar;
 
     //HealthPotion
     private bool canHeal = true;
@@ -67,6 +68,8 @@ public class PlayerCombat : MonoBehaviour
         currentEnergy = maxEnergy;
         healthBar.SetMaxValue(maxHealth);
         energyBar.SetMaxValue(maxEnergy);
+        xpBar.SetMaxValue(maxXP);
+        xpBar.SetTo0();
     }
     void Update()
     {
@@ -253,6 +256,7 @@ public class PlayerCombat : MonoBehaviour
     private void HandleExperienceChange(int newXp)
     {
         currentXp += newXp;
+        xpBar.SetCurrentValue(currentXp);
         if (currentXp>=maxXP)
         {
             LevelUp();
@@ -265,6 +269,7 @@ public class PlayerCombat : MonoBehaviour
         currentLvl++;
         currentXp = 0;
         maxXP += 100;
+        xpBar.SetMaxValue(maxXP);
     }
 
     private void OnDrawGizmosSelected()

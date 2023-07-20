@@ -142,6 +142,7 @@ public class LevelUpMenu : MonoBehaviour
         player.currentEnergy = player.maxEnergy;
         player.energyBar.SetCurrentValue(player.currentEnergy);
         player.energyBar.SetMaxValue(player.maxEnergy);
+        player.xpBar.SetTo0();
         player.currentPotions = player.maxPotions;
     }
 
