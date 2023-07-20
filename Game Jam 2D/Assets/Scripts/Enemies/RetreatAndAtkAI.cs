@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RetreatAndAtkAI : MonoBehaviour
@@ -10,7 +8,7 @@ public class RetreatAndAtkAI : MonoBehaviour
     private GameObject _target;
     [SerializeField] private float _retreatDist;
 
-    private Transform _targetPos;
+    private Vector2 _targetPos;
 
     // Line of sight
     [SerializeField] private GameObject _LoS;
@@ -19,17 +17,24 @@ public class RetreatAndAtkAI : MonoBehaviour
     [SerializeField] private float _visionDistance = 1; // Eye of Sight X
     [SerializeField] private float _visionRange = 1; // Eye of Sight Y
 
+    // Atk
+    private EnemyAttack _enemyAttack;
+    [SerializeField] private GameObject _spawnPoint;
+    [SerializeField] private GameObject _bulletPrefab;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         _target = GameObject.Find("Player");
-        _targetPos = _target.GetComponent<Transform>();
         _LoS_Transform = _LoS.GetComponent<Transform>();
 
         _LoS.GetComponent<PolygonCollider2D>().points[1].Set(_visionDistance, _visionRange);
         _LoS.GetComponent<PolygonCollider2D>().points[2].Set(_visionDistance, -_visionRange);
+
+        _enemyAttack = GetComponent<EnemyAttack>();
     }
 
     // Update is called once per frame
@@ -40,10 +45,9 @@ public class RetreatAndAtkAI : MonoBehaviour
         switch (GetComponentInChildren<EoS_CollisionsManager>().coll_state)
         {
             case EOS_COLLISION.ON_COLLISION_ENTER:
-                //GetComponent<Enemy>().state = EnemyState.ATTACK;
                 break;
             case EOS_COLLISION.ON_COLLISION_STAY:
-                if (Vector2.Distance(transform.position, _targetPos.position) < _retreatDist)
+                if (Vector2.Distance(transform.position, _targetPos) < _retreatDist)
                 {
                     GetComponent<Enemy>().state = EnemyState.RETREAT;
                 }
@@ -53,29 +57,42 @@ public class RetreatAndAtkAI : MonoBehaviour
                 }
                 break;
             case EOS_COLLISION.ON_COLLISION_EXIT:
-                GetComponent<Enemy>().state = EnemyState.IDLE;
+                //GetComponent<Enemy>().state = EnemyState.IDLE;
                 break;
         }
     }
 
     private void FixedUpdate()
     {
+        _targetPos = _target.GetComponent<Rigidbody2D>().position;
+
         switch (GetComponent<Enemy>().state)
         {
             case EnemyState.IDLE:
-                RotateEyeOfSight();
+                RotateEyeOfSight(); 
+                //_enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
+                
                 break;
             case EnemyState.ATTACK:
                 ActiveRaycast();
-                // Do Atk
+                _enemyAttack.EnableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
+
                 break;
             case EnemyState.FOLLOW:
                 break;
             case EnemyState.RETREAT:
-                rb.MovePosition(rb.position - _target.GetComponent<Rigidbody2D>().position.normalized * _speed * Time.fixedDeltaTime);
+
+                Vector2 vector2 = (_targetPos - (Vector2)transform.position);
+                vector2.Normalize();
+                rb.MovePosition((Vector2)transform.position - (vector2 * _speed * Time.fixedDeltaTime));
+
+                //rb.MovePosition(rb.position - _target.GetComponent<Rigidbody2D>().position.normalized * _speed * Time.fixedDeltaTime);
+                _enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
 
                 break;
             case EnemyState.DEAD:
+                _enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
+
                 break;
         }
     }
@@ -109,11 +126,14 @@ public class RetreatAndAtkAI : MonoBehaviour
             if (hitInfo.collider.tag == "Player")
             {
                 Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.red);
+
                 // Shoot
+                _enemyAttack.targetFound = true;
             }
             else
             {
                 Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.yellow);
+                _enemyAttack.targetFound = false;
             }
         }
 

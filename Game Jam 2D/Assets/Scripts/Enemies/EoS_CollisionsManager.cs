@@ -42,7 +42,11 @@ public class EoS_CollisionsManager : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Weapon")
+        {
+            return;
+        }
+            if (collision.tag == "Player")
         {
             coll_state = EOS_COLLISION.ON_COLLISION_EXIT;
         }

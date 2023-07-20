@@ -12,7 +12,7 @@ public class FollowAI : MonoBehaviour
     private GameObject _target;
     [SerializeField] private float _doAtkRange;
 
-    private Transform _targetPos;
+    private Vector2 _targetPos;
 
     // Line of sight
     [SerializeField] private GameObject _LoS;
@@ -28,16 +28,11 @@ public class FollowAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         _target = GameObject.Find("Player");
-        _targetPos = _target.GetComponent<Transform>();
         _LoS_Transform = _LoS.GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
-    {     
-    }
-
-    private void FixedUpdate()
     {
         switch (GetComponentInChildren<EoS_CollisionsManager>().coll_state)
         {
@@ -45,7 +40,7 @@ public class FollowAI : MonoBehaviour
                 //GetComponent<Enemy>().state = EnemyState.ATTACK;
                 break;
             case EOS_COLLISION.ON_COLLISION_STAY:
-                if (Vector2.Distance(transform.position, _targetPos.position) < _doAtkRange)
+                if (Vector2.Distance(transform.position, _targetPos) < _doAtkRange)
                 {
                     GetComponent<Enemy>().state = EnemyState.ATTACK;
                 }
@@ -57,10 +52,14 @@ public class FollowAI : MonoBehaviour
             case EOS_COLLISION.ON_COLLISION_EXIT:
                 GetComponent<Enemy>().state = EnemyState.IDLE;
                 break;
+
         }
+    }
 
+    private void FixedUpdate()
+    {
+        _targetPos = _target.GetComponent<Rigidbody2D>().position;
 
-        ActiveRaycast();
         switch (GetComponent<Enemy>().state)
         {
             case EnemyState.IDLE:
@@ -70,7 +69,11 @@ public class FollowAI : MonoBehaviour
             case EnemyState.ATTACK:
                 break;
             case EnemyState.FOLLOW:
-                rb.MovePosition(rb.position + _target.GetComponent<Rigidbody2D>().position.normalized * _speed * Time.fixedDeltaTime);
+                ActiveRaycast();
+
+                Vector2 vector2 = (_targetPos - (Vector2)transform.position);
+                vector2.Normalize();
+                rb.MovePosition((Vector2)transform.position + (vector2 * _speed * Time.fixedDeltaTime));
 
                 break;
             case EnemyState.RETREAT:
