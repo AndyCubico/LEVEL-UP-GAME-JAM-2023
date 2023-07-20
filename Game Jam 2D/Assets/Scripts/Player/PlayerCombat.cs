@@ -18,6 +18,9 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTime = 0f;
 
     //barras
+    [SerializeField] private int maxXP;
+    [SerializeField] private int currentXp;
+    [SerializeField] private int currentLvl;
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
     [SerializeField] private float maxEnergy = 100;
@@ -44,12 +47,14 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private AudioClip attackClip;
     [SerializeField] private AudioClip specialClip;
     [SerializeField] private AudioClip healClip;
-    [SerializeField] private AudioClip rechargeClip;//revisar
+    [SerializeField] private AudioClip rechargeClip;
     [SerializeField] private AudioClip hurtClip;
     [SerializeField] private AudioClip dedClip;//TODO
 
     public AudioManager audioMan;
 
+    // [Andy] cambiar esto, ponerlo en enemigo
+    int expAmount = 100;
 
     private void Start()
     {
@@ -125,6 +130,7 @@ public class PlayerCombat : MonoBehaviour
         UseEnergy(normalCost);
 
         audioMan.PlayAudio(audioSource,attackClip);
+        ExperienceManager.Instance.AddExperience(expAmount);
     }
 
    private void SpecialAttack()
@@ -185,21 +191,20 @@ public class PlayerCombat : MonoBehaviour
     // [Andy] go back to idle state after recharging
     private IEnumerator Back2normal()
     { 
-        //StartCoroutine(audioMan.StartFade(audioSource, 1.5f, 0)); // [Andy] no va bien, no deja poner volumen a 1 
+        StartCoroutine(audioMan.StartFade(audioSource, stunRecharge, 0));
         playerAnimator.SetTrigger("Recharge");
         playerAnimator.SetBool("isCharging", false);
        
         yield return new WaitForSeconds(stunRecharge);
 
+        move._stopMove = false;
+        move.rechargeStop = false;
+        nextRechargeTime = rechargeCD;
+        audioSource.volume = 1.0f;
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
         }
-
-        move._stopMove = false;
-        move.rechargeStop = false;
-        nextRechargeTime = rechargeCD;
-        //audioSource.volume = 1.0f;
     }
 
     private IEnumerator UsePotion()
@@ -219,8 +224,37 @@ public class PlayerCombat : MonoBehaviour
         yield return new WaitForSeconds(healingCD);
         canHeal = true;
     }
-    
-   
+
+    // [Andy] LevelUp
+    private void OnEnable()
+    {
+        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+    }
+    private void OnDisable()
+    {
+        ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+    }
+    private void HandleExperienceChange(int newXp)
+    {
+        currentXp += newXp;
+        if (currentXp>=maxXP)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        maxHealth += 10;
+        currentHealth = maxHealth;
+        healthBar.SetCurrentValue(currentHealth);
+        healthBar.SetMaxValue(maxHealth);
+
+        currentLvl++;
+        currentXp = 0;
+        maxXP += 100;
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

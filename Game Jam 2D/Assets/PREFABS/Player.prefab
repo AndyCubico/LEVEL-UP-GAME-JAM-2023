@@ -269,7 +269,7 @@ MonoBehaviour:
   _dashCooldown: 1
   walkSource: {fileID: 4194958695237527198}
   walkClip: {fileID: 8300000, guid: f7bff2a24d7d64eb296a8133060bd3e9, type: 3}
-  dashClip: {fileID: 8300000, guid: c458b6714dab015479d507b21fd2cead, type: 3}
+  dashClip: {fileID: 8300000, guid: f1c47bcf01bd61a418fde93409f27ec3, type: 3}
   audioMan: {fileID: 9000563124797261151}
 --- !u!114 &2443423651584500476
 MonoBehaviour:
@@ -294,6 +294,9 @@ MonoBehaviour:
   specialDamage: 80
   specialCost: 50
   attackCD: 1
+  maxXP: 100
+  currentXp: 0
+  currentLvl: 1
   maxHealth: 100
   currentHealth: 0
   maxEnergy: 110
@@ -307,11 +310,10 @@ MonoBehaviour:
   rechargeValue: 0.1
   rechargeCD: 2
   stunRecharge: 0.5
-  audioSource: {fileID: 0}
-  attackClip: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
-  specialClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: d3909336fca0f414cb53bb405754bfdc, type: 3}
+  specialClip: {fileID: 8300000, guid: 3c633f574d9dad940aa45f70ca59f85b, type: 3}
   healClip: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
-  rechargeClip: {fileID: 8300000, guid: d654174ef194bd7479bf4b8d8f753318, type: 3}
+  rechargeClip: {fileID: 8300000, guid: 3e7f714efb284b042af0ce40bf12f11b, type: 3}
   hurtClip: {fileID: 8300000, guid: b7b5a6156961bac44a67504d42ce6fcf, type: 3}
   dedClip: {fileID: 0}
   audioMan: {fileID: 9000563124797261151}
@@ -455,7 +457,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.138
+  m_Volume: 0.07
   m_Pitch: 1
   Loop: 0
   Mute: 0
