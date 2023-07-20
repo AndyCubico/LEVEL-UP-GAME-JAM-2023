@@ -55,9 +55,8 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        if (StartSpawn && timer >= Random.Range(minSecSpawn,maxSecSpawn) && Saved == false)
+        if (StartSpawn && timer >= Random.Range(minSecSpawn,maxSecSpawn) && Saved == false && IsSpawnable())
         {
-            IsSpawnable();
             switch (Random.Range(0, 4))
             {
                 case 0:
@@ -86,13 +85,14 @@ public class Spawner : MonoBehaviour
 
             if ((x <= transform.position.x - 9 || x >= transform.position.x + 9) || (y <= transform.position.y - 9 || y >= transform.position.y + 9) && (x <= GameObject.Find("Player").transform.position.x - 1 || x >= GameObject.Find("Player").transform.position.x + 1) || (y <= GameObject.Find("Player").transform.position.y - 2 || y >= GameObject.Find("Player").transform.position.y + 2))
             {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(x, y), 4f);
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(x, y), 3.5f);
 
                 bool isInvalidCollision = false;
                 foreach (Collider2D collider in colliders)
                 {
                     if (((1 << collider.gameObject.layer) & layerEnemiesCanSpawnOn) != 0)
                     {
+                        Debug.Log(collider.gameObject.layer);
                         isInvalidCollision = true;
                         break;
                     }
