@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7934200205677783500}
   - component: {fileID: 7934200205677783501}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7934200205994795382}
   - component: {fileID: 7934200205994795369}
   - component: {fileID: 7934200205994795378}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,6 +200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18008199e7c33c1449dfdc5ef43f1707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerEnemiesCanSpawnOn:
+    serializedVersion: 2
+    m_Bits: 0
   enemySPrefab: {fileID: 8238172280892580768, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
   enemyLPrefab: {fileID: 313118020361636358, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
   barr: {fileID: 7934200205677783503}

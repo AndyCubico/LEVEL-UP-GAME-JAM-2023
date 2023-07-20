@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] private LayerMask layerEnemiesCanSpawnOn;
+
     [SerializeField] private GameObject enemySPrefab;
     [SerializeField] private GameObject enemyLPrefab;
     [SerializeField] private GameObject barr;
@@ -53,10 +55,10 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        if (StartSpawn && timer >= Random.RandomRange(minSecSpawn,maxSecSpawn) && Saved == false)
+        if (StartSpawn && timer >= Random.Range(minSecSpawn,maxSecSpawn) && Saved == false)
         {
-            GetXY();
-            switch (Random.RandomRange(0, 4))
+            IsSpawnable();
+            switch (Random.Range(0, 4))
             {
                 case 0:
                     Instantiate(enemyLPrefab, new Vector3(x, y, 0), Quaternion.identity);
@@ -70,16 +72,45 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void GetXY()
+    private bool IsSpawnable()
     {
-        x = Random.RandomRange(GameObject.Find("Player").transform.position.x - 5, GameObject.Find("Player").transform.position.x + 5);
-        y = Random.RandomRange(GameObject.Find("Player").transform.position.y - 5, GameObject.Find("Player").transform.position.y + 5);
+        Vector2 spawnPosition = Vector2.zero;
+        bool ret = false;
+        int attemptCount = 0;
+        int attemptMax = 200;
 
-        if ((x <= transform.position.x - 9 || x >= transform.position.x + 9) || (y <= transform.position.y - 9 || y >= transform.position.y + 9) && (x <= GameObject.Find("Player").transform.position.x - 1 || x >= GameObject.Find("Player").transform.position.x + 1) || (y <= GameObject.Find("Player").transform.position.y - 2 || y >= GameObject.Find("Player").transform.position.y + 2))
+        while (!ret && attemptCount < attemptMax)
         {
+            x = Random.Range(GameObject.Find("Player").transform.position.x - 5, GameObject.Find("Player").transform.position.x + 5);
+            y = Random.Range(GameObject.Find("Player").transform.position.y - 5, GameObject.Find("Player").transform.position.y + 5);
 
+            if ((x <= transform.position.x - 9 || x >= transform.position.x + 9) || (y <= transform.position.y - 9 || y >= transform.position.y + 9) && (x <= GameObject.Find("Player").transform.position.x - 1 || x >= GameObject.Find("Player").transform.position.x + 1) || (y <= GameObject.Find("Player").transform.position.y - 2 || y >= GameObject.Find("Player").transform.position.y + 2))
+            {
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(x, y), 4f);
+
+                bool isInvalidCollision = false;
+                foreach (Collider2D collider in colliders)
+                {
+                    if (((1 << collider.gameObject.layer) & layerEnemiesCanSpawnOn) != 0)
+                    {
+                        isInvalidCollision = true;
+                        break;
+                    }
+                }
+
+                if (!isInvalidCollision)
+                {
+                    ret = true;
+                }
+
+            }
+
+            attemptCount++;
         }
-        else{ GetXY(); }
+
+        if (!ret) Debug.LogWarning("Could not find a valid spawn position");
+
+        return ret;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

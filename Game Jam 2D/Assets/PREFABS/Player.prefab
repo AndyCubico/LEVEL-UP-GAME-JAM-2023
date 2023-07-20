@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7384450678767698022}
   - component: {fileID: 9000563124797261151}
   - component: {fileID: 4194958695237527198}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -307,7 +307,6 @@ MonoBehaviour:
   rechargeValue: 0.1
   rechargeCD: 2
   stunRecharge: 0.5
-  audioSource: {fileID: 0}
   attackClip: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
   specialClip: {fileID: 0}
   healClip: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
@@ -550,7 +549,7 @@ GameObject:
   - component: {fileID: 2443423651846137006}
   - component: {fileID: 2443423651846137007}
   - component: {fileID: 2443423651846137000}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2443423652006189905}
   - component: {fileID: 2443423652006189906}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

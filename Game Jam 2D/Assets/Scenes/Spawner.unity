@@ -241,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2443423651584500466, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.16
+      value: -6.53
       objectReference: {fileID: 0}
     - target: {fileID: 2443423651584500466, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -307,6 +307,14 @@ PrefabInstance:
     - target: {fileID: 7934200205994795368, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
       propertyPath: m_Name
       value: Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934200205994795368, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
+      propertyPath: layerEnemiesCanSpawnOn.m_Bits
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7934200205994795380, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
       propertyPath: m_RootOrder
