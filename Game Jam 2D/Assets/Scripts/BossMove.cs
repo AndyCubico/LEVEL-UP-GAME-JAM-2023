@@ -13,6 +13,7 @@ public enum BOSS_STATE
 public class BossMove : MonoBehaviour
 {
     [SerializeField] private LayerMask layerEnemiesCanSpawnOn;
+    [SerializeField] private BOSS_STATE boss_State;
 
     [SerializeField] private float minTimeToWalk;
     [SerializeField] private float maxTimeToWalk;
@@ -21,8 +22,34 @@ public class BossMove : MonoBehaviour
     private float timer;
     private Vector2 pos;
 
+    private void Start()
+    {
+        boss_State = BOSS_STATE.BOSS_STATE_100;
+    }
+
     // Update is called once per frame
     void Update()
+    {
+        switch (boss_State)
+        {
+            case BOSS_STATE.BOSS_STATE_NONE:
+                break;
+            case BOSS_STATE.BOSS_STATE_100:
+                Behavior_1();
+                break;
+            case BOSS_STATE.BOSS_STATE_50:
+
+                break;
+            case BOSS_STATE.BOSS_STATE_25:
+
+                break;
+            case BOSS_STATE.BOSS_STATE_DEAD:
+
+                break;
+        }  
+    }
+
+    private void Behavior_1()
     {
         timer += Time.deltaTime;
         MoveBoss();
