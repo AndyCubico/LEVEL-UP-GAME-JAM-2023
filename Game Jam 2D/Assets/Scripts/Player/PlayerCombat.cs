@@ -10,7 +10,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private LayerMask enemyLayers;
-    [SerializeField] private int attackDamage = 40;
+    public int attackDamage = 40;
     [SerializeField] private int normalCost = 5;
     [SerializeField] private int specialDamage = 80;
     [SerializeField] private int specialCost = 50;
@@ -18,23 +18,26 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTime = 0f;
 
     //barras
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth;
-    [SerializeField] private float maxEnergy = 100;
-    [SerializeField] private float currentEnergy;
+    [SerializeField] private int maxXP;
+    [SerializeField] private int currentXp;
+    [SerializeField] private int currentLvl;
+    public int maxHealth = 100;
+    public int currentHealth;
+    public float maxEnergy = 100;
+    public float currentEnergy;
     public Bar healthBar;
     public Bar energyBar;
 
     //HealthPotion
-    private bool canHeal = true;    
-    [SerializeField] private int potionValue;    
+    private bool canHeal = true;
+    public int potionValue;    
     [SerializeField] private float healingCD;
     [SerializeField] private float healingTime;
 
     public PlayerMovement move;
 
     //Recharge
-    [SerializeField] private float rechargeValue;
+    public float rechargeValue;
     [SerializeField] private float rechargeCD = 5.0f;  
     [SerializeField] private float stunRecharge = 1.0f;
     float nextRechargeTime = 0f;
@@ -44,12 +47,14 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private AudioClip attackClip;
     [SerializeField] private AudioClip specialClip;
     [SerializeField] private AudioClip healClip;
-    [SerializeField] private AudioClip rechargeClip;//revisar
+    [SerializeField] private AudioClip rechargeClip;
     [SerializeField] private AudioClip hurtClip;
     [SerializeField] private AudioClip dedClip;//TODO
 
     public AudioManager audioMan;
 
+    // [Andy] cambiar esto, ponerlo en enemigo
+    int expAmount = 100;
 
     private void Start()
     {
@@ -63,6 +68,11 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
+        if (LevelUpMenu.isPaused)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             TakeDamage(20);
@@ -125,6 +135,7 @@ public class PlayerCombat : MonoBehaviour
         UseEnergy(normalCost);
 
         audioMan.PlayAudio(audioSource,attackClip);
+        ExperienceManager.Instance.AddExperience(expAmount);
     }
 
    private void SpecialAttack()
@@ -185,21 +196,20 @@ public class PlayerCombat : MonoBehaviour
     // [Andy] go back to idle state after recharging
     private IEnumerator Back2normal()
     { 
-        //StartCoroutine(audioMan.StartFade(audioSource, 1.5f, 0)); // [Andy] no va bien, no deja poner volumen a 1 
+        StartCoroutine(audioMan.StartFade(audioSource, stunRecharge, 0));
         playerAnimator.SetTrigger("Recharge");
         playerAnimator.SetBool("isCharging", false);
        
         yield return new WaitForSeconds(stunRecharge);
 
+        move._stopMove = false;
+        move.rechargeStop = false;
+        nextRechargeTime = rechargeCD;
+        audioSource.volume = 1.0f;
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
         }
-
-        move._stopMove = false;
-        move.rechargeStop = false;
-        nextRechargeTime = rechargeCD;
-        //audioSource.volume = 1.0f;
     }
 
     private IEnumerator UsePotion()
@@ -219,8 +229,33 @@ public class PlayerCombat : MonoBehaviour
         yield return new WaitForSeconds(healingCD);
         canHeal = true;
     }
-    
-   
+
+    // [Andy] LevelUp
+    private void OnEnable()
+    {
+        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+    }
+    private void OnDisable()
+    {
+        ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+    }
+    private void HandleExperienceChange(int newXp)
+    {
+        currentXp += newXp;
+        if (currentXp>=maxXP)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        LevelUpMenu.isPaused = true;
+        currentLvl++;
+        currentXp = 0;
+        maxXP += 100;
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
