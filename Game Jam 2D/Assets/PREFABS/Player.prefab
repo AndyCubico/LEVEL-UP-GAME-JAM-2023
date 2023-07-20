@@ -294,6 +294,9 @@ MonoBehaviour:
   specialDamage: 80
   specialCost: 50
   attackCD: 1
+  maxXP: 100
+  currentXp: 0
+  currentLvl: 1
   maxHealth: 100
   currentHealth: 0
   maxEnergy: 110
@@ -307,8 +310,8 @@ MonoBehaviour:
   rechargeValue: 0.1
   rechargeCD: 2
   stunRecharge: 0.5
-  attackClip: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
-  specialClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 7478e4f2b286ce64794fe9e3b9578b38, type: 3}
+  specialClip: {fileID: 8300000, guid: 3c633f574d9dad940aa45f70ca59f85b, type: 3}
   healClip: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   rechargeClip: {fileID: 8300000, guid: d654174ef194bd7479bf4b8d8f753318, type: 3}
   hurtClip: {fileID: 8300000, guid: b7b5a6156961bac44a67504d42ce6fcf, type: 3}

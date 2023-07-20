@@ -54,7 +54,7 @@ public class PlayerCombat : MonoBehaviour
     public AudioManager audioMan;
 
     // [Andy] cambiar esto, ponerlo en enemigo
-    int expAmount = 100;
+    int xpAmount = 100;
 
     private void Start()
     {
@@ -135,7 +135,9 @@ public class PlayerCombat : MonoBehaviour
         UseEnergy(normalCost);
 
         audioMan.PlayAudio(audioSource,attackClip);
-        ExperienceManager.Instance.AddExperience(expAmount);
+
+        // [Andy] poner a enemigos
+        ExperienceManager.Instance.AddExperience(xpAmount);
     }
 
    private void SpecialAttack()
@@ -224,7 +226,7 @@ public class PlayerCombat : MonoBehaviour
 
         canHeal = false;
         TakeDamage(-potionValue);
-        move.speed = move.speed * 2;
+        move.speed *= 2;
 
         yield return new WaitForSeconds(healingCD);
         canHeal = true;
