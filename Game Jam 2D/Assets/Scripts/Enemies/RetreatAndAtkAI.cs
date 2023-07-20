@@ -22,7 +22,6 @@ public class RetreatAndAtkAI : MonoBehaviour
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private GameObject _bulletPrefab;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -41,12 +40,18 @@ public class RetreatAndAtkAI : MonoBehaviour
     void Update()
     {
         Debugged();
+        Debug.Log((int)Vector2.Distance(transform.position, _targetPos));
 
         switch (GetComponentInChildren<EoS_CollisionsManager>().coll_state)
         {
             case EOS_COLLISION.ON_COLLISION_ENTER:
                 break;
             case EOS_COLLISION.ON_COLLISION_STAY:
+                if ((int) Vector2.Distance(transform.position, _targetPos) >= (_visionDistance / 2)) // To Do: se la suda bastante :')
+                {
+                    GetComponent<Enemy>().state = EnemyState.IDLE;
+                }
+
                 if (Vector2.Distance(transform.position, _targetPos) < _retreatDist)
                 {
                     GetComponent<Enemy>().state = EnemyState.RETREAT;
@@ -70,7 +75,7 @@ public class RetreatAndAtkAI : MonoBehaviour
         {
             case EnemyState.IDLE:
                 RotateEyeOfSight(); 
-                //_enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
+                _enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
                 
                 break;
             case EnemyState.ATTACK:
