@@ -198,7 +198,10 @@ public class BossBehaviour : MonoBehaviour
 
                 maxModeTimer = 15.0f;
                 minModeTimer = 10.0f;
-                CurrentHP += 1 * Time.deltaTime;
+                if (CurrentHP < MaxHP)
+                {
+                    CurrentHP += 1 * Time.deltaTime;
+                }
 
                 break;
             case BOSS_MODE.BOSS_MODE_ENEMIES:
@@ -292,7 +295,10 @@ public class BossBehaviour : MonoBehaviour
 
                 maxModeTimer = 10.0f;
                 minModeTimer = 5.0f;
-                CurrentHP += 5 * Time.deltaTime;
+                if (CurrentHP < MaxHP)
+                {
+                    CurrentHP += 5 * Time.deltaTime;
+                }
 
                 break;
             case BOSS_MODE.BOSS_MODE_ENEMIES:
@@ -386,7 +392,10 @@ public class BossBehaviour : MonoBehaviour
 
                 maxModeTimer = 10.0f;
                 minModeTimer = 5.0f;
-                CurrentHP += 5 * Time.deltaTime;
+                if (CurrentHP < MaxHP)
+                {
+                    CurrentHP += 5 * Time.deltaTime;
+                }
 
                 break;
             case BOSS_MODE.BOSS_MODE_ENEMIES:
@@ -552,7 +561,7 @@ public class BossBehaviour : MonoBehaviour
             pos = (Vector2)GetComponentInParent<Rigidbody2D>().position + new Vector2(0, 14);
             pos.Normalize();
             pos.x = -pos.x;
-            GetComponentInParent<Rigidbody2D>().position += pos * 2 * Time.deltaTime;
+            GetComponentInParent<Rigidbody2D>().position += pos * bossSpeed * Time.deltaTime;
         }
     }
 
