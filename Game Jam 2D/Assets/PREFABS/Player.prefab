@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7384450678767698022}
   - component: {fileID: 9000563124797261151}
   - component: {fileID: 4194958695237527198}
+  - component: {fileID: 1760482343057655469}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -132,7 +133,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.9122223, y: 4.548889}
+    oldSize: {x: 2.3999999, y: 4.7999997}
     newSize: {x: 0.16, y: 0.19}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -305,6 +306,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   energyBar: {fileID: 0}
   xpBar: {fileID: 0}
+  textXPbar: {fileID: 0}
+  textEnergyBar: {fileID: 0}
+  textHealthBar: {fileID: 0}
   potionValue: 50
   maxPotions: 3
   currentPotions: 3
@@ -545,6 +549,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1760482343057655469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2443423651584500470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e64e78207e7d3541ac6856653fae4ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potions: []
+  fullPotion: {fileID: 0}
+  emptyPotion: {fileID: 0}
 --- !u!1 &2443423651846137005
 GameObject:
   m_ObjectHideFlags: 0
