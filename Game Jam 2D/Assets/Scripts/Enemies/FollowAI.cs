@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.AI;
+
 // [Smm]
 
 public class FollowAI : MonoBehaviour
@@ -22,6 +24,11 @@ public class FollowAI : MonoBehaviour
 
     private RaycastHit2D hitInfo;
 
+
+    //
+    NavMeshAgent meshAgent;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +36,10 @@ public class FollowAI : MonoBehaviour
 
         _target = GameObject.Find("Player");
         _LoS_Transform = _LoS.GetComponent<Transform>();
+
+        meshAgent = GetComponent<NavMeshAgent>();
+        meshAgent.updateRotation = false;
+        meshAgent.updateUpAxis = false;
     }
 
     // Update is called once per frame
@@ -63,6 +74,7 @@ public class FollowAI : MonoBehaviour
         switch (GetComponent<Enemy>().state)
         {
             case EnemyState.IDLE:
+                meshAgent.isStopped = true;
                 _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
 
                 break;
@@ -70,11 +82,21 @@ public class FollowAI : MonoBehaviour
                 ActiveRaycast();
                 break;
             case EnemyState.FOLLOW:
-                ActiveRaycast();
+                //ActiveRaycast();
 
-                Vector2 vector2 = (_targetPos - (Vector2)transform.position);
-                vector2.Normalize();
-                rb.MovePosition((Vector2)transform.position + (vector2 * _speed * Time.fixedDeltaTime));
+                //Vector2 vector2 = (_targetPos - (Vector2)transform.position);
+                //vector2.Normalize();
+                //rb.MovePosition((Vector2)transform.position + (vector2 * _speed * Time.fixedDeltaTime));
+
+                if ((int)Vector2.Distance(transform.position, _targetPos) <= meshAgent.stoppingDistance) 
+                {
+                    GetComponent<Enemy>().state = EnemyState.ATTACK;
+                }
+                else
+                {
+                    meshAgent.isStopped = false;
+                    meshAgent.SetDestination(_targetPos);
+                }
 
                 break;
             case EnemyState.RETREAT:
