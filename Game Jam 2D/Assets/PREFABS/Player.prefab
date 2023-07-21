@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2037123091, guid: 5ac34cf7968f3ed4ebe0664059be52e3, type: 3}
+  m_Sprite: {fileID: -661823490, guid: ebe9308568931ae44b6813b7697c6975, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,14 +132,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.9}
+    oldSize: {x: 1.9122223, y: 4.548889}
     newSize: {x: 0.16, y: 0.19}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.9}
+  m_Size: {x: 2.1, y: 4.49}
   m_EdgeRadius: 0
 --- !u!96 &2443423651584500477
 TrailRenderer:
@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8884593eec036aa4aae57d10d5da9589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingText: {fileID: 0}
   weaponAnimator: {fileID: 2443423651846137000}
   attackPoint: {fileID: 2443423651846137006}
   attackRange: 1.43
@@ -303,6 +304,7 @@ MonoBehaviour:
   currentEnergy: 0
   healthBar: {fileID: 0}
   energyBar: {fileID: 0}
+  xpBar: {fileID: 0}
   potionValue: 50
   maxPotions: 3
   currentPotions: 3
@@ -569,7 +571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2443423651846137005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.54, y: 0.08, z: 0}
+  m_LocalPosition: {x: 2.5, y: 0.08, z: 0}
   m_LocalScale: {x: 9.943706, y: 9.943706, z: 9.943706}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -673,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2443423652006189904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23, y: -0.24, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
