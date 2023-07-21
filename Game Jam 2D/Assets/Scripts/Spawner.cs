@@ -9,6 +9,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject enemySPrefab;
     [SerializeField] private GameObject enemyLPrefab;
     [SerializeField] private GameObject barr;
+
+    [SerializeField] public FloatSO doors;
+
     [SerializeField] private int minSecSpawn = 2;
     [SerializeField] private int maxSecSpawn = 5;
     [SerializeField] private float completeBar = 0.3f;
@@ -43,6 +46,7 @@ public class Spawner : MonoBehaviour
             if (x_ >= completeBar)
             {
                 Saved = true;
+                doors.Value++;
             }
         }
         else 
