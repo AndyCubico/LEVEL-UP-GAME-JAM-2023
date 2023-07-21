@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-    public float _bulletSpeed = 10.0f;
-    [SerializeField] private float _bulletLifetime = 2.0f;
-    public Vector2 _target;
-    private Rigidbody2D _rb;
+    public float bulletSpeed = 10.0f;
+    [SerializeField] private float bulletLifetime = 2.0f;
+    public Vector2 target;
+    private Rigidbody2D rb;
 
     //Timer
     private float timer = 0.0f;
@@ -15,10 +15,10 @@ public class BossBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _target = (Vector2)transform.position;
-        _target -= (Vector2)GameObject.Find("Boss").transform.position;
-        _target.Normalize();
+        rb = GetComponent<Rigidbody2D>();
+        target = (Vector2)transform.position;
+        target -= (Vector2)GameObject.Find("Boss").transform.position;
+        target.Normalize();
         timer = 0.0f;
     }
 
@@ -27,7 +27,7 @@ public class BossBullet : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (_bulletLifetime < timer)
+        if (bulletLifetime < timer)
         {
             DeleteBullet();
             timer = 0.0f;
@@ -36,7 +36,7 @@ public class BossBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.MovePosition((Vector2)transform.position + (_target * _bulletSpeed * Time.deltaTime));
+        rb.MovePosition((Vector2)transform.position + (target * bulletSpeed * Time.deltaTime));
     }
     public void DeleteBullet()
     {
@@ -47,8 +47,17 @@ public class BossBullet : MonoBehaviour
         Destroy(GetComponent<Rigidbody2D>().gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        DeleteBullet();
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerCombat>().TakeDamage(10);
+            DeleteBullet();
+        }
+
+        if (collision.gameObject.layer == 11)
+        {
+            DeleteBullet();
+        }
     }
 }
