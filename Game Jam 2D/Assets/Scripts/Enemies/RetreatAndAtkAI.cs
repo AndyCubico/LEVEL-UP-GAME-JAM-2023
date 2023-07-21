@@ -39,11 +39,6 @@ public class RetreatAndAtkAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debugged();
-        Debug.Log((int)Vector2.Distance(transform.position, _targetPos));
-
-        Debug.Log(Mathf.Approximately(Vector2.Distance(transform.position, _targetPos), (_visionDistance / 2)));
-
         switch (GetComponentInChildren<EoS_CollisionsManager>().coll_state)
         {
             case EOS_COLLISION.ON_COLLISION_ENTER:

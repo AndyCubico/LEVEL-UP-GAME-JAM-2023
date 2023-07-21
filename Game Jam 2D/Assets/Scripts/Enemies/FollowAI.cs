@@ -88,8 +88,16 @@ public class FollowAI : MonoBehaviour
                 //vector2.Normalize();
                 //rb.MovePosition((Vector2)transform.position + (vector2 * _speed * Time.fixedDeltaTime));
 
-                meshAgent.isStopped = false;
-                meshAgent.SetDestination(_targetPos);
+                if ((int)Vector2.Distance(transform.position, _targetPos) <= meshAgent.stoppingDistance) 
+                {
+                    GetComponent<Enemy>().state = EnemyState.ATTACK;
+                }
+                else
+                {
+                    meshAgent.isStopped = false;
+                    meshAgent.SetDestination(_targetPos);
+                }
+
                 break;
             case EnemyState.RETREAT:
                 break;
