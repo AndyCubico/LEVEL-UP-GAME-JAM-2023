@@ -135,6 +135,7 @@ public class LevelUpMenu : MonoBehaviour
         levelMenu.SetActive(false);
         isPaused = false;
         Time.timeScale = 1f;
+        // [Andy] Se podría poner en una función de reset, si hace falta lo hago
         player.currentHealth = player.maxHealth;
         player.healthBar.SetCurrentValue(player.currentHealth);
         player.healthBar.SetMaxValue(player.maxHealth);
@@ -150,6 +151,7 @@ public class LevelUpMenu : MonoBehaviour
         player.textXPbar.text = player.currentXp + "/" + player.maxXP;
         player.textEnergyBar.text = player.currentEnergy + "/" + player.maxEnergy;
         player.textHealthBar.text = player.currentHealth + "/" + player.maxHealth;
+        player.textLevelNumber.text = player.currentLvl.ToString();
     }
 
     public void HealthUpgrade()

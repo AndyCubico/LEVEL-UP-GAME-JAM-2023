@@ -33,6 +33,7 @@ public class PlayerCombat : MonoBehaviour
     public TMP_Text textXPbar;
     public TMP_Text textEnergyBar;
     public TMP_Text textHealthBar;
+    public TMP_Text textLevelNumber;
 
     //HealthPotion
     private bool canHeal = true;
@@ -78,7 +79,7 @@ public class PlayerCombat : MonoBehaviour
         textXPbar.text = currentXp + "/" + maxXP;
         textEnergyBar.text = currentEnergy + "/" + maxEnergy;
         textHealthBar.text = currentHealth + "/" + maxHealth;
-
+        textLevelNumber.text = currentLvl.ToString();
 
     }
     void Update()
