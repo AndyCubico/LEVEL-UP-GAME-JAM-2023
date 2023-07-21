@@ -107,10 +107,10 @@ TextureImporter:
       name: ProtaSprites_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 8863
-        width: 1854
-        height: 4030
+        x: 0
+        y: 8640
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,10 +128,10 @@ TextureImporter:
       name: ProtaSprites_1
       rect:
         serializedVersion: 2
-        x: 2262
-        y: 8793
-        width: 1854
-        height: 4082
+        x: 2160
+        y: 8640
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,10 +149,10 @@ TextureImporter:
       name: ProtaSprites_2
       rect:
         serializedVersion: 2
-        x: 5563
-        y: 12864
-        width: 14
-        height: 16
+        x: 4320
+        y: 8640
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +170,10 @@ TextureImporter:
       name: ProtaSprites_3
       rect:
         serializedVersion: 2
-        x: 6711
-        y: 8863
-        width: 1867
-        height: 4037
+        x: 6480
+        y: 8640
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,10 +191,10 @@ TextureImporter:
       name: ProtaSprites_4
       rect:
         serializedVersion: 2
-        x: 8825
-        y: 8793
-        width: 1752
-        height: 4088
+        x: 8640
+        y: 8640
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +212,10 @@ TextureImporter:
       name: ProtaSprites_5
       rect:
         serializedVersion: 2
-        x: 12043
-        y: 12864
-        width: 14
-        height: 16
+        x: 10800
+        y: 8640
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,10 +233,10 @@ TextureImporter:
       name: ProtaSprites_6
       rect:
         serializedVersion: 2
-        x: 4484
-        y: 8799
-        width: 1891
-        height: 4050
+        x: 0
+        y: 4320
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,10 +254,10 @@ TextureImporter:
       name: ProtaSprites_7
       rect:
         serializedVersion: 2
-        x: 10900
-        y: 8799
-        width: 1848
-        height: 4050
+        x: 2160
+        y: 4320
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -275,10 +275,10 @@ TextureImporter:
       name: ProtaSprites_8
       rect:
         serializedVersion: 2
-        x: 60
-        y: 4401
-        width: 1829
-        height: 4145
+        x: 4320
+        y: 4320
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,10 +296,10 @@ TextureImporter:
       name: ProtaSprites_9
       rect:
         serializedVersion: 2
-        x: 2262
-        y: 4370
-        width: 1848
-        height: 4189
+        x: 6480
+        y: 4320
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -317,10 +317,10 @@ TextureImporter:
       name: ProtaSprites_10
       rect:
         serializedVersion: 2
-        x: 4484
-        y: 4528
-        width: 1898
-        height: 3999
+        x: 8640
+        y: 4320
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,10 +338,10 @@ TextureImporter:
       name: ProtaSprites_11
       rect:
         serializedVersion: 2
-        x: 6711
-        y: 4401
-        width: 1873
-        height: 4145
+        x: 10800
+        y: 4320
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,10 +359,10 @@ TextureImporter:
       name: ProtaSprites_12
       rect:
         serializedVersion: 2
-        x: 8850
-        y: 4465
-        width: 1721
-        height: 4094
+        x: 0
+        y: 0
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -380,10 +380,10 @@ TextureImporter:
       name: ProtaSprites_13
       rect:
         serializedVersion: 2
-        x: 10919
-        y: 4547
-        width: 1842
-        height: 3980
+        x: 2160
+        y: 0
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -401,10 +401,10 @@ TextureImporter:
       name: ProtaSprites_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 104
-        width: 2167
-        height: 4006
+        x: 4320
+        y: 0
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -422,10 +422,10 @@ TextureImporter:
       name: ProtaSprites_15
       rect:
         serializedVersion: 2
-        x: 2218
-        y: 92
-        width: 2107
-        height: 4050
+        x: 6480
+        y: 0
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -443,10 +443,10 @@ TextureImporter:
       name: ProtaSprites_16
       rect:
         serializedVersion: 2
-        x: 4376
-        y: 161
-        width: 2025
-        height: 3993
+        x: 8640
+        y: 0
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -464,10 +464,10 @@ TextureImporter:
       name: ProtaSprites_17
       rect:
         serializedVersion: 2
-        x: 6471
-        y: 104
-        width: 2176
-        height: 4006
+        x: 10800
+        y: 0
+        width: 2160
+        height: 4320
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -477,48 +477,6 @@ TextureImporter:
       bones: []
       spriteID: ae343fcf61108b44280569bdd768e71f
       internalID: -335220525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ProtaSprites_18
-      rect:
-        serializedVersion: 2
-        x: 8698
-        y: 92
-        width: 2107
-        height: 4050
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35285e06fb54d7b42925423bf5c86319
-      internalID: 193994989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ProtaSprites_19
-      rect:
-        serializedVersion: 2
-        x: 10856
-        y: 161
-        width: 2104
-        height: 3993
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e26152ba5f28d04fb46b2dc45bb976a
-      internalID: 968288737
       vertices: []
       indices: 
       edges: []
@@ -539,7 +497,6 @@ TextureImporter:
       ProtaSprites_16: 664437175
       ProtaSprites_11: 236195230
       ProtaSprites_14: 167637217
-      ProtaSprites_18: 193994989
       ProtaSprites_5: -2076574668
       ProtaSprites_12: -661823490
       ProtaSprites_6: -1410921090
@@ -549,7 +506,6 @@ TextureImporter:
       ProtaSprites_2: 1986177350
       ProtaSprites_3: -1618858541
       ProtaSprites_1: 237341411
-      ProtaSprites_19: 968288737
       ProtaSprites_4: 3782484
       ProtaSprites_15: -142980085
       ProtaSprites_17: -335220525

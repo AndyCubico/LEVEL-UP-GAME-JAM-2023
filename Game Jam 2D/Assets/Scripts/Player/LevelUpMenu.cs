@@ -70,6 +70,7 @@ public class LevelUpMenu : MonoBehaviour
     }
     public void PauseGame()
     {
+        player.textXPbar.text = player.currentXp + "/" + player.maxXP;
         levelMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
@@ -140,8 +141,15 @@ public class LevelUpMenu : MonoBehaviour
         player.currentEnergy = player.maxEnergy;
         player.energyBar.SetCurrentValue(player.currentEnergy);
         player.energyBar.SetMaxValue(player.maxEnergy);
-        player.xpBar.SetTo0();
         player.currentPotions = player.maxPotions;
+        player.currentLvl++;
+        player.currentXp = 0;
+        player.maxXP += 100;
+        player.xpBar.SetMaxValue(player.maxXP);
+        player.xpBar.SetTo0();
+        player.textXPbar.text = player.currentXp + "/" + player.maxXP;
+        player.textEnergyBar.text = player.currentEnergy + "/" + player.maxEnergy;
+        player.textHealthBar.text = player.currentHealth + "/" + player.maxHealth;
     }
 
     public void HealthUpgrade()
