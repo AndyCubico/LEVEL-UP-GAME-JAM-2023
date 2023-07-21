@@ -49,6 +49,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        PlayerCombat player = collision.gameObject.GetComponent<PlayerCombat>();
+        timer = 2.5f;
         DeleteBullet();
+        if (player!=null)
+        {
+            player.TakeDamage(20);
+        }
     }
 }
