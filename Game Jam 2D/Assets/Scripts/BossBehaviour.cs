@@ -14,7 +14,6 @@ public enum BOSS_MODE
 {
     BOSS_MODE_SUN,
     BOSS_MODE_BULLET,
-    BOSS_MODE_REST,
     BOSS_MODE_OBSTACLE,
     BOSS_MODE_ENEMIES,
 }
@@ -36,8 +35,11 @@ public class BossBehaviour : MonoBehaviour
     [SerializeField] private GameObject enemySPrefab;
     [SerializeField] private GameObject enemyLPrefab;
 
+    [SerializeField] private GameObject obstacle;
+
     [SerializeField] private float minTimeToWalk;
     [SerializeField] private float maxTimeToWalk;
+    [SerializeField] private float bossSpeed;
     [SerializeField] private float MaxHP;
     [SerializeField] private float CurrentHP;
 
@@ -69,6 +71,8 @@ public class BossBehaviour : MonoBehaviour
     private float x = 20;
 
     private float a = 0.01f;
+    private int maxEnemySpawn = 0;
+    private int maxObstaclesSpawn = 0;
 
     private void Start()
     {
@@ -76,11 +80,33 @@ public class BossBehaviour : MonoBehaviour
         boss_Mode = BOSS_MODE.BOSS_MODE_BULLET;
         pos = new Vector2(Random.Range(-1, 1.0f), Random.Range(-1, 1.0f));
         pos.Normalize();
+
+        CurrentHP = MaxHP = 500;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (CurrentHP > MaxHP / 2)
+        {
+            boss_State = BOSS_STATE.BOSS_STATE_100;
+            bossSpeed = 2;
+        }
+        else if (CurrentHP <= MaxHP / 2 && CurrentHP > MaxHP / 5)
+        {
+            boss_State = BOSS_STATE.BOSS_STATE_50;
+            bossSpeed = 4;
+        }
+        else if (CurrentHP < MaxHP / 5 && CurrentHP > 0)
+        {
+            boss_State = BOSS_STATE.BOSS_STATE_25;
+            bossSpeed = 6;
+        }
+        else
+        {
+            boss_State = BOSS_STATE.BOSS_STATE_DEAD;
+        }
+
         switch (boss_State)
         {
             case BOSS_STATE.BOSS_STATE_NONE:
@@ -91,13 +117,17 @@ public class BossBehaviour : MonoBehaviour
                 bigBullet.GetComponent<BossBullet>()._bulletSpeed = 5f;
                 break;
             case BOSS_STATE.BOSS_STATE_50:
-
+                Behavior_2();
+                smallBullet.GetComponent<BossBullet>()._bulletSpeed = 5f;
+                bigBullet.GetComponent<BossBullet>()._bulletSpeed = 5f;
                 break;
             case BOSS_STATE.BOSS_STATE_25:
-
+                Behavior_3();
+                smallBullet.GetComponent<BossBullet>()._bulletSpeed = 8f;
+                bigBullet.GetComponent<BossBullet>()._bulletSpeed = 10f;
                 break;
             case BOSS_STATE.BOSS_STATE_DEAD:
-
+                DeleteBoss();
                 break;
         }
 
@@ -125,7 +155,6 @@ public class BossBehaviour : MonoBehaviour
 
             if (boss_Mode == BOSS_MODE.BOSS_MODE_SUN)
             {
-
                 num = Random.Range(0, 2);
                 switch (num)
                 {
@@ -135,9 +164,15 @@ public class BossBehaviour : MonoBehaviour
                     case 1:
                         HaloSun();
                         break;
-                    default:
-                        break;
                 }
+            }
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_ENEMIES)
+            {
+                maxEnemySpawn = 3;
+            } 
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
+            {
+                maxObstaclesSpawn = 15;
             }
         }
 
@@ -161,24 +196,25 @@ public class BossBehaviour : MonoBehaviour
             case BOSS_MODE.BOSS_MODE_SUN:
                 MoveBossRest();
 
-                maxModeTimer = 30.0f;
-                minModeTimer = 20.0f;
+                maxModeTimer = 15.0f;
+                minModeTimer = 10.0f;
+                CurrentHP += 1 * Time.deltaTime;
+
                 break;
             case BOSS_MODE.BOSS_MODE_ENEMIES:
                 MoveBossRest();
 
                 maxModeTimer = 15.0f;
                 minModeTimer = 10.0f;
-
-                Spawn(3);
+                Spawn();
 
                 break;
-            case BOSS_MODE.BOSS_MODE_REST:
-                MoveBossRest();
+            case BOSS_MODE.BOSS_MODE_OBSTACLE:
+                MoveBoss();
 
-                maxModeTimer = 20.0f;
-                minModeTimer = 15.0f;
-                CurrentHP += 1 * Time.deltaTime;
+                maxModeTimer = 5.0f;
+                minModeTimer = 10.0f;
+                SpawnObstacles();
 
                 break;
             default:
@@ -195,54 +231,283 @@ public class BossBehaviour : MonoBehaviour
         }
     }
 
+    private void Behavior_2()
+    {
+        timer += Time.deltaTime;
+        Globaltimer += Time.deltaTime;
+        ModeTimer += Time.deltaTime;
+        TimerBullet += Time.deltaTime;
+        Darker();
+
+        if (ModeTimer >= Random.Range(minModeTimer, maxModeTimer))
+        {
+            if (boss_Mode == BOSS_MODE.BOSS_MODE_SUN) { ChooseMode(true); }
+            else { ChooseMode(false); }
+            ModeTimer = 0;
+            Globaltimer = 0;
+            TimerBullet = 0;
+
+            if (boss_Mode == BOSS_MODE.BOSS_MODE_SUN)
+            {
+                num = Random.Range(0, 2);
+                switch (num)
+                {
+                    case 0:
+                        PointSun();
+                        break;
+                    case 1:
+                        HaloSun();
+                        break;
+                }
+            }
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_ENEMIES)
+            {
+                maxEnemySpawn = 6;
+            }
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
+            {
+                maxObstaclesSpawn = 15;
+            }
+        }
+
+        switch (boss_Mode)
+        {
+            case BOSS_MODE.BOSS_MODE_BULLET:
+                MoveBoss();
+
+                maxModeTimer = 20.0f;
+                minModeTimer = 15.0f;
+
+                if (Globaltimer >= Random.Range(5f, 15f))
+                {
+                    num = Random.Range(0, 4);
+                    Globaltimer = 0;
+                    angulo = 0;
+                }
+                BulletMode();
+                break;
+
+            case BOSS_MODE.BOSS_MODE_SUN:
+                MoveBossRest();
+
+                maxModeTimer = 10.0f;
+                minModeTimer = 5.0f;
+                CurrentHP += 5 * Time.deltaTime;
+
+                break;
+            case BOSS_MODE.BOSS_MODE_ENEMIES:
+                MoveBossRest();
+
+                maxModeTimer = 15.0f;
+                minModeTimer = 10.0f;
+                Spawn();
+
+                break;
+            case BOSS_MODE.BOSS_MODE_OBSTACLE:
+                MoveBoss();
+
+                maxModeTimer = 5.0f;
+                minModeTimer = 10.0f;
+                SpawnObstacles();
+
+                break;
+            default:
+                MoveBoss();
+                break;
+
+        }
+
+        if (timer >= Random.Range(minTimeToWalk, maxTimeToWalk))
+        {
+            pos = new Vector2(Random.Range(-1, 1.0f), Random.Range(-1, 1.0f));
+            pos.Normalize();
+            timer = 0;
+        }
+    }
+
+    private void Behavior_3()
+    {
+        timer += Time.deltaTime;
+        Globaltimer += Time.deltaTime;
+        ModeTimer += Time.deltaTime;
+        TimerBullet += Time.deltaTime;
+        Darker();
+
+        if (ModeTimer >= Random.Range(minModeTimer, maxModeTimer))
+        {
+            if (boss_Mode == BOSS_MODE.BOSS_MODE_SUN) { ChooseMode(true); }
+            else { ChooseMode(false); }
+            ModeTimer = 0;
+            Globaltimer = 0;
+            TimerBullet = 0;
+
+            if (boss_Mode == BOSS_MODE.BOSS_MODE_SUN)
+            {
+                num = Random.Range(0, 2);
+                switch (num)
+                {
+                    case 0:
+                        PointSun();
+                        break;
+                    case 1:
+                        HaloSun();
+                        break;
+                }
+            }
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_ENEMIES)
+            {
+                maxEnemySpawn = 6;
+            }
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
+            {
+                maxObstaclesSpawn = 15;
+            }
+        }
+
+        switch (boss_Mode)
+        {
+            case BOSS_MODE.BOSS_MODE_BULLET:
+                MoveBoss();
+
+                maxModeTimer = 20.0f;
+                minModeTimer = 15.0f;
+
+                if (Globaltimer >= Random.Range(5f, 15f))
+                {
+                    num = Random.Range(0, 4);
+                    Globaltimer = 0;
+                    angulo = 0;
+                }
+                BulletMode();
+                break;
+
+            case BOSS_MODE.BOSS_MODE_SUN:
+                MoveBossRest();
+
+                maxModeTimer = 10.0f;
+                minModeTimer = 5.0f;
+                CurrentHP += 5 * Time.deltaTime;
+
+                break;
+            case BOSS_MODE.BOSS_MODE_ENEMIES:
+                MoveBossRest();
+
+                maxModeTimer = 15.0f;
+                minModeTimer = 10.0f;
+                Spawn();
+
+                break;
+            case BOSS_MODE.BOSS_MODE_OBSTACLE:
+                MoveBoss();
+
+                maxModeTimer = 5.0f;
+                minModeTimer = 10.0f;
+                SpawnObstacles();
+
+                break;
+            default:
+                MoveBoss();
+                break;
+
+        }
+
+        if (timer >= Random.Range(minTimeToWalk, maxTimeToWalk))
+        {
+            pos = new Vector2(Random.Range(-1, 1.0f), Random.Range(-1, 1.0f));
+            pos.Normalize();
+            timer = 0;
+        }
+    }
     private void ChooseMode(bool SUN)
     {
         if (SUN)
         {
-             boss_Mode = (BOSS_MODE)Random.Range(1, 2);
+             boss_Mode = (BOSS_MODE)Random.Range(1, 4);
         }
         else 
         {
-            boss_Mode = (BOSS_MODE)Random.Range(0, 2);
+            boss_Mode = (BOSS_MODE)Random.Range(0, 4);
         }
     }
     private void BulletMode()
     {
-        switch (num)
+        if (boss_State != BOSS_STATE.BOSS_STATE_25)
         {
-            case 0:
-                if (TimerBullet >= Random.Range(0.2f, 0.6f))
-                {
-                    angulo += 75;
-                    BulletSurrounded(angulo, 8, smallBullet);
-                    TimerBullet = 0;
-                }
-                break;
-            case 1:
-                if (TimerBullet >= Random.Range(0.2f, 0.3f))
-                {
-                    angulo += 25;
-                    BulletSurrounded(angulo, 8, smallBullet);
-                    TimerBullet = 0;
-                }
-                break;
-            case 2:
-                if (TimerBullet >= Random.Range(0.5f, 1.0f))
-                {
-                    angulo += 10;
-                    BulletSurrounded(angulo, 4, bigBullet);
-                    TimerBullet = 0;
-                }
-                break;
-            case 3:
-                if (TimerBullet >= Random.Range(0.5f, 1.0f))
-                {
-                    angulo += 45;
-                    BulletSurrounded(angulo, 4, bigBullet);
-                    TimerBullet = 0;
-                }
-                break;
+            switch (num)
+            {
+                case 0:
+                    if (TimerBullet >= Random.Range(0.2f, 0.6f))
+                    {
+                        angulo += 75;
+                        BulletSurrounded(angulo, 8, smallBullet);
+                        TimerBullet = 0;
+                    }
+                    break;
+                case 1:
+                    if (TimerBullet >= Random.Range(0.2f, 0.3f))
+                    {
+                        angulo += 25;
+                        BulletSurrounded(angulo, 8, smallBullet);
+                        TimerBullet = 0;
+                    }
+                    break;
+                case 2:
+                    if (TimerBullet >= Random.Range(0.5f, 1.0f))
+                    {
+                        angulo += 10;
+                        BulletSurrounded(angulo, 4, bigBullet);
+                        TimerBullet = 0;
+                    }
+                    break;
+                case 3:
+                    if (TimerBullet >= Random.Range(0.5f, 1.0f))
+                    {
+                        angulo += 45;
+                        BulletSurrounded(angulo, 4, bigBullet);
+                        TimerBullet = 0;
+                    }
+                    break;
+            }
         }
+        else 
+        {
+            switch (num)
+            {
+                case 0:
+                    if (TimerBullet >= Random.Range(0.1f, 0.3f))
+                    {
+                        angulo += 75;
+                        BulletSurrounded(angulo, 10, smallBullet);
+                        TimerBullet = 0;
+                    }
+                    break;
+                case 1:
+                    if (TimerBullet >= Random.Range(0.1f, 0.3f))
+                    {
+                        angulo += 25;
+                        BulletSurrounded(angulo, 10, smallBullet);
+                        TimerBullet = 0;
+                    }
+                    break;
+                case 2:
+                    if (TimerBullet >= Random.Range(0.2f, 0.5f))
+                    {
+                        angulo += 10;
+                        BulletSurrounded(angulo, 6, bigBullet);
+                        TimerBullet = 0;
+                    }
+                    break;
+                case 3:
+                    if (TimerBullet >= Random.Range(0.2f, 0.5f))
+                    {
+                        angulo += 45;
+                        BulletSurrounded(angulo, 6, bigBullet);
+                        TimerBullet = 0;
+                    }
+                    break;
+            }
+        }
+        
     }
 
     private void BulletSurrounded(int angulo, int Bnum, GameObject prefab)
@@ -259,9 +524,9 @@ public class BossBehaviour : MonoBehaviour
 
     private void MoveBoss()
     {
-        GetComponentInParent<Rigidbody2D>().position += pos * 2 * Time.deltaTime;
+        GetComponentInParent<Rigidbody2D>().position += pos * bossSpeed * Time.deltaTime;
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(GetComponentInParent<Rigidbody2D>().position, 3.5f);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(GetComponentInParent<Rigidbody2D>().position, 2.5f);
 
         bool isInvalidCollision = false;
         foreach (Collider2D collider in colliders)
@@ -348,7 +613,6 @@ public class BossBehaviour : MonoBehaviour
             SpriteRenderer colorin = dark.GetComponent<SpriteRenderer>();
             a -= a * Time.deltaTime;
             colorin.color = new Color(0, 0, 0, a);
-            Debug.Log("Pepino");
         }
     }
 
@@ -397,7 +661,7 @@ public class BossBehaviour : MonoBehaviour
         Instantiate(sun, Vector3.zero, Quaternion.identity);
     }
 
-    private void Spawn(int maxEnemySpawn)
+    private void Spawn()
     {
         while (maxEnemySpawn > 0)
         {
@@ -412,9 +676,19 @@ public class BossBehaviour : MonoBehaviour
                         Instantiate(enemySPrefab, new Vector3(EnemyPos.x, EnemyPos.y, 0), Quaternion.identity);
                         break;
                 }
-
-                timer = 0;
                 maxEnemySpawn--;
+            }
+        } 
+    }
+
+    private void SpawnObstacles()
+    {
+        while (maxObstaclesSpawn > 0)
+        {
+            if (IsSpawnableObstacle())
+            {
+                maxObstaclesSpawn--;
+                Instantiate(obstacle, new Vector3(EnemyPos.x, EnemyPos.y, 0), Quaternion.identity);
             }
         }
     }
@@ -428,8 +702,8 @@ public class BossBehaviour : MonoBehaviour
 
         while (!ret && attemptCount < attemptMax)
         {
-            EnemyPos.x = Random.Range(GameObject.Find("Player").transform.position.x - 5, GameObject.Find("Player").transform.position.x + 5);
-            EnemyPos.y = Random.Range(GameObject.Find("Player").transform.position.y - 5, GameObject.Find("Player").transform.position.y + 5);
+            EnemyPos.x = Random.Range(-15, 15);
+            EnemyPos.y = Random.Range(-15, 15);
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(EnemyPos.x, EnemyPos.y), 3.5f);
 
@@ -453,6 +727,54 @@ public class BossBehaviour : MonoBehaviour
         }
 
         return ret;
+    }
+
+    private bool IsSpawnableObstacle()
+    {
+        Vector2 spawnPosition = Vector2.zero;
+        bool ret = false;
+        int attemptCount = 0;
+        int attemptMax = 200;
+
+        while (!ret && attemptCount < attemptMax)
+        {
+            EnemyPos.x = Random.Range(-15, 15);
+            EnemyPos.y = Random.Range(-15, 15);
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(EnemyPos.x, EnemyPos.y), 2f);
+
+            bool isInvalidCollision = false;
+            foreach (Collider2D collider in colliders)
+            {
+                if (((1 << collider.gameObject.layer) & layerBossCanNotWalk) != 0)
+                {
+                    Debug.Log(collider.gameObject.layer);
+                    isInvalidCollision = true;
+                    break;
+                }
+            }
+
+            if (!isInvalidCollision)
+            {
+                ret = true;
+            }
+
+            attemptCount++;
+        }
+
+        return ret;
+    }
+
+    private void DeleteBoss()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(GetComponent<SpriteRenderer>().gameObject);
+        Destroy(GetComponent<CircleCollider2D>().gameObject);
+        Destroy(GetComponent<BoxCollider2D>().gameObject);
+        Destroy(GetComponent<Rigidbody2D>().gameObject);
+        Destroy(shield);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
