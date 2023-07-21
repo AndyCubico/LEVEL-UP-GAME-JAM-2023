@@ -118,10 +118,10 @@ public class RetreatAndAtkAI : MonoBehaviour
     }
 
     private void ActiveRaycast()
-    {
+    { 
         GetComponentInChildren<PolygonCollider2D>().enabled = false;
-        Vector2 direction = (_target.GetComponent<Rigidbody2D>().position - rb.position).normalized;
-        RaycastHit2D hitInfo = Physics2D.Raycast(_LoS_Transform.position, direction, _visionDistance);
+        Vector2 direction = (_target.GetComponent<Rigidbody2D>().position - rb.position);
+        RaycastHit2D hitInfo = Physics2D.Raycast(_LoS_Transform.position, direction.normalized, _visionDistance);
 
         if (hitInfo.collider != null)
         {
@@ -131,11 +131,16 @@ public class RetreatAndAtkAI : MonoBehaviour
 
                 // Shoot
                 _enemyAttack.targetFound = true;
+
+                Vector3 vectorToTarget = _target.transform.position - _LoS_Transform.position;
+                float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+                Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+                _LoS_Transform.rotation = Quaternion.Slerp(_LoS_Transform.rotation, q, Time.deltaTime * 2);
             }
             else
             {
                 Debug.DrawLine(_LoS_Transform.position, hitInfo.point, Color.yellow);
-                _enemyAttack.targetFound = false;
+                _enemyAttack.targetFound = false;                
             }
         }
 

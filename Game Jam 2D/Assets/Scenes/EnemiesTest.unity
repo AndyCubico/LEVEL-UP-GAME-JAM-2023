@@ -723,6 +723,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1459288589}
+    - target: {fileID: 2443423651584500477, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2443423652006189904, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -875,7 +879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580768, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: _target
