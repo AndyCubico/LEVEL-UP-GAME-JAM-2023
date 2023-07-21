@@ -38,6 +38,7 @@ public class BossBullet : MonoBehaviour
     {
         rb.MovePosition((Vector2)transform.position + (target * _bulletSpeed * Time.deltaTime));
     }
+
     public void DeleteBullet()
     {
         GetComponent<SpriteRenderer>().enabled = false;
@@ -55,7 +56,7 @@ public class BossBullet : MonoBehaviour
             DeleteBullet();
         }
 
-        if (collision.gameObject.layer == 11)
+        if (collision.gameObject.layer == 11 || collision.gameObject.layer == 10)
         {
             DeleteBullet();
         }

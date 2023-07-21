@@ -15,13 +15,15 @@ public enum BOSS_MODE
     BOSS_MODE_SUN,
     BOSS_MODE_BULLET,
     BOSS_MODE_OBSTACLE,
-    BOSS_MODE_ENEMIES,
+    BOSS_MODE_DASH,
 }
 public class BossBehaviour : MonoBehaviour
 {
     [SerializeField] private LayerMask layerBossCanNotWalk;
     [SerializeField] private LayerMask layerSunCanNotSpawn;
     [SerializeField] private LayerMask layerEnemiesCanSpawnOn;
+
+    [SerializeField] private TrailRenderer _dashTrail;
 
     [SerializeField] private BOSS_STATE boss_State;
     [SerializeField] public BOSS_MODE boss_Mode;
@@ -166,10 +168,10 @@ public class BossBehaviour : MonoBehaviour
                         break;
                 }
             }
-            else if (boss_Mode == BOSS_MODE.BOSS_MODE_ENEMIES)
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_DASH)
             {
-                maxEnemySpawn = 3;
-            } 
+                StartCoroutine(Dash());
+            }
             else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
             {
                 maxObstaclesSpawn = 15;
@@ -181,8 +183,8 @@ public class BossBehaviour : MonoBehaviour
             case BOSS_MODE.BOSS_MODE_BULLET:
                 MoveBoss();
 
-                maxModeTimer = 20.0f;
-                minModeTimer = 15.0f;
+                maxModeTimer = 10.0f;
+                minModeTimer = 5.0f;
 
                 if (Globaltimer >= Random.Range(5f, 15f))
                 {
@@ -204,12 +206,10 @@ public class BossBehaviour : MonoBehaviour
                 }
 
                 break;
-            case BOSS_MODE.BOSS_MODE_ENEMIES:
-                MoveBossRest();
+            case BOSS_MODE.BOSS_MODE_DASH:
 
-                maxModeTimer = 15.0f;
-                minModeTimer = 10.0f;
-                Spawn();
+                maxModeTimer = 5.0f;
+                minModeTimer = 5.0f;
 
                 break;
             case BOSS_MODE.BOSS_MODE_OBSTACLE:
@@ -263,9 +263,9 @@ public class BossBehaviour : MonoBehaviour
                         break;
                 }
             }
-            else if (boss_Mode == BOSS_MODE.BOSS_MODE_ENEMIES)
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_DASH)
             {
-                maxEnemySpawn = 6;
+                StartCoroutine(Dash());
             }
             else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
             {
@@ -301,13 +301,16 @@ public class BossBehaviour : MonoBehaviour
                 }
 
                 break;
-            case BOSS_MODE.BOSS_MODE_ENEMIES:
-                MoveBossRest();
+            case BOSS_MODE.BOSS_MODE_DASH:
 
-                maxModeTimer = 15.0f;
+                maxModeTimer = 10.0f;
                 minModeTimer = 10.0f;
-                Spawn();
-
+                if (TimerBullet >= Random.Range(0.2f, 0.6f))
+                {
+                    angulo += 25;
+                    BulletSurrounded(angulo, 4, smallBullet);
+                    TimerBullet = 0;
+                }
                 break;
             case BOSS_MODE.BOSS_MODE_OBSTACLE:
                 MoveBoss();
@@ -360,9 +363,9 @@ public class BossBehaviour : MonoBehaviour
                         break;
                 }
             }
-            else if (boss_Mode == BOSS_MODE.BOSS_MODE_ENEMIES)
+            else if (boss_Mode == BOSS_MODE.BOSS_MODE_DASH)
             {
-                maxEnemySpawn = 6;
+                StartCoroutine(Dash());
             }
             else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
             {
@@ -398,13 +401,16 @@ public class BossBehaviour : MonoBehaviour
                 }
 
                 break;
-            case BOSS_MODE.BOSS_MODE_ENEMIES:
-                MoveBossRest();
+            case BOSS_MODE.BOSS_MODE_DASH:
 
                 maxModeTimer = 15.0f;
-                minModeTimer = 10.0f;
-                Spawn();
-
+                minModeTimer = 15.0f;
+                if (TimerBullet >= Random.Range(0.2f, 0.6f))
+                {
+                    angulo += 25;
+                    BulletSurrounded(angulo, 8, smallBullet);
+                    TimerBullet = 0;
+                }
                 break;
             case BOSS_MODE.BOSS_MODE_OBSTACLE:
                 MoveBoss();
@@ -435,7 +441,7 @@ public class BossBehaviour : MonoBehaviour
         }
         else 
         {
-            boss_Mode = (BOSS_MODE)Random.Range(0, 4);
+            boss_Mode = (BOSS_MODE)Random.Range(1, 4);
         }
     }
     private void BulletMode()
@@ -562,6 +568,28 @@ public class BossBehaviour : MonoBehaviour
             pos.Normalize();
             pos.x = -pos.x;
             GetComponentInParent<Rigidbody2D>().position += pos * bossSpeed * Time.deltaTime;
+        }
+    }
+
+    // [Smm] Dashing: If dash, multiply the speed by the dash power. When finish, divide to return to the original speed.
+    IEnumerator Dash()
+    {
+        Vector2 speed;
+        while (boss_Mode == BOSS_MODE.BOSS_MODE_DASH)
+        {
+
+            speed = (Vector2)GameObject.Find("Player").GetComponent<Transform>().position - (Vector2)transform.position;
+            speed.Normalize();
+
+            GetComponentInParent<Rigidbody2D>().velocity = speed * 20;
+
+            // [Smm] Pauses the function in this exact line and the next frame or when the time to wait is over, it continues from here. (creo)
+            // SDL Delay pero bien, que no peta todo el juego
+            yield return new WaitForSeconds(0.5f);
+
+            GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -719,7 +747,7 @@ public class BossBehaviour : MonoBehaviour
             bool isInvalidCollision = false;
             foreach (Collider2D collider in colliders)
             {
-                if (((1 << collider.gameObject.layer) & layerBossCanNotWalk) != 0)
+                if (((1 << collider.gameObject.layer) & layerEnemiesCanSpawnOn) != 0)
                 {
                     Debug.Log(collider.gameObject.layer);
                     isInvalidCollision = true;
@@ -755,7 +783,7 @@ public class BossBehaviour : MonoBehaviour
             bool isInvalidCollision = false;
             foreach (Collider2D collider in colliders)
             {
-                if (((1 << collider.gameObject.layer) & layerBossCanNotWalk) != 0)
+                if (((1 << collider.gameObject.layer) & layerEnemiesCanSpawnOn) != 0)
                 {
                     Debug.Log(collider.gameObject.layer);
                     isInvalidCollision = true;
