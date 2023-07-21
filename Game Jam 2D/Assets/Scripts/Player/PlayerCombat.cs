@@ -149,7 +149,14 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hiteado el man " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage((int)(attackDamage*(currentEnergy/maxEnergy)));// [Andy] damage reduction whit energy remaining
+            if (enemy.gameObject.layer == 6)
+            {
+                enemy.GetComponent<Enemy>().TakeDamage((int)(attackDamage * (currentEnergy / maxEnergy)));// [Andy] damage reduction whit energy remaining
+            }
+            else if (enemy.gameObject.layer == 9)
+            {
+                enemy.GetComponent<BossBehaviour>().TakeDamage((int)(attackDamage * (currentEnergy / maxEnergy)));
+            }
         }
 
         // [Andy] spend energy
@@ -180,7 +187,14 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Special Hiteado el man " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(specialDamage);
+            if (enemy.gameObject.layer == 6)
+            {
+                enemy.GetComponent<Enemy>().TakeDamage(specialDamage);
+            }
+            else if (enemy.gameObject.layer == 9)
+            {
+                enemy.GetComponent<BossBehaviour>().TakeDamage(specialDamage);
+            }
         }
 
         // [Andy] spend energy

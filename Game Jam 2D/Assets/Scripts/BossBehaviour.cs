@@ -774,6 +774,13 @@ public class BossBehaviour : MonoBehaviour
         return ret;
     }
 
+    public void TakeDamage(int damage)
+    {
+        CurrentHP -= damage;
+        //enemyAnimator.SetTrigger("Hurt");
+        Debug.Log("Boss Vida " + CurrentHP);
+    }
+
     private void DeleteBoss()
     {
         GetComponent<SpriteRenderer>().enabled = false;
