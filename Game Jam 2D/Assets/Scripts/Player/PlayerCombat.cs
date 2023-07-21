@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -19,9 +20,9 @@ public class PlayerCombat : MonoBehaviour
     float nextAttackTime = 0f;
 
     //barras
-    [SerializeField] private int maxXP;
-    [SerializeField] private int currentXp;
-    [SerializeField] private int currentLvl;
+    public int maxXP;
+    public int currentXp;
+    public int currentLvl;
     public int maxHealth = 100;
     public int currentHealth;
     public float maxEnergy = 100;
@@ -29,6 +30,9 @@ public class PlayerCombat : MonoBehaviour
     public Bar healthBar;
     public Bar energyBar;
     public Bar xpBar;
+    public TMP_Text textXPbar;
+    public TMP_Text textEnergyBar;
+    public TMP_Text textHealthBar;
 
     //HealthPotion
     private bool canHeal = true;
@@ -71,6 +75,11 @@ public class PlayerCombat : MonoBehaviour
         energyBar.SetMaxValue(maxEnergy);
         xpBar.SetMaxValue(maxXP);
         xpBar.SetTo0();
+        textXPbar.text = currentXp + "/" + maxXP;
+        textEnergyBar.text = currentEnergy + "/" + maxEnergy;
+        textHealthBar.text = currentHealth + "/" + maxHealth;
+
+
     }
     void Update()
     {
@@ -182,6 +191,8 @@ public class PlayerCombat : MonoBehaviour
    {
         currentHealth -= damage;
         healthBar.SetCurrentValue(currentHealth);
+        textHealthBar.text = currentHealth + "/" + maxHealth;
+
         if (damage>0)
         {
             audioMan.PlayAudio(audioSource, hurtClip);
@@ -191,6 +202,7 @@ public class PlayerCombat : MonoBehaviour
     public void UseEnergy(float energy)
     {
         currentEnergy -= energy;
+        textEnergyBar.text = currentEnergy + "/" + maxEnergy;
         energyBar.SetCurrentValue(currentEnergy);
     }
 
@@ -265,6 +277,7 @@ public class PlayerCombat : MonoBehaviour
     {
         currentXp += newXp;
         xpBar.SetCurrentValue(currentXp);
+        textXPbar.text = currentXp + "/" + maxXP;
         if (currentXp>=maxXP)
         {
             LevelUp();
@@ -274,10 +287,6 @@ public class PlayerCombat : MonoBehaviour
     private void LevelUp()
     {
         LevelUpMenu.isPaused = true;
-        currentLvl++;
-        currentXp = 0;
-        maxXP += 100;
-        xpBar.SetMaxValue(maxXP);
     }
 
     private void OnDrawGizmosSelected()
