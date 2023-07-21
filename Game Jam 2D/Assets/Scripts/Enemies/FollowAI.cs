@@ -76,7 +76,7 @@ public class FollowAI : MonoBehaviour
         if (Vector2.Distance(transform.position, _targetPos) < _doAtkRange && _enemyAttack.nextAttackTime <= 0)
         {
             _enemyAttack.Attack();
-            _enemyAttack.nextAttackTime = _enemyAttack._atkCD;
+          
         }
     }
 

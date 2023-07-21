@@ -42,9 +42,7 @@ public class MeleeAttack : MonoBehaviour
         // [Andy] Detect enemies
         Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
 
-        Debug.Log("Hiteado el man " + hitPlayer.name); 
         nextAttackTime = _atkCD;
-        Debug.Log("Hiteado el man " + nextAttackTime);
         hitPlayer.GetComponent<PlayerCombat>().TakeDamage(attackDamage);// [Andy] damage reduction whit energy remaining
        
     }
