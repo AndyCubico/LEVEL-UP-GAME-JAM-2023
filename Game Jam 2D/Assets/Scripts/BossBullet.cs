@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-    public float bulletSpeed = 10.0f;
+    public float _bulletSpeed = 10.0f;
     [SerializeField] private float bulletLifetime = 2.0f;
     public Vector2 target;
     private Rigidbody2D rb;
@@ -36,7 +36,7 @@ public class BossBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition((Vector2)transform.position + (target * bulletSpeed * Time.deltaTime));
+        rb.MovePosition((Vector2)transform.position + (target * _bulletSpeed * Time.deltaTime));
     }
     public void DeleteBullet()
     {
