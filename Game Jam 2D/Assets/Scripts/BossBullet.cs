@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-    [SerializeField] private float _bulletSpeed = 10.0f;
+    public float _bulletSpeed = 10.0f;
     [SerializeField] private float _bulletLifetime = 2.0f;
     public Vector2 _target;
     private Rigidbody2D _rb;

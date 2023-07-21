@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InvertSun : MonoBehaviour
 {
-    [SerializeField] private float Radius;
-    [SerializeField] private float RadiusDiff;
+    [SerializeField] public float Radius;
+    [SerializeField] public float RadiusDiff;
     [SerializeField] private EdgeCollider2D Out;
     [SerializeField] private EdgeCollider2D In;
     [SerializeField] private LineRenderer sun;
@@ -24,6 +24,8 @@ public class InvertSun : MonoBehaviour
     private void Update()
     {
         Generate();
+
+        if (GameObject.Find("Boss").GetComponent<BossBehaviour>().boss_Mode != BOSS_MODE.BOSS_MODE_SUN) { DeleteSun(); }
     }
     private void Generate()
     {
@@ -75,7 +77,7 @@ public class InvertSun : MonoBehaviour
         }
     }
 
-    private bool IsPlayerIn()
+    public bool IsPlayerIn()
     {
         bool ret = false;
 
@@ -101,5 +103,15 @@ public class InvertSun : MonoBehaviour
         }
 
         return ret;
+    }
+
+    public void DeleteSun()
+    {
+        GetComponent<LineRenderer>().enabled = false;
+        Out.enabled = false;
+        In.enabled = false;
+        Destroy(GetComponent<LineRenderer>().gameObject);
+        Destroy(Out.gameObject);
+        Destroy(In.gameObject);
     }
 }
