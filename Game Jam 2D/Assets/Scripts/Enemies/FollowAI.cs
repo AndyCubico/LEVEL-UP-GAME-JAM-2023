@@ -24,6 +24,7 @@ public class FollowAI : MonoBehaviour
 
     private RaycastHit2D hitInfo;
 
+    private MeleeAttack _enemyAttack;
 
     //
     NavMeshAgent meshAgent;
@@ -40,6 +41,7 @@ public class FollowAI : MonoBehaviour
         meshAgent = GetComponent<NavMeshAgent>();
         meshAgent.updateRotation = false;
         meshAgent.updateUpAxis = false;
+        _enemyAttack = GetComponent<MeleeAttack>();
     }
 
     // Update is called once per frame
@@ -64,6 +66,17 @@ public class FollowAI : MonoBehaviour
                 GetComponent<Enemy>().state = EnemyState.IDLE;
                 break;
 
+        }
+
+        if (_enemyAttack.nextAttackTime > 0)
+        {
+            _enemyAttack.nextAttackTime -= Time.deltaTime;
+        }
+
+        if (Vector2.Distance(transform.position, _targetPos) < _doAtkRange && _enemyAttack.nextAttackTime <= 0)
+        {
+            _enemyAttack.Attack();
+            _enemyAttack.nextAttackTime = _enemyAttack._atkCD;
         }
     }
 

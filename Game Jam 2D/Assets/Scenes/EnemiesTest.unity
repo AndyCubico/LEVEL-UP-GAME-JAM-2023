@@ -446,8 +446,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6081476701696009672, guid: a533e15923e711540b9950fafd1383f7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081476701696009672, guid: a533e15923e711540b9950fafd1383f7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081476701867879564, guid: a533e15923e711540b9950fafd1383f7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a533e15923e711540b9950fafd1383f7, type: 3}
+--- !u!95 &556623858 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8238172280892580769, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+  m_PrefabInstance: {fileID: 8238172281368662392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &888588286 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1032230586519670540, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
@@ -873,13 +890,37 @@ PrefabInstance:
       propertyPath: m_StoppingDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7491791926149612869, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: _atkCD
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491791926149612869, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 8238172281368662393}
+    - target: {fileID: 7491791926149612869, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: attackRange
+      value: 2.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491791926149612869, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: attackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491791926149612869, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: meleeEnemyAnimator
+      value: 
+      objectReference: {fileID: 556623858}
+    - target: {fileID: 7491791926149612869, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580768, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: m_Name
       value: F - Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580768, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: _target
@@ -891,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: _doAtkRange
-      value: 3
+      value: 4.17
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580774, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: m_Mass
@@ -956,6 +997,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5489103856392133783, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+--- !u!4 &8238172281368662393 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5714725037763819926, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+  m_PrefabInstance: {fileID: 8238172281368662392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8506091491137421244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1033,7 +1079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636358, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636476, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: _speed
