@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec3085aced67bf4449b9307ec55a2c93
+guid: fe314715bf4d38c4980c9f0bd80d1bc3
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - KG Sorry Not Sorry Chub
+  - Childlike
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
