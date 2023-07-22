@@ -70,7 +70,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private AudioClip healClip;
     [SerializeField] private AudioClip rechargeClip;
     [SerializeField] private AudioClip hurtClip;
-    [SerializeField] private AudioClip dedClip;//TODO
+    [SerializeField] private AudioClip dedClip;
 
     private AudioManager audioMan;
 
@@ -239,7 +239,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Die()
     {
-        //audioMan.PlayAudio(audioSource, dedClip);
+        audioMan.PlayAudio(audioSource, dedClip);
         Debug.Log("Player ded");
         textHealthBar.text = 0 + "/" + maxHealth;
         deathParticle.Play();

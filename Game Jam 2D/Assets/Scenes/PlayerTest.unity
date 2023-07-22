@@ -975,6 +975,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1343728189}
     - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
+      propertyPath: dedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 35c329d3fe986174cbb6689d5489426e, type: 3}
+    - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 516932585}
@@ -986,6 +990,14 @@ PrefabInstance:
       propertyPath: textXPbar
       value: 
       objectReference: {fileID: 406220696}
+    - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
+      propertyPath: attackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ad17b44248173d49b98113ca195ea1b, type: 3}
+    - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
+      propertyPath: rechargeCD
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
       propertyPath: hitParticle
       value: 
