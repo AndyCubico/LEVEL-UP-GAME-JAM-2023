@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
         GetComponent<FollowAI>().enabled = false;
-        GetComponent<EnemyAttack>().enabled = false;//[Andy] no va :/
-        this.enabled = false;
+        //GetComponent<RetreatAndAtkAI>().enabled = false; [Andy] Aquí no va
+        //This.enabled = false;
     }
 }
