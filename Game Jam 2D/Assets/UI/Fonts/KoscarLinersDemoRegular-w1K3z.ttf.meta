@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fe314715bf4d38c4980c9f0bd80d1bc3
+guid: ae83a8b6013285642a35776c7d4a49cc
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Childlike
+  - Koscar Liners Demo
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

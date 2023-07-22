@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8884593eec036aa4aae57d10d5da9589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloatingText: {fileID: 0}
+  FloatingText: {fileID: 2854880855874789264, guid: 99fb928028afdb545bdabaff87409b07, type: 3}
   weaponAnimator: {fileID: 2443423651846137000}
   attackPoint: {fileID: 2443423651846137006}
   attackRange: 1.43

@@ -280,10 +280,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074a2cb908e76a44c93da83f862bf72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingText: {fileID: 2854880855874789264, guid: 99fb928028afdb545bdabaff87409b07, type: 3}
   maxHealth: 100
   hurtClip: {fileID: 0}
   dedClip: {fileID: 0}
   state: 0
+  xpAmount: 100
 --- !u!114 &313118020361636476
 MonoBehaviour:
   m_ObjectHideFlags: 0
