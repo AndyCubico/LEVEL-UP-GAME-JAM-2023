@@ -249,7 +249,7 @@ public class PlayerCombat : MonoBehaviour
     public void UseEnergy(float energy)
     {
         currentEnergy -= energy;
-        textEnergyBar.text = currentEnergy + "/" + maxEnergy;
+        textEnergyBar.text = (int)currentEnergy + "/" + maxEnergy;
         energyBar.SetCurrentValue(currentEnergy);
     }
 
