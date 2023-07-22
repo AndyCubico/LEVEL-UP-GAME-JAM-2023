@@ -12,12 +12,14 @@ public class EnemyAttack : MonoBehaviour
     private AudioManager audioMan;
     private AudioSource audioSource;
     [SerializeField] private AudioClip attackClip;
+    private Animator enemyAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         audioMan = GetComponent<AudioManager>();
+        enemyAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -57,6 +59,7 @@ public class EnemyAttack : MonoBehaviour
             if (targetFound)
             {
                 audioMan.PlayAudio(audioSource, attackClip);
+                enemyAnimator.SetTrigger("Attack");
                 bullet = Instantiate(prefab, spawner.transform.position, spawner.transform.rotation);
                 yield return new WaitForSeconds(_atkCD);
             }

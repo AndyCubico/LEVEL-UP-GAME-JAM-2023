@@ -98,7 +98,7 @@ public class RetreatAndAtkAI : MonoBehaviour
                 break;
             case EnemyState.DEAD:
                 _enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
-
+                GetComponent<RetreatAndAtkAI>().enabled = false;
                 break;
         }
     }
