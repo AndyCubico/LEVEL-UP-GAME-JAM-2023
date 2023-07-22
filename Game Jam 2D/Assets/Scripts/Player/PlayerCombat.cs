@@ -9,6 +9,12 @@ public class PlayerCombat : MonoBehaviour
 {
     public GameObject FloatingText;
     private Animator playerAnimator;
+    [SerializeField] private ParticleSystem attackParticle;
+    [SerializeField] private ParticleSystem specialParticle;
+    [SerializeField] private ParticleSystem healParticle;
+    [SerializeField] private ParticleSystem rechargeParticle;
+    [SerializeField] private ParticleSystem hitParticle;
+    [SerializeField] private ParticleSystem deathParticle;
     [SerializeField] private Animator weaponAnimator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
@@ -151,6 +157,7 @@ public class PlayerCombat : MonoBehaviour
     }
     private void Attack()
     {
+        attackParticle.Play();
         // [Andy] Play animation
         weaponAnimator.SetTrigger("Attack");
 
@@ -189,6 +196,7 @@ public class PlayerCombat : MonoBehaviour
     {
         // [Andy] Play animation
         weaponAnimator.SetTrigger("Attack");//cambiar a otra animacion
+        specialParticle.Play();
 
         // [Andy] Detect enemies
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -217,11 +225,11 @@ public class PlayerCombat : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetCurrentValue(currentHealth);
         textHealthBar.text = currentHealth + "/" + maxHealth;
-        playerAnimator.SetTrigger("Hurt");
-
         if (damage>0)
         {
             audioMan.PlayAudio(audioSource, hurtClip);
+            hitParticle.Play();
+            playerAnimator.SetTrigger("Hurt");
         }
 
         if (currentHealth <= 0)
@@ -234,11 +242,10 @@ public class PlayerCombat : MonoBehaviour
         //audioMan.PlayAudio(audioSource, dedClip);
         Debug.Log("Player ded");
         textHealthBar.text = 0 + "/" + maxHealth;
+        deathParticle.Play();
         playerAnimator.SetBool("isDed", true);
-
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-    
     }
 
     private void RestarLevel()
@@ -302,7 +309,8 @@ public class PlayerCombat : MonoBehaviour
     private IEnumerator UsePotion()
     {
         // [Andy] Play animation
-        playerAnimator.SetTrigger("Heal");
+        healParticle.Play();
+        //playerAnimator.SetTrigger("Heal");
         move.speed = move.speed/2;
         canHeal = false;
         audioMan.PlayAudio(audioSource, healClip);

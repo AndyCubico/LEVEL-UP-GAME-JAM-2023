@@ -80,12 +80,12 @@ public class LevelUpMenu : MonoBehaviour
         if (randHealth<=5f)
         {
             hp_upgrade = HP_UPGRADE.MAX_HP;
-            textHealth.text = "Hp";
+            textHealth.text = "Max HP";
         }
         else if (randHealth > 5f && randHealth<=9f)
         {
             hp_upgrade = HP_UPGRADE.HEAL_UPGRADE;
-            textHealth.text = "Heal";
+            textHealth.text = "Healing";
         }
         else if (randHealth > 9f)
         {
@@ -98,12 +98,12 @@ public class LevelUpMenu : MonoBehaviour
         if (randEnergy <= 5f)
         {
             energy_upgrade = ENERGY_UPGRADE.MAX_ENERGY;
-            textEnergy.text = "Energy";
+            textEnergy.text = "Max Energy";
         }
         else
         {
             energy_upgrade = ENERGY_UPGRADE.RECHARGE_VALUE;
-            textEnergy.text = "Recharge";
+            textEnergy.text = "Recharge rate";
         }
 
         randAttack = Random.Range(0f, 10f);
@@ -116,7 +116,7 @@ public class LevelUpMenu : MonoBehaviour
         else if (randAttack > 5f && randAttack <= 7f)
         {
             attack_upgrade = ATTACK_UPGRADE.ATTACK_ENERGY;
-            textAttack.text = "Attack energy";
+            textAttack.text = "Attack energy cost";
         }
         else if (randAttack > 7f && randAttack <= 9f)
         {
@@ -126,7 +126,7 @@ public class LevelUpMenu : MonoBehaviour
         else if(randAttack > 9f)
         {
             attack_upgrade = ATTACK_UPGRADE.SPECIAL_ENERGY;
-            textAttack.text = "Special energy";
+            textAttack.text = "Special energy cost";
         }
     }
 
