@@ -28,7 +28,11 @@ public class FollowAI : MonoBehaviour
 
     //
     NavMeshAgent meshAgent;
-
+    //Animations + sound
+    private Animator enemyAnimator;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip attackClip;
+    private AudioManager audioMan;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,9 @@ public class FollowAI : MonoBehaviour
         meshAgent.updateRotation = false;
         meshAgent.updateUpAxis = false;
         _enemyAttack = GetComponent<MeleeAttack>();
+        enemyAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        audioMan = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -75,8 +82,9 @@ public class FollowAI : MonoBehaviour
 
         if (Vector2.Distance(transform.position, _targetPos) < _doAtkRange && _enemyAttack.nextAttackTime <= 0)
         {
+            enemyAnimator.SetTrigger("Attack");
+            audioMan.PlayAudio(audioSource, attackClip);
             _enemyAttack.Attack();
-          
         }
     }
 
@@ -89,7 +97,7 @@ public class FollowAI : MonoBehaviour
             case EnemyState.IDLE:
                 meshAgent.isStopped = true;
                 _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
-
+                enemyAnimator.SetBool("isWalking", false);
                 break;
             case EnemyState.ATTACK:
                 ActiveRaycast();
@@ -100,7 +108,7 @@ public class FollowAI : MonoBehaviour
                 //Vector2 vector2 = (_targetPos - (Vector2)transform.position);
                 //vector2.Normalize();
                 //rb.MovePosition((Vector2)transform.position + (vector2 * _speed * Time.fixedDeltaTime));
-
+                enemyAnimator.SetBool("isWalking", true);
                 if ((int)Vector2.Distance(transform.position, _targetPos) <= meshAgent.stoppingDistance) 
                 {
                     GetComponent<Enemy>().state = EnemyState.ATTACK;

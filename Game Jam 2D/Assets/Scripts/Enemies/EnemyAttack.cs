@@ -9,11 +9,15 @@ public class EnemyAttack : MonoBehaviour
 
     public bool targetFound = false;
     public bool atkOn = false;
+    private AudioManager audioMan;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip attackClip;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        audioMan = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -52,7 +56,8 @@ public class EnemyAttack : MonoBehaviour
         {
             if (targetFound)
             {
-                bullet = Instantiate(prefab, spawner.transform.position, Quaternion.identity);
+                audioMan.PlayAudio(audioSource, attackClip);
+                bullet = Instantiate(prefab, spawner.transform.position, spawner.transform.rotation);
                 yield return new WaitForSeconds(_atkCD);
             }
             else

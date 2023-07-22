@@ -60,15 +60,16 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private AudioClip hurtClip;
     [SerializeField] private AudioClip dedClip;//TODO
 
-    public AudioManager audioMan;
+    private AudioManager audioMan;
 
-    // [Andy] cambiar esto, ponerlo en enemigo
+    // [Andy] debug
     int xpAmount = 100;
 
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        audioMan = GetComponent<AudioManager>();
 
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
@@ -163,17 +164,15 @@ public class PlayerCombat : MonoBehaviour
         UseEnergy(normalCost);
 
         audioMan.PlayAudio(audioSource,attackClip);
-        ShowFloatingText();
-        // [Andy] poner a enemigos
-        ExperienceManager.Instance.AddExperience(xpAmount);
+        //ShowFloatingText();
     }
 
-    private void ShowFloatingText()
-    {
-        var go = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
-        int daños = (int)(attackDamage * (currentEnergy / maxEnergy));
-        go.GetComponent<TextMesh>().text = daños.ToString();
-    }
+    //private void ShowFloatingText()
+    //{
+    //    var go = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
+    //    int daños = (int)(attackDamage * (currentEnergy / maxEnergy));
+    //    go.GetComponent<TextMesh>().text = daños.ToString();
+    //}
 
     private void SpecialAttack()
    {

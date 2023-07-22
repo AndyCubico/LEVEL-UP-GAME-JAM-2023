@@ -21,6 +21,7 @@ public class RetreatAndAtkAI : MonoBehaviour
     private EnemyAttack _enemyAttack;
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private GameObject _bulletPrefab;
+    private Animator enemyAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,8 @@ public class RetreatAndAtkAI : MonoBehaviour
         _LoS.GetComponent<PolygonCollider2D>().points[1].Set(_visionDistance, _visionRange);
         _LoS.GetComponent<PolygonCollider2D>().points[2].Set(_visionDistance, -_visionRange);
 
-        _enemyAttack = GetComponent<EnemyAttack>();
+        _enemyAttack = GetComponent<EnemyAttack>(); 
+        enemyAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -73,7 +75,8 @@ public class RetreatAndAtkAI : MonoBehaviour
             case EnemyState.IDLE:
                 RotateEyeOfSight(); 
                 _enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
-                
+                enemyAnimator.SetBool("isWalking", false);
+
                 break;
             case EnemyState.ATTACK:
                 ActiveRaycast();
@@ -90,6 +93,7 @@ public class RetreatAndAtkAI : MonoBehaviour
 
                 //rb.MovePosition(rb.position - _target.GetComponent<Rigidbody2D>().position.normalized * _speed * Time.fixedDeltaTime);
                 _enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
+                enemyAnimator.SetBool("isWalking", true);
 
                 break;
             case EnemyState.DEAD:

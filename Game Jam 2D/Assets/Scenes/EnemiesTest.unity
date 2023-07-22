@@ -920,20 +920,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580768, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 1761482690}
     - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: healClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 052cbb88a4d2f684da120b870f6da724, type: 3}
+    - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: attackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4300258bbe03cbc4c912adcc940f1f3c, type: 3}
+    - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: _doAtkRange
       value: 4.17
       objectReference: {fileID: 0}
+    - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: specialClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a3fdc053a927be49b0085a69424c47c, type: 3}
+    - target: {fileID: 8238172280892580771, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: dedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 052cbb88a4d2f684da120b870f6da724, type: 3}
+    - target: {fileID: 8238172280892580771, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: hurtClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a3fdc053a927be49b0085a69424c47c, type: 3}
     - target: {fileID: 8238172280892580774, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: m_Mass
       value: 1
@@ -1073,14 +1093,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 313118020361636354, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 313118020361636354, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 313118020361636357, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: dedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 052cbb88a4d2f684da120b870f6da724, type: 3}
+    - target: {fileID: 313118020361636357, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: hurtClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1384965f0e3f34044bf6177b7ff69baa, type: 3}
     - target: {fileID: 313118020361636358, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_Name
       value: RS - Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636358, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 313118020361636359, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e44d2835ba996904b8095b21b57ac7a7, type: 2}
     - target: {fileID: 313118020361636476, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: _speed
       value: 3
@@ -1121,6 +1161,10 @@ PrefabInstance:
       propertyPath: _atkCD
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8586093380581720521, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
+      propertyPath: attackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f8f7bc9c93475f45871569a686f7c38, type: 3}
     m_RemovedComponents:
     - {fileID: 313118020361636352, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
     - {fileID: 3027616228911515067, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}

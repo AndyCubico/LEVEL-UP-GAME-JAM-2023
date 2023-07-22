@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
-    [SerializeField] private Animator meleeEnemyAnimator;
+    private Animator meleeEnemyAnimator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private LayerMask playerLayer;
@@ -14,6 +14,11 @@ public class MeleeAttack : MonoBehaviour
     public bool atkOn = false;
     public bool targetFound = false;
 
+    private void Start()
+    {
+        meleeEnemyAnimator = GetComponent<Animator>();
+
+    }
     public void EnableCoroutine(IEnumerator enumerator)
     {
         if (!atkOn)
