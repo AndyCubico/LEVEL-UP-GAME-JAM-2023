@@ -43,7 +43,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float healingCD;
     [SerializeField] private float healingTime;
 
-    public PlayerMovement move;
+    private PlayerMovement move;
 
     //Recharge
     public float rechargeValue;
@@ -70,7 +70,7 @@ public class PlayerCombat : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         audioMan = GetComponent<AudioManager>();
-
+        move = GetComponent<PlayerMovement>();
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
         healthBar.SetMaxValue(maxHealth);
@@ -270,6 +270,12 @@ public class PlayerCombat : MonoBehaviour
 
         canHeal = false;
         TakeDamage(-potionValue);
+        if (currentHealth>maxHealth)
+        {
+            currentHealth = maxHealth;
+            healthBar.SetCurrentValue(currentHealth);
+            textHealthBar.text = currentHealth + "/" + maxHealth;
+        }
         move.speed *= 2;
         currentPotions--;
 

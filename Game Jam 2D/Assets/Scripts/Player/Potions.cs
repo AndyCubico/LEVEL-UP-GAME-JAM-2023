@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class Potions : MonoBehaviour
 {
-    public PlayerCombat player;
+    private PlayerCombat player;
     public Image[] potions;
     public Sprite fullPotion;
     public Sprite emptyPotion;
 
+    private void Start()
+    {
+        player = GetComponent<PlayerCombat>();
+    }
     // Update is called once per frame
     void Update()
     {
