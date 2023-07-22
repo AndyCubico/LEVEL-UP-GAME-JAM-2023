@@ -46,10 +46,6 @@ public class RetreatAndAtkAI : MonoBehaviour
             case EOS_COLLISION.ON_COLLISION_ENTER:
                 break;
             case EOS_COLLISION.ON_COLLISION_STAY:
-                if ((int) Vector2.Distance(transform.position, _targetPos) >= (_visionDistance / 2)) // To Do: se la suda bastante :')
-                {
-                    GetComponent<Enemy>().state = EnemyState.IDLE;
-                }
 
                 if (Vector2.Distance(transform.position, _targetPos) < _retreatDist)
                 {
@@ -69,6 +65,11 @@ public class RetreatAndAtkAI : MonoBehaviour
     private void FixedUpdate()
     {
         _targetPos = _target.GetComponent<Rigidbody2D>().position;
+
+        if ((int)Vector2.Distance(transform.position, _targetPos) >= (_visionDistance / 2)) // To Do: se la suda bastante :')
+        {
+            GetComponent<Enemy>().state = EnemyState.IDLE;
+        }
 
         switch (GetComponent<Enemy>().state)
         {
@@ -91,7 +92,6 @@ public class RetreatAndAtkAI : MonoBehaviour
                 vector2.Normalize();
                 rb.MovePosition((Vector2)transform.position - (vector2 * _speed * Time.fixedDeltaTime));
 
-                //rb.MovePosition(rb.position - _target.GetComponent<Rigidbody2D>().position.normalized * _speed * Time.fixedDeltaTime);
                 _enemyAttack.DisableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
                 enemyAnimator.SetBool("isWalking", true);
 

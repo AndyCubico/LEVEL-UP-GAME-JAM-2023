@@ -96,7 +96,7 @@ public class FollowAI : MonoBehaviour
         {
             case EnemyState.IDLE:
                 meshAgent.isStopped = true;
-                _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
+                RotateEyeOfSight();
                 enemyAnimator.SetBool("isWalking", false);
                 break;
             case EnemyState.ATTACK:
@@ -144,8 +144,12 @@ public class FollowAI : MonoBehaviour
             }
         }
     }
+    private void RotateEyeOfSight()
+    {
+        _LoS_Transform.Rotate(Vector3.forward * _rotationSpeed * Time.deltaTime);
+    }
 
-    public void SetTarget(GameObject newTarget)
+        public void SetTarget(GameObject newTarget)
     {
         _target = newTarget;
     }
