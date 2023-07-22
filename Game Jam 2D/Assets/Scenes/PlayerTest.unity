@@ -878,6 +878,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 799558803}
+    - target: {fileID: 6081476702008213265, guid: a533e15923e711540b9950fafd1383f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AttackUpgrade
+      objectReference: {fileID: 0}
     - target: {fileID: 6081476702112957178, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_text
       value: Health
@@ -898,5 +902,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 799558803}
+    - target: {fileID: 6081476702136632302, guid: a533e15923e711540b9950fafd1383f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnergyUpgrade
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a533e15923e711540b9950fafd1383f7, type: 3}
