@@ -149,7 +149,13 @@ public class PlayerCombat : MonoBehaviour
         {
             StartCoroutine(Back2normal());
         }
+        //[Andy] hay bug que detecta key up incluso sin tenerla presionada del todo, con esto se arregla, problema es que deja de pillar mando :D
+        //else if (Input.GetKeyUp(KeyCode.R) && move.rechargeStop)
+        //{
+        //    Debug.Log("RRRRRRRRRRRRR " + move.rechargeStop);
 
+        //    StartCoroutine(Back2normal());
+        //}
         if (Input.GetKeyDown(KeyCode.L))
         {
             ExperienceManager.Instance.AddExperience(xpAmount);

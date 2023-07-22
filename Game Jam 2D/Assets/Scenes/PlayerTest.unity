@@ -1011,6 +1011,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 588900593}
     - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
+      propertyPath: rechargeClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e7f714efb284b042af0ce40bf12f11b, type: 3}
+    - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
       propertyPath: deathParticle
       value: 
       objectReference: {fileID: 731101930}

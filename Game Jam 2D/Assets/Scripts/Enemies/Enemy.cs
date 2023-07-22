@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
     {
         while (state != EnemyState.DEAD)
         {
-            Debug.Log(_LoS.transform.rotation.eulerAngles.z);
             if (_LoS.transform.rotation.eulerAngles.z >= 90 && _LoS.transform.rotation.eulerAngles.z <= 270)
             {
                 GetComponent<SpriteRenderer>().flipX = true;
