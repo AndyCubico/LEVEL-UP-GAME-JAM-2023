@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ea3bf513a950eba4cbc296eb79f6936b
+guid: 4b91c6c44bbecf948a3f97ce19f8f1f4
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Magical Night
+  - Eglantine
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
