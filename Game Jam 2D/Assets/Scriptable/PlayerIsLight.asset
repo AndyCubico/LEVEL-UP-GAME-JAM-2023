@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b924c091d8bb664a823cb61403a95fe, type: 3}
   m_Name: PlayerIsLight
   m_EditorClassIdentifier: 
-  _value: 1
+  _value: 0

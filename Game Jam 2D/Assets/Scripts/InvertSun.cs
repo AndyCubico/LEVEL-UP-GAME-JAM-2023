@@ -25,13 +25,12 @@ public class InvertSun : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log("Mariposas: " + player.GetComponent<PlayerMovement>()._stopMove);
+
         Generate();
 
-        if (GameObject.Find("Boss").GetComponent<BossBehaviour>().boss_Mode != BOSS_MODE.BOSS_MODE_SUN) { DeleteSun(); } 
-        else if (GameObject.Find("Player").GetComponent<PlayerMovement>()._stopMove == false)
-        {
-            Debug.Log("Light");
-            DeleteSun(); }
+        if (Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.JoystickButton3)) { DeleteSun(); }
+        else if (GameObject.Find("Boss").GetComponent<BossBehaviour>().boss_Mode != BOSS_MODE.BOSS_MODE_SUN) { DeleteSun(); }
     }
     private void Generate()
     {
@@ -118,6 +117,7 @@ public class InvertSun : MonoBehaviour
 
     public void DeleteSun()
     {
+        isPlayerInLight.Value = false;
         GetComponent<LineRenderer>().enabled = false;
         Out.enabled = false;
         In.enabled = false;
