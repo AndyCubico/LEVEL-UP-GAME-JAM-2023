@@ -203,7 +203,7 @@ MonoBehaviour:
   hurtClip: {fileID: 0}
   dedClip: {fileID: 0}
   state: 0
-  xpAmount: 100
+  xpAmount: 50
 --- !u!114 &8238172280892580770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackDamage: 15
-  _atkCD: 5
+  _atkCD: 2.5
   nextAttackTime: 0
   atkOn: 0
   targetFound: 0
