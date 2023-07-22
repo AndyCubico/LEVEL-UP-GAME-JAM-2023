@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8884593eec036aa4aae57d10d5da9589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloatingText: {fileID: 0}
+  FloatingText: {fileID: 2854880855874789264, guid: 99fb928028afdb545bdabaff87409b07, type: 3}
   weaponAnimator: {fileID: 2443423651846137000}
   attackPoint: {fileID: 2443423651846137006}
   attackRange: 1.43
@@ -325,7 +325,6 @@ MonoBehaviour:
   rechargeClip: {fileID: 8300000, guid: d654174ef194bd7479bf4b8d8f753318, type: 3}
   hurtClip: {fileID: 8300000, guid: b7b5a6156961bac44a67504d42ce6fcf, type: 3}
   dedClip: {fileID: 0}
-  audioMan: {fileID: 9000563124797261151}
 --- !u!114 &1760482343057655469
 MonoBehaviour:
   m_ObjectHideFlags: 0

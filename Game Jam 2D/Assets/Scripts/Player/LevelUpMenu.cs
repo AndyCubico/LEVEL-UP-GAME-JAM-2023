@@ -80,17 +80,17 @@ public class LevelUpMenu : MonoBehaviour
         if (randHealth<=5f)
         {
             hp_upgrade = HP_UPGRADE.MAX_HP;
-            textHealth.text = "HP";
+            textHealth.text = "Hp";
         }
         else if (randHealth > 5f && randHealth<=9f)
         {
             hp_upgrade = HP_UPGRADE.HEAL_UPGRADE;
-            textHealth.text = "HEAL";
+            textHealth.text = "Heal";
         }
         else if (randHealth > 9f)
         {
             hp_upgrade = HP_UPGRADE.NUMBER_POTIONS;
-            textHealth.text = "NUMBER OF POTIONS";
+            textHealth.text = "Potions number";
         }
 
         randEnergy = Random.Range(0f, 10f);
@@ -98,12 +98,12 @@ public class LevelUpMenu : MonoBehaviour
         if (randEnergy <= 5f)
         {
             energy_upgrade = ENERGY_UPGRADE.MAX_ENERGY;
-            textEnergy.text = "ENERGY";
+            textEnergy.text = "Energy";
         }
         else
         {
             energy_upgrade = ENERGY_UPGRADE.RECHARGE_VALUE;
-            textEnergy.text = "RECHARGE";
+            textEnergy.text = "Recharge";
         }
 
         randAttack = Random.Range(0f, 10f);
@@ -111,22 +111,22 @@ public class LevelUpMenu : MonoBehaviour
         if (randAttack <= 5f)
         {
             attack_upgrade = ATTACK_UPGRADE.ATTACK_DAMAGE;
-            textAttack.text = "ATTACK DAMAGE";
+            textAttack.text = "Attack damage";
         }
         else if (randAttack > 5f && randAttack <= 7f)
         {
             attack_upgrade = ATTACK_UPGRADE.ATTACK_ENERGY;
-            textAttack.text = "ATTACK ENERGY";
+            textAttack.text = "Attack energy";
         }
         else if (randAttack > 7f && randAttack <= 9f)
         {
             attack_upgrade = ATTACK_UPGRADE.SPECIAL_DAMAGE;
-            textAttack.text = "SPECIAL DAMAGE";
+            textAttack.text = "Special damage";
         }
         else if(randAttack > 9f)
         {
             attack_upgrade = ATTACK_UPGRADE.SPECIAL_ENERGY;
-            textAttack.text = "SPECIAL ENERGY";
+            textAttack.text = "Special energy";
         }
     }
 
@@ -211,5 +211,4 @@ public class LevelUpMenu : MonoBehaviour
         }
         ResumeGame();
     }
-
 }
