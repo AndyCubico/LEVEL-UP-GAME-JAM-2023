@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -175,7 +176,7 @@ public class PlayerCombat : MonoBehaviour
     //}
 
     private void SpecialAttack()
-   {
+    {
         // [Andy] Play animation
         weaponAnimator.SetTrigger("Attack");//cambiar a otra animacion
 
@@ -200,18 +201,40 @@ public class PlayerCombat : MonoBehaviour
         UseEnergy(specialCost);
 
         audioMan.PlayAudio(audioSource, specialClip);
-   }
-   public void TakeDamage(int damage)
-   {
+    }
+    public void TakeDamage(int damage)
+    {
         currentHealth -= damage;
         healthBar.SetCurrentValue(currentHealth);
         textHealthBar.text = currentHealth + "/" + maxHealth;
+        playerAnimator.SetTrigger("Hurt");
 
         if (damage>0)
         {
             audioMan.PlayAudio(audioSource, hurtClip);
         }
-   }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        //audioMan.PlayAudio(audioSource, dedClip);
+        Debug.Log("Player ded");
+        textHealthBar.text = 0 + "/" + maxHealth;
+        playerAnimator.SetBool("isDed", true);
+
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+    
+    }
+
+    private void RestarLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     public void UseEnergy(float energy)
     {

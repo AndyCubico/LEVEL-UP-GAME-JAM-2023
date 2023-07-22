@@ -301,7 +301,7 @@ MonoBehaviour:
   currentLvl: 1
   maxHealth: 100
   currentHealth: 0
-  maxEnergy: 110
+  maxEnergy: 100
   currentEnergy: 0
   healthBar: {fileID: 0}
   energyBar: {fileID: 0}
@@ -315,7 +315,6 @@ MonoBehaviour:
   currentPotions: 3
   healingCD: 1
   healingTime: 1
-  move: {fileID: 2443423651584500471}
   rechargeValue: 0.1
   rechargeCD: 2
   stunRecharge: 0.5
@@ -325,7 +324,6 @@ MonoBehaviour:
   rechargeClip: {fileID: 8300000, guid: d654174ef194bd7479bf4b8d8f753318, type: 3}
   hurtClip: {fileID: 8300000, guid: b7b5a6156961bac44a67504d42ce6fcf, type: 3}
   dedClip: {fileID: 0}
-  audioMan: {fileID: 9000563124797261151}
 --- !u!114 &1760482343057655469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e64e78207e7d3541ac6856653fae4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2443423651584500476}
   potions: []
   fullPotion: {fileID: -454696579, guid: b6c32ed905f5eae43bb88ee88d400df4, type: 3}
   emptyPotion: {fileID: -1628406065, guid: b6c32ed905f5eae43bb88ee88d400df4, type: 3}
