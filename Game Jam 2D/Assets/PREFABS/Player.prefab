@@ -291,6 +291,9 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
+  isBossAlive: {fileID: 11400000, guid: 242621070ef988847a4b81e4d51b9ad9, type: 2}
+  isPlayerInLight: {fileID: 11400000, guid: 8635642e3c6326e499ab12bf8f80e5fe, type: 2}
+  SunLight: {fileID: 583896482326803998, guid: b3b5bbd87285be7409dfb43a9c94f661, type: 3}
   attackDamage: 40
   normalCost: 5
   specialDamage: 80

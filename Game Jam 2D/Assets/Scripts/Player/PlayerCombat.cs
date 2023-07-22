@@ -13,6 +13,11 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private LayerMask enemyLayers;
+
+    [SerializeField] private BoolSO isBossAlive;
+    [SerializeField] private BoolSO isPlayerInLight;
+    [SerializeField] private GameObject SunLight;
+
     public int attackDamage = 40;
     public float normalCost = 5f;
     public int specialDamage = 80;
@@ -124,12 +129,17 @@ public class PlayerCombat : MonoBehaviour
             nextRechargeTime -= Time.deltaTime;
         }
 
-        if ((Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton3)) && nextRechargeTime <= 0)
+        if ((Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton3)) && nextRechargeTime <= 0 && isBossAlive.Value == false)
+        {
+            StartCoroutine(SetLightToScene());
+        }
+
+        if ((Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton3)) && nextRechargeTime <= 0 && isPlayerInLight.Value)
         {
             Recharge();
         }
 
-        else if (Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.JoystickButton3))
+        else if (Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.JoystickButton3) && isPlayerInLight.Value)
         {
             StartCoroutine(Back2normal());
         }
@@ -258,6 +268,7 @@ public class PlayerCombat : MonoBehaviour
         {
             UseEnergy(-rechargeValue);
         }
+
         move._stopMove = true;
         move.rechargeStop = true;
     }
@@ -279,6 +290,15 @@ public class PlayerCombat : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
+
+    private IEnumerator SetLightToScene()
+    {
+        SunLight.GetComponent<InvertSun>().Radius = 5.0f;
+        SunLight.GetComponent<InvertSun>().RadiusDiff = 0.0f;
+        Instantiate(SunLight, new Vector3(transform.position.x/2, transform.position.y/2, transform.position.z + 0.5f), Quaternion.identity);
+
+        yield return move._stopMove == false;
     }
 
     private IEnumerator UsePotion()
