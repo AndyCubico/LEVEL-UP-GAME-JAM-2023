@@ -24,6 +24,7 @@ public class BossBehaviour : MonoBehaviour
     [SerializeField] private LayerMask layerEnemiesCanSpawnOn;
 
     [SerializeField] private TrailRenderer _dashTrail;
+    [SerializeField] private BoolSO isAlive;
 
     [SerializeField] private BOSS_STATE boss_State;
     [SerializeField] public BOSS_MODE boss_Mode;
@@ -83,7 +84,9 @@ public class BossBehaviour : MonoBehaviour
         pos = new Vector2(Random.Range(-1, 1.0f), Random.Range(-1, 1.0f));
         pos.Normalize();
 
-        CurrentHP = MaxHP = 500;
+        CurrentHP = MaxHP;
+
+        isAlive.Value = true;
     }
 
     // Update is called once per frame
@@ -441,7 +444,7 @@ public class BossBehaviour : MonoBehaviour
         }
         else 
         {
-            boss_Mode = (BOSS_MODE)Random.Range(1, 4);
+            boss_Mode = (BOSS_MODE)Random.Range(0, 4);
         }
     }
     private void BulletMode()
@@ -577,6 +580,7 @@ public class BossBehaviour : MonoBehaviour
         Vector2 speed;
         while (boss_Mode == BOSS_MODE.BOSS_MODE_DASH)
         {
+            _dashTrail.emitting = true;
 
             speed = (Vector2)GameObject.Find("Player").GetComponent<Transform>().position - (Vector2)transform.position;
             speed.Normalize();
@@ -586,6 +590,8 @@ public class BossBehaviour : MonoBehaviour
             // [Smm] Pauses the function in this exact line and the next frame or when the time to wait is over, it continues from here. (creo)
             // SDL Delay pero bien, que no peta todo el juego
             yield return new WaitForSeconds(0.5f);
+
+            _dashTrail.emitting = false;
 
             GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
@@ -697,27 +703,6 @@ public class BossBehaviour : MonoBehaviour
 
         Instantiate(sun, Vector3.zero, Quaternion.identity);
     }
-
-    private void Spawn()
-    {
-        while (maxEnemySpawn > 0)
-        {
-            if (IsSpawnable())
-            {
-                switch (Random.Range(0, 4))
-                {
-                    case 0:
-                        Instantiate(enemyLPrefab, new Vector3(EnemyPos.x, EnemyPos.y, 0), Quaternion.identity);
-                        break;
-                    default:
-                        Instantiate(enemySPrefab, new Vector3(EnemyPos.x, EnemyPos.y, 0), Quaternion.identity);
-                        break;
-                }
-                maxEnemySpawn--;
-            }
-        } 
-    }
-
     private void SpawnObstacles()
     {
         while (maxObstaclesSpawn > 0)
@@ -811,6 +796,8 @@ public class BossBehaviour : MonoBehaviour
 
     private void DeleteBoss()
     {
+        isAlive.Value = false;
+
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;

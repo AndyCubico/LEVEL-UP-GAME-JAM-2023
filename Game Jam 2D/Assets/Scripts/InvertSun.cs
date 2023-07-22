@@ -11,6 +11,8 @@ public class InvertSun : MonoBehaviour
     [SerializeField] private LineRenderer sun;
     private GameObject player;
 
+    [SerializeField] private BoolSO isPlayerInLight;
+
     [SerializeField] private int NumEdges;
 
     private void Start()
@@ -25,7 +27,11 @@ public class InvertSun : MonoBehaviour
     {
         Generate();
 
-        if (GameObject.Find("Boss").GetComponent<BossBehaviour>().boss_Mode != BOSS_MODE.BOSS_MODE_SUN) { DeleteSun(); }
+        if (GameObject.Find("Boss").GetComponent<BossBehaviour>().boss_Mode != BOSS_MODE.BOSS_MODE_SUN) { DeleteSun(); } 
+        else if (GameObject.Find("Player").GetComponent<PlayerMovement>()._stopMove == false)
+        {
+            Debug.Log("Light");
+            DeleteSun(); }
     }
     private void Generate()
     {
@@ -74,6 +80,11 @@ public class InvertSun : MonoBehaviour
         if (IsPlayerIn())
         {
             Debug.Log("Dentro");
+            isPlayerInLight.Value = true;
+        }
+        else 
+        {
+            isPlayerInLight.Value = false;
         }
     }
 
