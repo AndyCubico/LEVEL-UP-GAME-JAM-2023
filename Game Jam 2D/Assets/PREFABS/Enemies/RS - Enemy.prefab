@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a412462637879c4fa68101c50c4563c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atkCD: 2
+  _atkCD: 1
   targetFound: 1
   atkOn: 1
   attackClip: {fileID: 8300000, guid: 6e070473479a85547859f219bc912865, type: 3}
