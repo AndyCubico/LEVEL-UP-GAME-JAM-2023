@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: F - Medium Enemy 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8238172280892580768, guid: 2711ca069205bd543aeaef6bb065dbc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580775, guid: 2711ca069205bd543aeaef6bb065dbc2, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -282,28 +286,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636354, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_Size.x
-      value: 1.4916954
+      value: 2.5624676
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636354, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_Size.y
-      value: 2.224926
+      value: 4.7519484
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636354, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_Offset.x
-      value: -0.56501865
+      value: -0.029632568
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636354, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_Offset.y
-      value: -0.22428226
+      value: -0.09578943
       objectReference: {fileID: 0}
     - target: {fileID: 313118020361636357, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: dedClip
       value: 
-      objectReference: {fileID: 8300000, guid: 052cbb88a4d2f684da120b870f6da724, type: 3}
+      objectReference: {fileID: 8300000, guid: f5cc6838ab71d5643b74ad34b981375b, type: 3}
     - target: {fileID: 313118020361636357, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: hurtClip
       value: 
-      objectReference: {fileID: 8300000, guid: 1384965f0e3f34044bf6177b7ff69baa, type: 3}
+      objectReference: {fileID: 8300000, guid: 0cc6c55f9c956ba4e9043b9b5ea5b647, type: 3}
     - target: {fileID: 313118020361636358, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: m_Name
       value: RS - Enemy
@@ -315,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 8586093380581720521, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
       propertyPath: attackClip
       value: 
-      objectReference: {fileID: 8300000, guid: 9f8f7bc9c93475f45871569a686f7c38, type: 3}
+      objectReference: {fileID: 8300000, guid: 6e070473479a85547859f219bc912865, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4dc9a3cfe0f7e84fbd2c1a64538ef0e, type: 3}
 --- !u!114 &324675406 stripped
@@ -735,6 +739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: F - Big Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8238172280892580768, guid: 9d81e6f0e2a70264dad400c4d2211871, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580775, guid: 9d81e6f0e2a70264dad400c4d2211871, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -803,6 +811,10 @@ PrefabInstance:
     - target: {fileID: 8238172280892580768, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: m_Name
       value: F - Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238172280892580768, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8238172280892580770, guid: eb01c40b76403394c84b2b1b2acc9796, type: 3}
       propertyPath: attackClip

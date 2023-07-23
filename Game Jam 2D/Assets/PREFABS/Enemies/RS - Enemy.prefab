@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313118020276016988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalScale: {x: 3.4444873, y: 4.80006, z: 1.7778}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3851505124808183165}
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dbef8c5253d2a4449b42a5ea0f14cb88, type: 3}
+  m_Sprite: {fileID: 1810913019, guid: 70a1ebb6fdabb2444849fd61000b0bd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -255,18 +255,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.56501865, y: -0.22428226}
+  m_Offset: {x: 0.0070648193, y: -0.09822941}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.49, y: 2.91}
+    oldSize: {x: 2.4005861, y: 4.8}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4916954, y: 2.224926}
+  m_Size: {x: 2.1704388, y: 4.6490097}
   m_EdgeRadius: 0
 --- !u!114 &313118020361636357
 MonoBehaviour:
@@ -283,8 +283,8 @@ MonoBehaviour:
   FloatingText: {fileID: 2854880855874789264, guid: 99fb928028afdb545bdabaff87409b07, type: 3}
   _LoS: {fileID: 0}
   maxHealth: 50
-  hurtClip: {fileID: 8300000, guid: 6a3fdc053a927be49b0085a69424c47c, type: 3}
-  dedClip: {fileID: 8300000, guid: 052cbb88a4d2f684da120b870f6da724, type: 3}
+  hurtClip: {fileID: 8300000, guid: 0cc6c55f9c956ba4e9043b9b5ea5b647, type: 3}
+  dedClip: {fileID: 8300000, guid: 8c43d4c5f8905e746955b76b7fa20f84, type: 3}
   state: 0
   xpAmount: 25
 --- !u!114 &313118020361636476
@@ -322,7 +322,7 @@ MonoBehaviour:
   _atkCD: 2
   targetFound: 1
   atkOn: 1
-  attackClip: {fileID: 8300000, guid: 4300258bbe03cbc4c912adcc940f1f3c, type: 3}
+  attackClip: {fileID: 8300000, guid: 6e070473479a85547859f219bc912865, type: 3}
 --- !u!95 &313118020361636359
 Animator:
   serializedVersion: 4
@@ -475,7 +475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032230586519670540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.65, y: -0.841, z: 0}
+  m_LocalPosition: {x: 0.738, y: -0.022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
