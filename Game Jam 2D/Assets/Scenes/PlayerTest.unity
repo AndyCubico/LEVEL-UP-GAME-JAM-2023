@@ -1586,11 +1586,11 @@ PrefabInstance:
     - target: {fileID: 6081476701815759596, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+      objectReference: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
     - target: {fileID: 6081476701815759596, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+      objectReference: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
     - target: {fileID: 6081476701815759596, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
@@ -1610,11 +1610,11 @@ PrefabInstance:
     - target: {fileID: 6081476701900973536, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+      objectReference: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
     - target: {fileID: 6081476701900973536, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+      objectReference: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
     - target: {fileID: 6081476701900973536, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
@@ -1634,11 +1634,11 @@ PrefabInstance:
     - target: {fileID: 6081476702112957178, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+      objectReference: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
     - target: {fileID: 6081476702112957178, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+      objectReference: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
     - target: {fileID: 6081476702112957178, guid: a533e15923e711540b9950fafd1383f7, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
