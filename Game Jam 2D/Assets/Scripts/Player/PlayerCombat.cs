@@ -145,11 +145,10 @@ public class PlayerCombat : MonoBehaviour
             Recharge();
         }
 
-        else if (Input.GetKeyUp(KeyCode.R) && isPlayerInLight.Value)
+        else if (Input.GetKeyUp(KeyCode.R) && move.rechargeStop && isPlayerInLight.Value)
         {
             StartCoroutine(Back2normal());
         }
-
 
         //if ((Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton3)) && nextRechargeTime <= 0)
         //{
