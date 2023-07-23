@@ -5,7 +5,12 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
     [SerializeField] public FloatSO doors;
+    private Animator ANIM;
+    private void Start()
+    {
+        ANIM = GetComponent<Animator>();
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -17,12 +22,14 @@ public class OpenDoor : MonoBehaviour
 
     IEnumerator Open()
     {
+        ANIM.SetTrigger("OPEN");
         yield return new WaitForSeconds(0.5f);
         DeleteDoors();
     }
 
     private void DeleteDoors()
     {
+        Destroy(GetComponent<BoxCollider2D>().gameObject);
 
     }
 }

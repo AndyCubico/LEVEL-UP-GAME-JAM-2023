@@ -4006,7 +4006,6 @@ Transform:
   - {fileID: 776605460}
   - {fileID: 1894423649}
   - {fileID: 1577721659}
-  - {fileID: 2121165026}
   - {fileID: 1780914974}
   - {fileID: 1865957070}
   - {fileID: 262536251}
@@ -4018,7 +4017,6 @@ Transform:
   - {fileID: 1773976799}
   - {fileID: 110583248}
   - {fileID: 265190010}
-  - {fileID: 1133019426}
   - {fileID: 334468455}
   - {fileID: 77708858}
   - {fileID: 1338009921}
@@ -4132,6 +4130,7 @@ Transform:
   - {fileID: 1659569998}
   - {fileID: 682077638}
   - {fileID: 1475819890}
+  - {fileID: 2121165026}
   - {fileID: 732933324}
   - {fileID: 915378470}
   - {fileID: 2028009964}
@@ -4167,6 +4166,7 @@ Transform:
   - {fileID: 1687667693}
   - {fileID: 521465253}
   - {fileID: 1091868019}
+  - {fileID: 1133019426}
   - {fileID: 732318043}
   - {fileID: 1117208048}
   - {fileID: 489189067}
@@ -4422,7 +4422,6 @@ Transform:
   - {fileID: 1539167762}
   - {fileID: 876234778}
   - {fileID: 159513596}
-  - {fileID: 1622125582}
   - {fileID: 866883696}
   - {fileID: 287671399}
   - {fileID: 1315239024}
@@ -4491,6 +4490,7 @@ Transform:
   - {fileID: 396207169}
   - {fileID: 937481338}
   - {fileID: 810192005}
+  - {fileID: 1622125582}
   - {fileID: 169382244}
   - {fileID: 847404015}
   - {fileID: 166845336}
@@ -4572,20 +4572,20 @@ Transform:
   - {fileID: 1753224286}
   - {fileID: 2080983269}
   - {fileID: 1021931980}
+  - {fileID: 1140416866}
   - {fileID: 623826119}
   - {fileID: 1676607095}
   - {fileID: 1330773549}
   - {fileID: 1071961928}
   - {fileID: 1816483966}
   - {fileID: 1044535867}
+  - {fileID: 1927086487}
   - {fileID: 69114733}
   - {fileID: 1416683587}
   - {fileID: 1326688480}
   - {fileID: 1943611363}
   - {fileID: 1228174191}
   - {fileID: 600813451}
-  - {fileID: 1140416866}
-  - {fileID: 1927086487}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20812,11 +20812,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5876862215232266780, guid: 2bf0c3395625ef145b8d4a7713e57fd2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 132.85681
+      value: 58.123524
       objectReference: {fileID: 0}
     - target: {fileID: 5876862215232266780, guid: 2bf0c3395625ef145b8d4a7713e57fd2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 27.334684
+      value: 29.726469
       objectReference: {fileID: 0}
     - target: {fileID: 5876862215232266780, guid: 2bf0c3395625ef145b8d4a7713e57fd2, type: 3}
       propertyPath: m_LocalScale.z
@@ -20824,7 +20824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5876862215232266780, guid: 2bf0c3395625ef145b8d4a7713e57fd2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2808971
+      value: 1.2809
       objectReference: {fileID: 0}
     - target: {fileID: 5876862215232266780, guid: 2bf0c3395625ef145b8d4a7713e57fd2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20832,7 +20832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5876862215232266780, guid: 2bf0c3395625ef145b8d4a7713e57fd2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.564
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5876862215232266780, guid: 2bf0c3395625ef145b8d4a7713e57fd2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20910,15 +20910,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0e893004edcf16e4ab9942a0c4c98727, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 18.9, y: 11.53}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &826315221
@@ -20934,19 +20934,39 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0017760992, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.1, y: 1.2811111}
+    newSize: {x: 18.9, y: 11.53}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.1166518, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &826315222
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826315219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 899c2f68073c3fa4a956ad6b267b4aee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &827478541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53724,7 +53744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecfb2ac1b8ca1549a54a74b15d470f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: BossFight
+  sceneName: BossBattle
 --- !u!4 &2076034181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 385961126291002965, guid: 8b1823c0a169f6e428bcd2203170cd03, type: 3}
