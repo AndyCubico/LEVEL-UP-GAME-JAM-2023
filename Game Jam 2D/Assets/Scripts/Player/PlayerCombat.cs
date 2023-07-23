@@ -140,7 +140,7 @@ public class PlayerCombat : MonoBehaviour
             SetLightToScene();
         }
 
-        if (Input.GetKey(KeyCode.R) && nextRechargeTime <= 0 && isPlayerInLight.Value)
+        if (Input.GetKey(KeyCode.R) && isPlayerInLight.Value)
         {
             Recharge();
         }
@@ -312,6 +312,7 @@ public class PlayerCombat : MonoBehaviour
     {
         SunLight.GetComponent<InvertSun>().Radius = 5.0f;
         SunLight.GetComponent<InvertSun>().RadiusDiff = 0.0f;
+        nextRechargeTime = rechargeCD;
         Instantiate(SunLight, new Vector3(transform.position.x/2, transform.position.y/2, transform.position.z + 1f), Quaternion.identity);
     }
 

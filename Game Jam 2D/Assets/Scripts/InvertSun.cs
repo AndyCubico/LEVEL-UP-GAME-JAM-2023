@@ -25,8 +25,6 @@ public class InvertSun : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("Mariposas: " + player.GetComponent<PlayerMovement>()._stopMove);
-
         Generate();
 
         if (Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.JoystickButton3)) { DeleteSun(); }
@@ -67,8 +65,8 @@ public class InvertSun : MonoBehaviour
         for (int i = 0; i < NumEdges; i++)
         {
             float angle = 2 * Mathf.PI * i / NumEdges;
-            float x = (RadiusDiff) * Mathf.Cos(angle) + transform.position.x;
-            float y = (RadiusDiff) * Mathf.Sin(angle) + transform.position.y;
+            float x = (RadiusDiff + 0.1f) * Mathf.Cos(angle) + transform.position.x;
+            float y = (RadiusDiff + 0.1f) * Mathf.Sin(angle) + transform.position.y;
 
             points[i] = new Vector2(x, y);
         }
@@ -78,7 +76,6 @@ public class InvertSun : MonoBehaviour
 
         if (IsPlayerIn())
         {
-            Debug.Log("Dentro");
             isPlayerInLight.Value = true;
         }
         else 
@@ -91,22 +88,11 @@ public class InvertSun : MonoBehaviour
     {
         bool ret = false;
 
-        if (Radius != RadiusDiff)
+        if ((player.transform.position.x <= transform.position.x + Radius && player.transform.position.x >= transform.position.x - Radius &&
+            player.transform.position.y <= transform.position.y + Radius && player.transform.position.y >= transform.position.y - Radius))
         {
-            if ((player.transform.position.x <= transform.position.x + Radius && player.transform.position.x >= transform.position.x - Radius &&
-               player.transform.position.y <= transform.position.y + Radius && player.transform.position.y >= transform.position.y - Radius))
-            {
-                if ((player.transform.position.x >= transform.position.x + RadiusDiff || player.transform.position.y >= transform.position.y + RadiusDiff ||
-                    player.transform.position.x <= transform.position.x - RadiusDiff || player.transform.position.y <= transform.position.y - RadiusDiff))
-                {
-                    ret = true;
-                }
-            }
-        }
-        else 
-        {
-            if ((player.transform.position.x <= transform.position.x + Radius && player.transform.position.x >= transform.position.x - Radius &&
-               player.transform.position.y <= transform.position.y + Radius && player.transform.position.y >= transform.position.y - Radius))
+            if ((player.transform.position.x >= transform.position.x + RadiusDiff || player.transform.position.y >= transform.position.y + RadiusDiff ||
+                player.transform.position.x <= transform.position.x - RadiusDiff || player.transform.position.y <= transform.position.y - RadiusDiff))
             {
                 ret = true;
             }
