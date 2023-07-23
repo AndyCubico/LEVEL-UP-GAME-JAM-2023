@@ -741,6 +741,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
+      propertyPath: maxSecSpawn
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
+      propertyPath: minSecSpawn
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
+      propertyPath: completeBarSpeed
+      value: 0.005
+      objectReference: {fileID: 0}
     - target: {fileID: 7934200205994795380, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
       propertyPath: m_RootOrder
       value: 1
