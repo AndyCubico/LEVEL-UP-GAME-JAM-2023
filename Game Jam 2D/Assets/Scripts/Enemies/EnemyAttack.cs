@@ -46,12 +46,6 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    public void Shoot(GameObject prefab, GameObject spawner)
-    {
-
-        
-    }
-
     public IEnumerator ShootBullet(GameObject prefab, GameObject spawner)
     {
         while (GetComponent<Enemy>().state == EnemyState.ATTACK)

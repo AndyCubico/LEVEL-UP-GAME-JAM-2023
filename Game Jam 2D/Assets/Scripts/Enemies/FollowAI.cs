@@ -72,7 +72,6 @@ public class FollowAI : MonoBehaviour
             case EOS_COLLISION.ON_COLLISION_EXIT:
                 GetComponent<Enemy>().state = EnemyState.IDLE;
                 break;
-
         }
 
         if (_enemyAttack.nextAttackTime > 0)
@@ -101,6 +100,7 @@ public class FollowAI : MonoBehaviour
                 break;
             case EnemyState.ATTACK:
                 ActiveRaycast();
+                GetComponent<Enemy>().RotateToTarget();
                 break;
             case EnemyState.FOLLOW:
                 //ActiveRaycast();
@@ -108,7 +108,10 @@ public class FollowAI : MonoBehaviour
                 //Vector2 vector2 = (_targetPos - (Vector2)transform.position);
                 //vector2.Normalize();
                 //rb.MovePosition((Vector2)transform.position + (vector2 * _speed * Time.fixedDeltaTime));
+                
                 enemyAnimator.SetBool("isWalking", true);
+                GetComponent<Enemy>().RotateToTarget();
+
                 if ((int)Vector2.Distance(transform.position, _targetPos) <= meshAgent.stoppingDistance) 
                 {
                     GetComponent<Enemy>().state = EnemyState.ATTACK;

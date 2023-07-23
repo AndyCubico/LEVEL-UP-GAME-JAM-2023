@@ -10,6 +10,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject enemyLPrefab;
     [SerializeField] private GameObject barr;
 
+    [SerializeField] private GameObject purifiedImg;
+    [SerializeField] private GameObject corruptedImg;
+    [SerializeField] private GameObject interactUI;
+
     [SerializeField] public FloatSO doors;
 
     [SerializeField] private int minSecSpawn = 2;
@@ -20,8 +24,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool StartSpawn = false;
     [SerializeField] private bool Purif = false;
     [SerializeField] private bool Saved = false;
+    
     private float x, y;
     float x_ = 0;
+
+    private void Start()
+    {
+        purifiedImg.SetActive(false);
+        corruptedImg.SetActive(true);
+    }
 
     // Update is called once per frame
     void Update()
@@ -34,7 +45,6 @@ public class Spawner : MonoBehaviour
 
     private void Purify()
     {
-
         if (Purif && Saved == false)
         {
             if (Input.GetKey("e"))
@@ -56,6 +66,11 @@ public class Spawner : MonoBehaviour
             barr.transform.localScale = new Vector3 (0, 0.0625f, 0);
         }
 
+        if (Saved)
+        {
+            purifiedImg.SetActive(true);
+            corruptedImg.SetActive(false);
+        }
     }
 
     private void Spawn()
@@ -107,7 +122,6 @@ public class Spawner : MonoBehaviour
                 {
                     ret = true;
                 }
-
             }
 
             attemptCount++;
@@ -123,6 +137,7 @@ public class Spawner : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             StartSpawn = true;
+            interactUI.SetActive(true);
         }
     }
 
@@ -131,6 +146,7 @@ public class Spawner : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             StartSpawn = false;
+            interactUI.SetActive(false);
         }
     }
 

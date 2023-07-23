@@ -80,7 +80,8 @@ public class RetreatAndAtkAI : MonoBehaviour
 
                 break;
             case EnemyState.ATTACK:
-                ActiveRaycast();
+                ActiveRaycast(); 
+                GetComponent<Enemy>().RotateToTarget();
                 _enemyAttack.EnableCoroutine(_enemyAttack.ShootBullet(_bulletPrefab, _spawnPoint));
 
                 break;
@@ -136,10 +137,12 @@ public class RetreatAndAtkAI : MonoBehaviour
                 // Shoot
                 _enemyAttack.targetFound = true;
 
-                Vector3 vectorToTarget = _target.transform.position - _LoS_Transform.position;
-                float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-                Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-                _LoS_Transform.rotation = Quaternion.Slerp(_LoS_Transform.rotation, q, Time.deltaTime * 2);
+                GetComponent<Enemy>().RotateToTarget();
+
+                //Vector3 vectorToTarget = _target.transform.position - _LoS_Transform.position;
+                //float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+                //Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+                //_LoS_Transform.rotation = Quaternion.Slerp(_LoS_Transform.rotation, q, Time.deltaTime * 2);
             }
             else
             {

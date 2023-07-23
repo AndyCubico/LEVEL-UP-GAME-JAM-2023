@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 {
     public GameObject FloatingText;
 
+    private GameObject _target;
     private Animator enemyAnimator;
     [SerializeField] private GameObject _LoS;
 
@@ -35,11 +36,15 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         enemyAnimator = GetComponent<Animator>();
 
+        _target = GameObject.Find("Player");
         StartCoroutine(CheckFlip());
     }
 
     public void TakeDamage(int damage)
     {
+        
+        //state = EnemyState.ATTACK;
+
         audioMan.PlayAudio(audioSource, hurtClip);
         ShowFloatingText(damage);
 
@@ -70,6 +75,22 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void RotateToTarget()
+    {
+        Vector3 vectorToTarget = _target.transform.position - _LoS.transform.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+        _LoS.transform.rotation = Quaternion.Slerp(_LoS.transform.rotation, q, Time.deltaTime * 2);
+
+        if (_LoS.transform.rotation.eulerAngles.z >= 90 && _LoS.transform.rotation.eulerAngles.z <= 270)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
 
     private void ShowFloatingText(int dam)
     {
