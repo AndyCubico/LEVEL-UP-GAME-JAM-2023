@@ -27816,11 +27816,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5733291457465041318, guid: 00f395fe38aced1449f7b90dbc111b23, type: 3}
   m_PrefabInstance: {fileID: 1703186061}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1038276280 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7934200205677783503, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
-  m_PrefabInstance: {fileID: 361193203}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1039675730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5733291457465041318, guid: 00f395fe38aced1449f7b90dbc111b23, type: 3}
@@ -31292,6 +31287,11 @@ PrefabInstance:
     - {fileID: 4982138386450413432, guid: 8b1823c0a169f6e428bcd2203170cd03, type: 3}
     - {fileID: 2145648047630151576, guid: 8b1823c0a169f6e428bcd2203170cd03, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b1823c0a169f6e428bcd2203170cd03, type: 3}
+--- !u!1 &1174324905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7934200205677783503, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
+  m_PrefabInstance: {fileID: 1405986913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1175188158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37541,7 +37541,7 @@ PrefabInstance:
     - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
       propertyPath: barr
       value: 
-      objectReference: {fileID: 1038276280}
+      objectReference: {fileID: 1174324905}
     - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
       propertyPath: interactUI
       value: 
@@ -45907,6 +45907,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1127699131131700023, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
   m_PrefabInstance: {fileID: 361193203}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1739706282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7934200205677783503, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
+  m_PrefabInstance: {fileID: 1803082115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1739776459 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 385961126291002965, guid: 8b1823c0a169f6e428bcd2203170cd03, type: 3}
@@ -47746,7 +47751,7 @@ PrefabInstance:
     - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
       propertyPath: barr
       value: 
-      objectReference: {fileID: 1038276280}
+      objectReference: {fileID: 1739706282}
     - target: {fileID: 7934200205994795369, guid: 97349503a3496e24e964c90fd9a5f9b7, type: 3}
       propertyPath: interactUI
       value: 
