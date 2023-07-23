@@ -312,8 +312,9 @@ public class PlayerCombat : MonoBehaviour
     {
         SunLight.GetComponent<InvertSun>().Radius = 5.0f;
         SunLight.GetComponent<InvertSun>().RadiusDiff = 0.0f;
+        SunLight.transform.position = new Vector3(transform.position.x / 2, transform.position.y / 2, transform.position.z + 1f);
         nextRechargeTime = rechargeCD;
-        Instantiate(SunLight, new Vector3(transform.position.x/2, transform.position.y/2, transform.position.z + 1f), Quaternion.identity);
+        Instantiate(SunLight, new Vector3(transform.position.x/2, transform.position.y/2, 0), Quaternion.identity);
     }
 
     private IEnumerator UsePotion()

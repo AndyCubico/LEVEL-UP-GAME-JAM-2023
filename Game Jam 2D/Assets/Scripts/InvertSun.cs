@@ -88,11 +88,11 @@ public class InvertSun : MonoBehaviour
     {
         bool ret = false;
 
-        if ((player.transform.position.x <= transform.position.x + Radius && player.transform.position.x >= transform.position.x - Radius &&
-            player.transform.position.y <= transform.position.y + Radius && player.transform.position.y >= transform.position.y - Radius))
+        if ((player.transform.position.x <= (transform.position.x * 2) + Radius && player.transform.position.x >= (transform.position.x * 2) - Radius &&
+            player.transform.position.y <= (transform.position.y * 2) + Radius && player.transform.position.y >= (transform.position.y * 2) - Radius))
         {
-            if ((player.transform.position.x >= transform.position.x + RadiusDiff || player.transform.position.y >= transform.position.y + RadiusDiff ||
-                player.transform.position.x <= transform.position.x - RadiusDiff || player.transform.position.y <= transform.position.y - RadiusDiff))
+            if ((player.transform.position.x >= (transform.position.x * 2) + RadiusDiff || player.transform.position.y >= (transform.position.y * 2) + RadiusDiff ||
+                player.transform.position.x <= (transform.position.x * 2) - RadiusDiff || player.transform.position.y <= (transform.position.y * 2) - RadiusDiff))
             {
                 ret = true;
             }
