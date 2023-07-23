@@ -115,7 +115,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b47d20d8805f39243876ed5dc9e9434e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e24044071fb1b2b4d8503f271e534040, type: 3}
   m_Color: {r: 1, g: 0.9764151, b: 0.9764151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -160,18 +160,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3023014, y: -0.103176475}
+  m_Offset: {x: -0.039409876, y: 0.005409479}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.69, y: 2.18}
+    oldSize: {x: 1.9122223, y: 2.1244445}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5201178, y: 1.8838542}
+  m_Size: {x: 2.0459008, y: 2.101026}
   m_EdgeRadius: 0
 --- !u!114 &1456995594260000255
 MonoBehaviour:
@@ -200,8 +200,8 @@ MonoBehaviour:
   FloatingText: {fileID: 2854880855874789264, guid: 99fb928028afdb545bdabaff87409b07, type: 3}
   _LoS: {fileID: 8238172281045319418}
   maxHealth: 100
-  hurtClip: {fileID: 8300000, guid: 6a3fdc053a927be49b0085a69424c47c, type: 3}
-  dedClip: {fileID: 8300000, guid: 052cbb88a4d2f684da120b870f6da724, type: 3}
+  hurtClip: {fileID: 8300000, guid: 6e070473479a85547859f219bc912865, type: 3}
+  dedClip: {fileID: 8300000, guid: f5cc6838ab71d5643b74ad34b981375b, type: 3}
   state: 0
   xpAmount: 50
 --- !u!114 &8238172280892580770
@@ -221,7 +221,7 @@ MonoBehaviour:
   _LoS: {fileID: 8238172281045319418}
   _rotationSpeed: 35
   _visionDistance: 10
-  attackClip: {fileID: 8300000, guid: 4300258bbe03cbc4c912adcc940f1f3c, type: 3}
+  attackClip: {fileID: 8300000, guid: 0cc6c55f9c956ba4e9043b9b5ea5b647, type: 3}
 --- !u!114 &7491791926149612869
 MonoBehaviour:
   m_ObjectHideFlags: 0
