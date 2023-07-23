@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stopMove: 0
   rechargeStop: 0
-  speed: 5
+  speed: 10
   _dashPower: 5
   _dashTime: 0.2
   _dashCooldown: 1
@@ -337,6 +337,7 @@ MonoBehaviour:
   rechargeClip: {fileID: 8300000, guid: d654174ef194bd7479bf4b8d8f753318, type: 3}
   hurtClip: {fileID: 8300000, guid: b7b5a6156961bac44a67504d42ce6fcf, type: 3}
   dedClip: {fileID: 0}
+  levelClip: {fileID: 0}
 --- !u!114 &1760482343057655469
 MonoBehaviour:
   m_ObjectHideFlags: 0
