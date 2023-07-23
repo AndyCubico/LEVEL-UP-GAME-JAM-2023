@@ -138,15 +138,15 @@ public class PlayerCombat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && nextRechargeTime <= 0 && isBossAlive.Value == false)
         {
-            SetLightToScene();
+            //SetLightToScene();
         }
 
-        if (Input.GetKey(KeyCode.R) && isPlayerInLight.Value)
+        if (Input.GetKey(KeyCode.R)/* && isPlayerInLight.Value*/)
         {
             Recharge();
         }
 
-        else if (Input.GetKeyUp(KeyCode.R) && move.rechargeStop && isPlayerInLight.Value)
+        else if (Input.GetKeyUp(KeyCode.R) && move.rechargeStop /*&& isPlayerInLight.Value*/)
         {
             StartCoroutine(Back2normal());
         }

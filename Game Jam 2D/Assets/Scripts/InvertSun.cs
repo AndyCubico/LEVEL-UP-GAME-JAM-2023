@@ -86,17 +86,17 @@ public class InvertSun : MonoBehaviour
 
     public bool IsPlayerIn()
     {
-        bool ret = false;
+        bool ret = true;
 
-        if ((player.transform.position.x <= (transform.position.x * 2) + Radius && player.transform.position.x >= (transform.position.x * 2) - Radius &&
-            player.transform.position.y <= (transform.position.y * 2) + Radius && player.transform.position.y >= (transform.position.y * 2) - Radius))
-        {
-            if ((player.transform.position.x >= (transform.position.x * 2) + RadiusDiff || player.transform.position.y >= (transform.position.y * 2) + RadiusDiff ||
-                player.transform.position.x <= (transform.position.x * 2) - RadiusDiff || player.transform.position.y <= (transform.position.y * 2) - RadiusDiff))
-            {
-                ret = true;
-            }
-        }
+        //if ((player.transform.position.x <= (transform.position.x * 2) + Radius && player.transform.position.x >= (transform.position.x * 2) - Radius &&
+        //    player.transform.position.y <= (transform.position.y * 2) + Radius && player.transform.position.y >= (transform.position.y * 2) - Radius))
+        //{
+        //    if ((player.transform.position.x >= (transform.position.x * 2) + RadiusDiff || player.transform.position.y >= (transform.position.y * 2) + RadiusDiff ||
+        //        player.transform.position.x <= (transform.position.x * 2) - RadiusDiff || player.transform.position.y <= (transform.position.y * 2) - RadiusDiff))
+        //    {
+        //        ret = true;
+        //    }
+        //}
 
         return ret;
     }
