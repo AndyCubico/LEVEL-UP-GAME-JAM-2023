@@ -135,24 +135,28 @@ public class PlayerCombat : MonoBehaviour
             nextRechargeTime -= Time.deltaTime;
         }
 
-        if ((Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton3)) && nextRechargeTime <= 0 && isBossAlive.Value == false)
+        if ((Input.GetKeyDown(KeyCode.R)) && nextRechargeTime <= 0 && isBossAlive.Value == false)
         {
             SetLightToScene();
         }
 
-        if ((Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton3)) && nextRechargeTime <= 0 && isPlayerInLight.Value)
+        if (Input.GetKey(KeyCode.R) && nextRechargeTime <= 0 && isPlayerInLight.Value)
         {
             Recharge();
         }
 
-        else if (Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.JoystickButton3) && isPlayerInLight.Value)
+        else if (Input.GetKeyUp(KeyCode.R) && isPlayerInLight.Value)
         {
             StartCoroutine(Back2normal());
         }
-        //[Andy] hay bug que detecta key up incluso sin tenerla presionada del todo, con esto se arregla, problema es que deja de pillar mando :D
+
+
+        //if ((Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.JoystickButton3)) && nextRechargeTime <= 0)
+        //{
+        //    Recharge();
+        //}
         //else if (Input.GetKeyUp(KeyCode.R) && move.rechargeStop)
         //{
-        //    Debug.Log("RRRRRRRRRRRRR " + move.rechargeStop);
 
         //    StartCoroutine(Back2normal());
         //}
