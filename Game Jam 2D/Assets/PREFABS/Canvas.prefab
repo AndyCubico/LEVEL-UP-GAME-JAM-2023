@@ -258,8 +258,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelUpMenu, Assembly-CSharp
-        m_MethodName: HealthUpgrade
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -392,8 +392,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelUpMenu, Assembly-CSharp
-        m_MethodName: HealthUpgrade
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -526,8 +526,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelUpMenu, Assembly-CSharp
-        m_MethodName: HealthUpgrade
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1147,14 +1147,14 @@ RectTransform:
   - {fileID: 4509666909682975074}
   - {fileID: 4509666909334844067}
   - {fileID: 6081476700762763166}
-  - {fileID: 2215596560194528756}
-  - {fileID: 6081476701394519338}
   - {fileID: 6081476701355773058}
   - {fileID: 6081476701177925940}
   - {fileID: 6081476700898839786}
   - {fileID: 6081476701649067121}
   - {fileID: 6081476701562430696}
   - {fileID: 6081476701722845459}
+  - {fileID: 2215596560194528756}
+  - {fileID: 6081476701394519338}
   - {fileID: 4509666910573069426}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1429,7 +1429,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4509666910434080946}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1777,7 +1777,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4509666910434080946}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2066,7 +2066,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4509666910434080946}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2128,7 +2128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6081476701394519338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2146,7 +2146,7 @@ RectTransform:
   - {fileID: 6081476702136632297}
   - {fileID: 6081476702008213264}
   m_Father: {fileID: 4509666910434080946}
-  m_RootOrder: 4
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2222,7 +2222,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4509666910434080946}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2433,7 +2433,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4509666910434080946}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2854,7 +2854,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4509666910434080946}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2967,8 +2967,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Attack
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
-  m_sharedMaterial: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+  m_sharedMaterial: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3254,8 +3254,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Energy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
-  m_sharedMaterial: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+  m_sharedMaterial: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3445,7 +3445,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelUpMenu, Assembly-CSharp
-        m_MethodName: HealthUpgrade
+        m_MethodName: AttackUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3523,8 +3523,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Health
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
-  m_sharedMaterial: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+  m_sharedMaterial: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3714,7 +3714,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelUpMenu, Assembly-CSharp
-        m_MethodName: HealthUpgrade
+        m_MethodName: EnergyUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3741,7 +3741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2215596560194528756
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3759,7 +3759,7 @@ RectTransform:
   - {fileID: 7224650065898862129}
   - {fileID: 6927578166655332069}
   m_Father: {fileID: 4509666910434080946}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

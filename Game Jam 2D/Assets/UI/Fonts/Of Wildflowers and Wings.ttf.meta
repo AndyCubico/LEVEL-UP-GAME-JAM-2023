@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae83a8b6013285642a35776c7d4a49cc
+guid: c5377306c5d9f304191c0dd6878772d0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Koscar Liners Demo
+  - Of Wildflowers and Wings
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
