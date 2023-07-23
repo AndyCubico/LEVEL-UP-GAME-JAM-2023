@@ -46,6 +46,7 @@ public class Spawner : MonoBehaviour
             if (x_ >= completeBar)
             {
                 Saved = true;
+                ExperienceManager.Instance.AddExperience(20000);
                 doors.Value++;
             }
         }
