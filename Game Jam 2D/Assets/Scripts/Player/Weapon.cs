@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (LevelUpMenu.isPaused)
+        if (LevelUpMenu.isPaused || PauseMenu.isPausedMenu)
         {
             return;
         }

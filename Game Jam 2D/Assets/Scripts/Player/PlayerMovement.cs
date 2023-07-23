@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(_stopMove || LevelUpMenu.isPaused)
+        if(_stopMove || LevelUpMenu.isPaused || PauseMenu.isPausedMenu)
         {
             return;
         }

@@ -97,7 +97,7 @@ public class PlayerCombat : MonoBehaviour
     }
     void Update()
     {
-        if (LevelUpMenu.isPaused)
+        if (LevelUpMenu.isPaused || PauseMenu.isPausedMenu)
         {
             return;
         }
