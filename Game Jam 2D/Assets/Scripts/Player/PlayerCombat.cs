@@ -135,7 +135,7 @@ public class PlayerCombat : MonoBehaviour
             nextRechargeTime -= Time.deltaTime;
         }
 
-        if ((Input.GetKeyDown(KeyCode.R)) && nextRechargeTime <= 0 && isBossAlive.Value == false)
+        if (Input.GetKeyDown(KeyCode.R) && nextRechargeTime <= 0 && isBossAlive.Value == false)
         {
             SetLightToScene();
         }
