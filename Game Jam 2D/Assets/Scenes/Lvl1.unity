@@ -21785,6 +21785,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5733291457465041318, guid: 00f395fe38aced1449f7b90dbc111b23, type: 3}
   m_PrefabInstance: {fileID: 315155860}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &840877040
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4955519081562163432, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 2255f019ba9948b46a7bf6a055657a95, type: 2}
+    - target: {fileID: 4955519081562163432, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_UseGeometry
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_RootOrder
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163433, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955519081562163438, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
+      propertyPath: m_Name
+      value: NavMesh
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7fe1082e28813d446800b43559a9b02a, type: 3}
 --- !u!1001 &842505428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50357,6 +50422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1915247976}
   - component: {fileID: 1915247975}
+  - component: {fileID: 1915247977}
   m_Layer: 0
   m_Name: tile3
   m_TagString: Untagged
@@ -50431,6 +50497,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1915247977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915247974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!4 &1917067535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 385961126291002965, guid: 8b1823c0a169f6e428bcd2203170cd03, type: 3}
@@ -54653,6 +54735,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: BossBattle
+--- !u!114 &2075285372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075285370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!4 &2076034181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 385961126291002965, guid: 8b1823c0a169f6e428bcd2203170cd03, type: 3}

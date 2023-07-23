@@ -3645,7 +3645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecfb2ac1b8ca1549a54a74b15d470f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: PlayerTest
+  sceneName: Lvl1
 --- !u!1 &1131155574
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,7 +6897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1901118546
 MonoBehaviour:
   m_ObjectHideFlags: 0
