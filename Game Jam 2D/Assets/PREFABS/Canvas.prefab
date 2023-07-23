@@ -2967,8 +2967,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Attack
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
-  m_sharedMaterial: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
+  m_sharedMaterial: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3254,8 +3254,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Energy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
-  m_sharedMaterial: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
+  m_sharedMaterial: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3523,8 +3523,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Health
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
-  m_sharedMaterial: {fileID: 5475652698369965606, guid: d136b2d76cc1b204ca9a136434382ee5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
+  m_sharedMaterial: {fileID: 3779256675205655030, guid: d98665b6973426b45b7c923b67f4d02e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
