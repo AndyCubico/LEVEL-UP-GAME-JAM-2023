@@ -71,6 +71,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private AudioClip rechargeClip;
     [SerializeField] private AudioClip hurtClip;
     [SerializeField] private AudioClip dedClip;
+    [SerializeField] private AudioClip levelClip;
 
     private AudioManager audioMan;
 
@@ -366,6 +367,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void LevelUp()
     {
+        audioMan.PlayAudio(audioSource, levelClip);
         LevelUpMenu.isPaused = true;
     }
 

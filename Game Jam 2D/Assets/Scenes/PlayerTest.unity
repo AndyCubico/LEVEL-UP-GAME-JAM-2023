@@ -1371,6 +1371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2443423651584500471, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
+      propertyPath: walkClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 05a08dd4ee0c046a6b56466d5c9aa9b8, type: 3}
     - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
       propertyPath: xpBar
       value: 
@@ -1391,6 +1395,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 168800298}
+    - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
+      propertyPath: levelClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 44d81cd38b0d6b94a945c5664d86f22c, type: 3}
     - target: {fileID: 2443423651584500476, guid: 65083ac2f82fc114d88c7752774e5be7, type: 3}
       propertyPath: textXPbar
       value: 
