@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        GameObject.DontDestroyOnLoad(this.gameObject);
+
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
