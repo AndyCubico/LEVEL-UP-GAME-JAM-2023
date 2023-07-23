@@ -19,6 +19,8 @@ public enum BOSS_MODE
 }
 public class BossBehaviour : MonoBehaviour
 {
+    public GameObject FloatingText;
+
     [SerializeField] private LayerMask layerBossCanNotWalk;
     [SerializeField] private LayerMask layerSunCanNotSpawn;
     [SerializeField] private LayerMask layerEnemiesCanSpawnOn;
@@ -77,12 +79,16 @@ public class BossBehaviour : MonoBehaviour
     private int maxEnemySpawn = 0;
     private int maxObstaclesSpawn = 0;
 
+    private Animator bossAnimator;
+
+
     private void Start()
     {
         boss_State = BOSS_STATE.BOSS_STATE_100;
         boss_Mode = BOSS_MODE.BOSS_MODE_BULLET;
         pos = new Vector2(Random.Range(-1, 1.0f), Random.Range(-1, 1.0f));
         pos.Normalize();
+        bossAnimator = GetComponent<Animator>();
 
         CurrentHP = MaxHP;
 
@@ -177,7 +183,7 @@ public class BossBehaviour : MonoBehaviour
             }
             else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
             {
-                maxObstaclesSpawn = 15;
+                maxObstaclesSpawn = 7;
             }
         }
 
@@ -272,7 +278,7 @@ public class BossBehaviour : MonoBehaviour
             }
             else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
             {
-                maxObstaclesSpawn = 15;
+                maxObstaclesSpawn = 7;
             }
         }
 
@@ -372,7 +378,7 @@ public class BossBehaviour : MonoBehaviour
             }
             else if (boss_Mode == BOSS_MODE.BOSS_MODE_OBSTACLE)
             {
-                maxObstaclesSpawn = 15;
+                maxObstaclesSpawn = 7;
             }
         }
 
@@ -790,6 +796,8 @@ public class BossBehaviour : MonoBehaviour
     public void TakeDamage(int damage)
     {
         CurrentHP -= damage;
+        ShowFloatingText(damage);
+        bossAnimator.SetTrigger("Hurt");
         //enemyAnimator.SetTrigger("Hurt");
         Debug.Log("Boss Vida " + CurrentHP);
     }
@@ -797,14 +805,12 @@ public class BossBehaviour : MonoBehaviour
     private void DeleteBoss()
     {
         isAlive.Value = false;
-
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<CircleCollider2D>().enabled = false;
-        GetComponent<BoxCollider2D>().enabled = false;
-        Destroy(GetComponent<SpriteRenderer>().gameObject);
-        Destroy(GetComponent<CircleCollider2D>().gameObject);
-        Destroy(GetComponent<BoxCollider2D>().gameObject);
-        Destroy(GetComponent<Rigidbody2D>().gameObject);
+        bossAnimator.SetBool("isDed", true);
+        //GetComponent<CircleCollider2D>().enabled = false;
+        //GetComponent<BoxCollider2D>().enabled = false;
+        //Destroy(GetComponent<CircleCollider2D>().gameObject);
+        //Destroy(GetComponent<BoxCollider2D>().gameObject);
+        //Destroy(GetComponent<Rigidbody2D>().gameObject);
         Destroy(shield);
     }
 
@@ -821,5 +827,11 @@ public class BossBehaviour : MonoBehaviour
         {
             getRid = false;
         }
+    }
+    private void ShowFloatingText(int dam)
+    {
+        var go = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
+        int daños = dam;
+        go.GetComponent<TextMesh>().text = daños.ToString();
     }
 }
